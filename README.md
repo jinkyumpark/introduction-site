@@ -1,7 +1,7 @@
 # Introduction
 Good-looking website for self-introduction and presentation of portfolios is a must for any developer. 
 This website does exactly that. You can navigate right now at 
-- [JINKPARK.COM](jinkpark.com)
+- [JINKPARK.COM](http://jinkpark.com)
 
 # Technology Used
 ## Front-end
