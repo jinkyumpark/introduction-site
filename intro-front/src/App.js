@@ -6,9 +6,9 @@ import Topnav from './components/common/Topnav';
 import Home from './components/route/Home';
 import Footer from './components/common/Footer';
 import Login from './components/common/Login';
+import Resume from './components/route/Resume';
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Modal} from 'react-bootstrap'
 // Icon
 
 // Resources
@@ -25,6 +25,7 @@ function App() {
 				<Router>
 					<Routes>
 						<Route path="/" element={<Home/>}/>
+						<Route path="/resume" element={<Resume/>}/>
 					</Routes>
 				</Router>
 			</div>

@@ -14,7 +14,7 @@ const Login = ({isLoginOpen, setIsLoginOpen}) => {
             </Modal.Header>
 
             <Modal.Body>
-                <form action="">
+                <form action="" method="POST">
                     <div className="form-group">
                         <label htmlFor="">아이디</label>
                         <input type="text" name="id" id="id" className="form-control" />
@@ -29,7 +29,7 @@ const Login = ({isLoginOpen, setIsLoginOpen}) => {
                             <button className='btn btn-success w-100'  type='submit'>로그인</button>
                         </div>
                         <div className="col-6">
-                            <button className='btn btn-danger w-100' onClick={closeLogin}>취소</button>
+                            <button className='btn btn-danger w-100' onClick={closeLogin} type="reset">취소</button>
                         </div>
                     </div>
                 </form>

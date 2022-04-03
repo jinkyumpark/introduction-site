@@ -4,14 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 // Components
 import PortfolioCard from './home/PortfolioCard'
 import Profile from './home/Profile'
-import CsCard from './home/CsCard'
+import TheoryCard from './home/CsCard'
 import MoreButton from './home/MoreButton'
 // Icons
 // Resources
 import './home/homeStyle.css'
 
 const Home = () => {
-        const portfolioData = [
+    const portfolioData = [
         {
             img: 'http://picsum.photos/400/200',
             title: 'Portfolio 1',
@@ -50,8 +50,74 @@ const Home = () => {
         }
     ]
 
-    return (
+    const csBlogData = [
+        {
+            num: 1,
+            type: {
+                img: 'http://picsum.photos/500/500',
+                name: '알고리즘'
+            },
+            title: '정렬 알고리즘 총 정리',
+            content: '알고리즘을 처음 배울 때 배우는게 바로 정렬 알고리즘입니다.',
+            createdDate: '2022년 4월 3일'
+        },
+        {
+            num: 2,
+            type: {
+                img: 'http://picsum.photos/500/500/',
+                name: '알고리즘'
+            },
+            title: '탐색 알고리즘 총 정리',
+            content: '알고리즘을 처음 배울 때 배우는게 바로 탐색 알고리즘입니다.',
+            createdDate: '2022년 4월 3일'
+        },
+        {
+            num: 3,
+            type: {
+                img: 'http://picsum.photos/500/500//',
+                name: '알고리즘'
+            },
+            title: '코딩 테스트에 알고리즘 이론 적용하기',
+            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
+            createdDate: '2022년 4월 3일'
+        }
+    ]
 
+    const devBlogData = [
+        {
+            num: 1,
+            type: {
+                img: 'http://picsum.photos/500/500',
+                name: '알고리즘'
+            },
+            title: '정렬 알고리즘 총 정리',
+            content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius veniam sunt laudantium dolores nulla ipsam dolor ratione error eaque dignissimos quaerat earum distinctio doloribus, libero minus saepe? Id, cumque facere.',
+            createdDate: '2022년 4월 3일'
+
+        },
+        {
+            num: 2,
+            type: {
+                img: 'http://picsum.photos/500/500/',
+                name: '알고리즘'
+            },
+            title: '탐색 알고리즘 총 정리',
+            content: '알고리즘을 처음 배울 때 배우는게 바로 탐색 알고리즘입니다.',
+            createdDate: '2022년 4월 3일'
+        },
+        {
+            num: 3,
+            type: {
+                img: 'http://picsum.photos/500/500//',
+                name: '알고리즘'
+            },
+            title: '코딩 테스트에 알고리즘 이론 적용하기',
+            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
+            createdDate: '2022년 4월 3일'
+        }
+    ]
+
+    return (
     <div className='container'>
         <Profile/>
 
@@ -74,20 +140,29 @@ const Home = () => {
         </div>
 
         <div className="mb-5">
-            <div className="h1">CS 이론 공부</div>
+            <div className="h1 mb-3">CS 이론 공부</div>
             
-            <CsCard/>
-            <CsCard/>
-            <CsCard/>
-            <CsCard/>
+            {
+                csBlogData.map((post) => {
+                    return (
+                        <TheoryCard post={post}/>
+                    )
+                })
+            }
 
             <MoreButton/>
         </div>
 
         <div className="mb-5">
-            <div className="h1">개발 실무 공부</div>
+            <div className="h1 mb-3">개발 실무 공부</div>
 
-            <CsCard/>
+            {
+                devBlogData.map((post) => {
+                    return(
+                        <TheoryCard post={post}/>
+                    )
+                })
+            }
 
             <MoreButton/>
         </div>

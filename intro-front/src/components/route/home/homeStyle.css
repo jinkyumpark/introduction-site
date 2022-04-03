@@ -1,3 +1,7 @@
 #homeIntro:hover {
     opacity: 0.7;
 }
+
+.homeCard:hover {
+    opacity: 0.7;
+}

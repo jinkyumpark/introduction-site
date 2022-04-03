@@ -19,11 +19,6 @@ const Topnav = () => {
         <div className="collapse navbar-collapse">
             <ul className="navbar-nav">
                 <li className="nav-item">
-                    <a href="/" className="nav-link">소개</a>
-                </li>
-            </ul>
-            <ul className="navbar-nav">
-                <li className="nav-item">
                     <a href="/resume" className="nav-link">이력서</a>
                 </li>
             </ul>

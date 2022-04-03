@@ -2,9 +2,11 @@ import React from 'react'
 import {BsArrowRight as DetailIcon} from 'react-icons/bs'
 import profileImg from '../../../images/profileImg.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { Link } from 'react-router-dom'
 
 const Profile = ({profile}) => {
   return (
+      <Link to="/resume" style={{textDecoration: 'none'}}>
         <div className="alert alert-primary" id="homeIntro">
             <div className="row">
                 <img src={profileImg} alt="" style={{width: '100px'}} className="rounded-circle me-3 me-md-5"/>
@@ -17,7 +19,8 @@ const Profile = ({profile}) => {
                     <DetailIcon className='h2 h-100 w-sm-100'/>
                 </div>
             </div>
-        </div>
+        </div>      
+      </Link>
   )
 }
 
