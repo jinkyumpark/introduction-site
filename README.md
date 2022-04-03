@@ -1,6 +1,7 @@
 # Introduction
 Good-looking website for self-introduction and presentation of portfolios is a must for any developer. 
-This website does exactly that. You can navigate right now at 
+This website does exactly that. It shows my resume, portfolio as well as development blogs that I update every now and then.
+You can check it out right now at 
 - [JINKPARK.COM](http://jinkpark.com)
 
 # Technology Used
