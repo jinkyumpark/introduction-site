@@ -1,6 +1,5 @@
 import React from 'react'
 import {BsArrowRight as DetailIcon} from 'react-icons/bs'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import algoLogo from '../../../images/cs-algo.png'
 import './homeStyle.css'
 

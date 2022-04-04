@@ -1,12 +1,9 @@
 import React from 'react'
-// Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css'
 // Components
 import PortfolioCard from './home/PortfolioCard'
 import Profile from './home/Profile'
 import TheoryCard from './home/CsCard'
 import MoreButton from './home/MoreButton'
-// Icons
 // Resources
 import './home/homeStyle.css'
 
@@ -118,57 +115,57 @@ const Home = () => {
     ]
 
     return (
-    <div className='container'>
-        <Profile/>
+        <div className='container'>
+            <Profile />
 
-        <div className='mb-5'>
-            <div className="h1 mb-3">포트폴리오 </div>
+            <div className='mb-5'>
+                <div className="h1 mb-3">포트폴리오 </div>
 
-            <div className="row">
+                <div className="row">
+                    {
+                        portfolioData.map((data) => {
+                            return (
+                                <div className="col-12 col-md-6">
+                                    <PortfolioCard portfolio={data} />
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+
+                <MoreButton />
+            </div>
+
+            <div className="mb-5">
+                <div className="h1 mb-3">CS 이론 공부</div>
+
                 {
-                    portfolioData.map((data) => {
-                        return(
-                            <div className="col-12 col-md-6">
-                                <PortfolioCard portfolio={data}/>
-                            </div>
+                    csBlogData.map((post) => {
+                        return (
+                            <TheoryCard post={post} />
                         )
                     })
                 }
+
+                <MoreButton />
             </div>
-        
-            <MoreButton/>
+
+            <div className="mb-5">
+                <div className="h1 mb-3">개발 실무 공부</div>
+
+                {
+                    devBlogData.map((post) => {
+                        return (
+                            <TheoryCard post={post} />
+                        )
+                    })
+                }
+
+                <MoreButton />
+            </div>
+
         </div>
-
-        <div className="mb-5">
-            <div className="h1 mb-3">CS 이론 공부</div>
-            
-            {
-                csBlogData.map((post) => {
-                    return (
-                        <TheoryCard post={post}/>
-                    )
-                })
-            }
-
-            <MoreButton/>
-        </div>
-
-        <div className="mb-5">
-            <div className="h1 mb-3">개발 실무 공부</div>
-
-            {
-                devBlogData.map((post) => {
-                    return(
-                        <TheoryCard post={post}/>
-                    )
-                })
-            }
-
-            <MoreButton/>
-        </div>
-
-    </div>
-  )
+    )
 }
 
 export default Home
