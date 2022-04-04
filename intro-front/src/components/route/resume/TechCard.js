@@ -2,20 +2,20 @@ import React from 'react'
 import reactIcon from '../../../images/reactjs-icon.png'
 
 const TechCard = ({ tech }) => {
-    const [name, img, summary] = tech
+    const { name, img, summary } = tech
 
     return (
         <div className="card mt-3">
             <div className="card-header">
                 <ul className="nav nav-pills card-header-pills">
                     <li className="nav-item">
-                        <a href="" className="nav-link active">소개</a>
+                        <a href="/" className="nav-link active">소개</a>
                     </li>
                     <li className="nav-item">
-                        <a href="" className="nav-link">포트폴리오</a>
+                        <a href="/" className="nav-link">포트폴리오</a>
                     </li>
                     <li className="nav-item">
-                        <a href="" className="nav-link">포스트</a>
+                        <a href="/" className="nav-link">포스트</a>
                     </li>
                 </ul>
             </div>
