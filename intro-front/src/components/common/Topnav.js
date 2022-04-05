@@ -1,43 +1,41 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 // Resources
 import logo from '../../images/logo.png'
+// Bootstrap
+import { Nav, Navbar, Container } from 'react-bootstrap'
 
 const Topnav = () => {
     return (
-        <nav className='navbar navbar-dark bg-primary fixed-top navbar-expand-lg'>
-            <a className='navbar-brand ms-5' href='/'>
-                <img src={logo} alt="" className="d-inline align-top" style={{ width: '30px', height: '30px' }} />
-            </a>
-            <button class="navbar-toggler me-5" type="button" data-toggle="collapse"
-                data-target="#navbarNav" aria-controls="navbarNav"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <Navbar bg="primary" fixed="top" expand="lg" className='navbar-dark pt-0 pb-0'>
+            <Container>
+                <Navbar.Brand>
+                    <Nav.Link href="/" className='p-0'>
+                        <img src={logo} alt="" className="d-inline align-top" style={{
+                            width: '50px', height: '50px', color: 'white', filter: 'brightness(0) invert(1)'
+                        }} />
 
-            <div className="collapse navbar-collapse">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <a href="/resume" className="nav-link">이력서</a>
-                    </li>
-                </ul>
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <a href="/portfolio" className="nav-link">포트폴리오</a>
-                    </li>
-                </ul>
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <a href="/blog/cs" className="nav-link">이론공부</a>
-                    </li>
-                </ul>
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <a href="/blog/dev" className="nav-link">개발공부</a>
-                    </li>
-                </ul>
-            </div>
+                    </Nav.Link>
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls='navbarLink'></Navbar.Toggle>
 
-        </nav>
+                <Navbar.Collapse id="navbarLink">
+                    <Nav className='ms-auto ms-md-2 p-2'>
+                        <Nav.Link href='/resume' className='text-center'>이력서</Nav.Link>
+                    </Nav>
+                    <Nav className='ms-auto ms-md-2 p-2'>
+                        <Nav.Link href='/portfolio' className='text-center'>포트폴리오</Nav.Link>
+                    </Nav>
+                    <Nav className='ms-auto ms-md-2 p-2'>
+                        <Nav.Link href='/blog/cs' className='text-center'>이론공부</Nav.Link>
+                    </Nav>
+                    <Nav className='ms-auto ms-md-2 p-2'>
+                        <Nav.Link href='/blog/dev' className='text-center'>개발공부</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+
+            </Container >
+        </Navbar >
     )
 }
 
