@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 // Components
 import PortfolioCard from './home/PortfolioCard'
 import Profile from './home/Profile'
-import TheoryCard from './home/CsCard'
+import PostCard from './blog/PostCard'
 import MoreButton from './home/MoreButton'
 // Resources
 import './home/homeStyle.css'
 
-const Home = () => {
+const Home = ({ setIsBlogOpen, setBlogNum }) => {
     const portfolioData = [
         {
             img: 'http://picsum.photos/400/200',
@@ -91,7 +91,6 @@ const Home = () => {
             title: '정렬 알고리즘 총 정리',
             content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius veniam sunt laudantium dolores nulla ipsam dolor ratione error eaque dignissimos quaerat earum distinctio doloribus, libero minus saepe? Id, cumque facere.',
             createdDate: '2022년 4월 3일'
-
         },
         {
             num: 2,
@@ -114,6 +113,7 @@ const Home = () => {
             createdDate: '2022년 4월 3일'
         }
     ]
+
 
     return (
         <div className='container'>
@@ -145,12 +145,15 @@ const Home = () => {
                 {
                     csBlogData.map((post) => {
                         return (
-                            <TheoryCard post={post} />
+                            <div>
+                                <PostCard post={post} setIsBlogOpen={setIsBlogOpen} setBlogNum={setBlogNum} />
+                            </div>
                         )
                     })
                 }
-
-                <MoreButton />
+                <Link to="/blog/cs">
+                    <MoreButton />
+                </Link>
             </div>
 
             <div className="mb-5">
@@ -159,12 +162,14 @@ const Home = () => {
                 {
                     devBlogData.map((post) => {
                         return (
-                            <TheoryCard post={post} />
+                            <PostCard post={post} setIsBlogOpen={setIsBlogOpen} setBlogNum={setBlogNum} />
                         )
                     })
                 }
 
-                <MoreButton />
+                <Link to="/blog/dev">
+                    <MoreButton />
+                </Link>
             </div>
 
         </div>
