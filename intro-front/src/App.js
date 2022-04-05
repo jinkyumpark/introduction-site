@@ -7,6 +7,8 @@ import Home from './components/route/Home';
 import Footer from './components/common/Footer';
 import Login from './components/common/Login';
 import Resume from './components/route/Resume';
+import Portfolio from './components/route/Portfolio'
+import BlogCsTheory from './components/route/BlogCsTheory';
 
 function App() {
 	const [isLoginOpen, setIsLoginOpen] = useState(false)
@@ -20,6 +22,8 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/resume" element={<Resume />} />
+						<Route path="/portfolio" element={<Portfolio />} />
+						<Route path="/blog/cs" element={<BlogCsTheory />} />
 					</Routes>
 				</Router>
 			</div>

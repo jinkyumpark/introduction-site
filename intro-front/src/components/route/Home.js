@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 // Components
 import PortfolioCard from './home/PortfolioCard'
 import Profile from './home/Profile'
@@ -133,7 +134,9 @@ const Home = () => {
                     }
                 </div>
 
-                <MoreButton />
+                <Link to="/portfolio">
+                    <MoreButton />
+                </Link>
             </div>
 
             <div className="mb-5">

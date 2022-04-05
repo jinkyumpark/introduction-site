@@ -27,7 +27,7 @@ const Topnav = () => {
                 </ul>
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <a href="/blog/theory" className="nav-link">이론공부</a>
+                        <a href="/blog/cs" className="nav-link">이론공부</a>
                     </li>
                 </ul>
                 <ul className="navbar-nav">
