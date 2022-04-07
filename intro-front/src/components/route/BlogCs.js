@@ -1,8 +1,11 @@
-import React from 'react'
-import algo from '../../images/cs-algo.png'
+import React, { useState, useEffect } from 'react'
 import ClassificationIcon from './blog/ClassificationIcon'
 
-const BlogCsTheory = () => {
+// Components
+import NoPost from './blog/NoPost'
+import Loading from "../common/Loading"
+
+const BlogCs = ({setPage}) => {
     const classificationData = [
         {
             name: "알고리즘",
@@ -30,6 +33,17 @@ const BlogCsTheory = () => {
         }
     ]
 
+    const [posts, setPosts] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        setPage(3)
+
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 3000);
+    }, [])
+
     return (
         <div>
             <div className="h1">컴퓨터 과학 이론</div>
@@ -41,18 +55,27 @@ const BlogCsTheory = () => {
                             <div className="col-4 col-md-2">
                                 <ClassificationIcon
                                     data={data}
+                                    isCs={true}
                                 />
                             </div>
                         )
                     })
                 }
+            </div>
 
+            <div className='mt-5'>
+                {
+                    isLoading ?
+                        <Loading /> :
+                        posts == null ?
+                            <NoPost /> :
 
-
+                            <></>
+                }
             </div>
         </div>
     )
 }
 
 
-export default BlogCsTheory
+export default BlogCs

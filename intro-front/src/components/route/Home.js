@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 // Components
 import PortfolioCard from './home/PortfolioCard'
@@ -8,13 +8,17 @@ import MoreButton from './home/MoreButton'
 // Resources
 import './home/homeStyle.css'
 
-const Home = ({ setIsBlogOpen, setBlogNum }) => {
+const Home = ({ setIsBlogOpen, setBlogNum, setPage }) => {
+    useEffect(() => {
+        setPage(0)
+    }, [])
+
     const portfolioData = [
         {
             img: 'http://picsum.photos/400/200',
             title: 'Portfolio 1',
             content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus dolor reprehenderit id assumenda enim expedita esse ratione veniam porro quisquam debitis, architecto velit alias placeat fugit dignissimos error amet?',
-            link: 'income.jinkpark.com',
+            link: 'http://income.jinkpark.com',
             startDate: '2022년 2월',
             endDate: '2022년 3월',
             status: 1
@@ -23,7 +27,7 @@ const Home = ({ setIsBlogOpen, setBlogNum }) => {
             img: 'http://picsum.photos/400/200/',
             title: 'Portfolio 2',
             content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus dolor reprehenderit id assumenda enim expedita esse ratione veniam porro quisquam debitis, architecto velit alias placeat fugit dignissimos error amet?',
-            link: 'income.jinkpark.com',
+            link: 'http://income.jinkpark.com',
             startDate: '2022년 2월',
             endDate: '2022년 3월',
             status: 0
@@ -32,7 +36,7 @@ const Home = ({ setIsBlogOpen, setBlogNum }) => {
             img: 'http://picsum.photos/400/200//',
             title: 'Portfolio 3',
             content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus dolor reprehenderit id assumenda enim expedita esse ratione veniam porro quisquam debitis, architecto velit alias placeat fugit dignissimos error amet?',
-            link: 'income.jinkpark.com',
+            link: 'http://income.jinkpark.com',
             startDate: '2022년 2월',
             endDate: '2022년 3월',
             status: 0
@@ -41,7 +45,7 @@ const Home = ({ setIsBlogOpen, setBlogNum }) => {
             img: 'http://picsum.photos/400/200///',
             title: 'Portfolio 4',
             content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus dolor reprehenderit id assumenda enim expedita esse ratione veniam porro quisquam debitis, architecto velit alias placeat fugit dignissimos error amet?',
-            link: 'income.jinkpark.com',
+            link: 'http://income.jinkpark.com',
             startDate: '2022년 2월',
             endDate: '2022년 3월',
             status: 3

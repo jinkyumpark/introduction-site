@@ -5,7 +5,7 @@ import logo from '../../images/logo.png'
 // Bootstrap
 import { Nav, Navbar, Container } from 'react-bootstrap'
 
-const Topnav = () => {
+const Topnav = ({page}) => {
     return (
         <Navbar bg="primary" fixed="top" expand="lg" className='navbar-dark pt-0 pb-0'>
             <Container>
@@ -20,17 +20,17 @@ const Topnav = () => {
                 <Navbar.Toggle aria-controls='navbarLink'></Navbar.Toggle>
 
                 <Navbar.Collapse id="navbarLink">
-                    <Nav className='ms-auto ms-md-2 p-2'>
-                        <Nav.Link href='/resume' className='text-center'>이력서</Nav.Link>
+                    <Nav className={'ms-auto ms-md-2 p-2 active'}>
+                        <Nav.Link href='/resume' className={'text-center' + (page == 1 && ' active')}>이력서</Nav.Link>
                     </Nav>
                     <Nav className='ms-auto ms-md-2 p-2'>
-                        <Nav.Link href='/portfolio' className='text-center'>포트폴리오</Nav.Link>
+                        <Nav.Link href='/portfolio' className={'text-center' + (page == 2 && ' active')}>포트폴리오</Nav.Link>
                     </Nav>
                     <Nav className='ms-auto ms-md-2 p-2'>
-                        <Nav.Link href='/blog/cs' className='text-center'>이론공부</Nav.Link>
+                        <Nav.Link href='/blog/cs' className={'text-center' + (page == 3 && ' active')}>이론공부</Nav.Link>
                     </Nav>
                     <Nav className='ms-auto ms-md-2 p-2'>
-                        <Nav.Link href='/blog/dev' className='text-center'>개발공부</Nav.Link>
+                        <Nav.Link href='/blog/dev' className={'text-center' + (page == 4 && ' active')}>개발공부</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
 
