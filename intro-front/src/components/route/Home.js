@@ -8,13 +8,14 @@ import MoreButton from './home/MoreButton'
 // Resources
 import './home/homeStyle.css'
 
-const Home = ({ setIsBlogOpen, setBlogNum, setPage }) => {
+const Home = ({ setIsBlogOpen, setBlogNum, setPage, setIsPortfolioOpen, setSelectedPortfolioNum }) => {
     useEffect(() => {
         setPage(0)
     }, [])
 
     const portfolioData = [
         {
+            num: 0,
             img: 'http://picsum.photos/400/200',
             title: 'Portfolio 1',
             content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus dolor reprehenderit id assumenda enim expedita esse ratione veniam porro quisquam debitis, architecto velit alias placeat fugit dignissimos error amet?',
@@ -24,6 +25,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setPage }) => {
             status: 1
         },
         {
+            num: 1,
             img: 'http://picsum.photos/400/200/',
             title: 'Portfolio 2',
             content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus dolor reprehenderit id assumenda enim expedita esse ratione veniam porro quisquam debitis, architecto velit alias placeat fugit dignissimos error amet?',
@@ -33,6 +35,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setPage }) => {
             status: 0
         },
         {
+            num: 2,
             img: 'http://picsum.photos/400/200//',
             title: 'Portfolio 3',
             content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus dolor reprehenderit id assumenda enim expedita esse ratione veniam porro quisquam debitis, architecto velit alias placeat fugit dignissimos error amet?',
@@ -42,6 +45,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setPage }) => {
             status: 0
         },
         {
+            num: 3,
             img: 'http://picsum.photos/400/200///',
             title: 'Portfolio 4',
             content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus dolor reprehenderit id assumenda enim expedita esse ratione veniam porro quisquam debitis, architecto velit alias placeat fugit dignissimos error amet?',
@@ -131,7 +135,11 @@ const Home = ({ setIsBlogOpen, setBlogNum, setPage }) => {
                         portfolioData.map((data) => {
                             return (
                                 <div className="col-12 col-md-6">
-                                    <PortfolioCard portfolio={data} />
+                                    <PortfolioCard 
+                                        portfolio={data}
+                                        setIsPortfolioOpen={setIsPortfolioOpen}
+                                        setSelectedPortfolioNum={setSelectedPortfolioNum}
+                                    />
                                 </div>
                             )
                         })
@@ -163,13 +171,13 @@ const Home = ({ setIsBlogOpen, setBlogNum, setPage }) => {
             <div className="mb-5">
                 <div className="h1 mb-3">개발 실무 공부</div>
 
-                {
-                    devBlogData.map((post) => {
-                        return (
-                            <PostCard post={post} setIsBlogOpen={setIsBlogOpen} setBlogNum={setBlogNum} />
-                        )
-                    })
-                }
+                    {
+                        devBlogData.map((post) => {
+                            return (
+                                <PostCard post={post} setIsBlogOpen={setIsBlogOpen} setBlogNum={setBlogNum} />
+                            )
+                        })
+                    }
 
                 <Link to="/blog/dev">
                     <MoreButton />

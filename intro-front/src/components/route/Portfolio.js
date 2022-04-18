@@ -2,22 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
 
 import PortfolioCard from './home/PortfolioCard'
+import NoPortfolio from './portfolio/NoPortfolio'
 
-import { MdOutlineDoNotDisturb as ErrorIcon } from 'react-icons/md'
-
-const Portfolio = ({setPage}) => {
+const Portfolio = ({setPage, isPortfolioOpen, setIsPortfolioOpen, setPortfolioNum}) => {
     useEffect(() => {
         setPage(2)
     }, [])
 
-    const [isDetailOpen, setIsDetailOpen] = useState(false)
-    const [portfolioNum, setPortfolioNum] = useState(null)
-    const openDetail = (index) => {
-        setIsDetailOpen(true)
+    const openPortfolio = (index) => {
+        setIsPortfolioOpen(true)
         setPortfolioNum(index)
     }
     const closeDetail = () => {
-        setIsDetailOpen(false)
+        setIsPortfolioOpen(false)
     }
 
     const portfolioData = [
@@ -59,32 +56,19 @@ const Portfolio = ({setPage}) => {
                         return(
                             <PortfolioListCard
                                 portfolio={data}
-                                openDetail={openDetail}
+                                openPortfolio={openPortfolio}
                             />                            
                         )
                     })
             }
-
-            <Modal show={isDetailOpen} onHide={closeDetail}>
-                <div className="card">
-                    <div className="card-header">
-                        <div className="h1">TITLE</div>
-                    </div>
-                    <div className="card-body">
-                        <div className="card-content">
-                            <div className="h5">DESCRIPTION</div>
-                        </div>
-                    </div>
-                </div>
-            </Modal>
         </div>
     )
 }
 
-const PortfolioListCard = ({portfolio, openDetail}) => {
+const PortfolioListCard = ({portfolio, openPortfolio}) => {
     return(
         <div className="card mt-3" >
-        <div className="row" onClick={openDetail}>
+        <div className="row" onClick={openPortfolio}>
 
 
             <div className="col-4">
@@ -106,21 +90,6 @@ const PortfolioListCard = ({portfolio, openDetail}) => {
         </div>
 
     </div>
-    )
-}
-
-const NoPortfolio = () => {
-    return(
-        <div className='mt-5 text-center'>
-            <div className="row">
-                <ErrorIcon className='mb-3 text-danger' size='150'/>
-            </div>
-            <div className="row">
-                <div className="h2 text-center w-100">
-                    죄송해요 아직 포트폴리오가 없거나 로딩에 오류가 났어요.
-                </div>
-            </div>
-        </div>
     )
 }
 
