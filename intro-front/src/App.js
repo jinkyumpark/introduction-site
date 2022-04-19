@@ -1,17 +1,18 @@
 // React
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+
 // Components
 import Topnav from './components/common/Topnav';
 import Home from './components/route/Home';
 import Footer from './components/common/Footer';
-import Login from './components/common/Login';
+import Login from './components/route/admin/Login';
 import Resume from './components/route/Resume';
 import Portfolio from './components/route/Portfolio'
 import BlogCs from './components/route/BlogCs';
 import BlogDev from './components/route/BlogDev'
 import Post from './components/route/blog/Post';
-import Admin from './components/route/Admin'
+import Admin from './components/route/admin/Admin'
 import PortfolioDetail from './components/route/portfolio/PortfolioDetail';
 
 // Bootstrap
@@ -24,8 +25,6 @@ function App() {
 	const [blogNum, setBlogNum] = useState(null)
 	const [selectedPortfolioNum, setSelectedPortfolioNum] = useState(null)
 
-	const [page, setPage] = useState(0)
-
 	const closeBlog = () => {
 		setIsBlogOpen(false)
 	}
@@ -37,30 +36,26 @@ function App() {
 			<>
 			<Router>
 				<div className="App mt-5">
-					<Topnav 
-						page={page}
-					/>
+					<Topnav/>
 
 					<div className="container">
 							<Routes>
 								<Route path="/" element={<Home 
 															setIsBlogOpen={setIsBlogOpen} 
 															setBlogNum={setBlogNum} 
-															setPage={setPage} 
 															setIsPortfolioOpen={setIsPortfolioOpen}
 															setSelectedPortfolioNum={setSelectedPortfolioNum}	
 														/>} 
 								/>
-								<Route path="/resume" element={<Resume setPage={setPage}/>} />
+								<Route path="/resume" element={<Resume/>} />
 								<Route path="/portfolio" element={<Portfolio 
-																	setPage={setPage} 
 																	isPortfolioOpen={isPortfolioOpen} 
 																	setIsPortfolioOpen={setIsPortfolioOpen}
 																	setPortfolioNum={setSelectedPortfolioNum}
 																	/>} 
 								/>
-								<Route path="/blog/cs" element={<BlogCs setPage={setPage}/>} />
-								<Route path="/blog/dev" element={<BlogDev setPage={setPage} />} />
+								<Route path="/blog/cs" element={<BlogCs/>} />
+								<Route path="/blog/dev" element={<BlogDev/>} />
 								<Route path="/admin" element={<Admin/>}/>
 							</Routes>
 					</div>

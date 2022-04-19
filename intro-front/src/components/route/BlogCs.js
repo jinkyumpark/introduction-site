@@ -5,7 +5,7 @@ import ClassificationIcon from './blog/ClassificationIcon'
 import NoPost from './blog/NoPost'
 import Loading from "../common/Loading"
 
-const BlogCs = ({setPage}) => {
+const BlogCs = () => {
     const classificationData = [
         {
             name: "알고리즘",
@@ -37,8 +37,6 @@ const BlogCs = ({setPage}) => {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        setPage(3)
-
         setTimeout(() => {
             setIsLoading(false)
         }, 3000);

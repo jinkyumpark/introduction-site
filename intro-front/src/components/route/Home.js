@@ -8,10 +8,7 @@ import MoreButton from './home/MoreButton'
 // Resources
 import './home/homeStyle.css'
 
-const Home = ({ setIsBlogOpen, setBlogNum, setPage, setIsPortfolioOpen, setSelectedPortfolioNum }) => {
-    useEffect(() => {
-        setPage(0)
-    }, [])
+const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfolioNum }) => {
 
     const portfolioData = [
         {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
-import AdminResume from './admin/AdminResume'
+import AdminResume from './AdminResume'
 
 const Admin = () => {
     const [selected, setSelected] = useState(-1)
@@ -41,7 +41,17 @@ const Admin = () => {
             }
         </div>
 
-        <AdminResume/>
+        {
+            selected == 0 ?
+                <AdminResume/>
+            :
+                <div className='container mt-5 mb-5'>
+                    <div className="h1 text-center">
+                        무엇을 편집하실 건가요?
+                    </div>
+                </div>
+        }
+
     </div>
   )
 }
@@ -52,9 +62,9 @@ const NavIcon = ({data, selected, setSelected}) => {
     }
 
     return(
-        <Button onClick={selectCategory} className={'w-100' + (selected == data.num) && ' active'}>
+        <div onClick={selectCategory} className={'btn btn-outline-primary w-100' + ((selected == data.num) ? ' active' : '')}>
             {data.name}
-        </Button>
+        </div>
     )
 }
 

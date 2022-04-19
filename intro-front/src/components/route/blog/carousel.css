@@ -1,0 +1,10 @@
+.carousel-control-prev-icon {
+  display: none;
+  width: 0px;
+  height: 0px;
+}
+      
+  .carousel-control-next-icon {
+    margin-right: -80%;
+  }
+  

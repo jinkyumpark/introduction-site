@@ -13,12 +13,9 @@ import TechCard from './resume/TechCard'
 import InterviewCard from './resume/InterviewCard'
 
 // Bootstrap
-import { Collapse, Button } from 'react-bootstrap'
+import { Collapse, Button, OverlayTrigger, Popover, Modal } from 'react-bootstrap'
 
 const Resume = ({setPage}) => {
-    useEffect(() => {
-        setPage(1)
-    }, [])
 
     const dummyTechData = [
         {
@@ -85,6 +82,7 @@ const Resume = ({setPage}) => {
     }
 
     const [isDesOpen, setIsDesOpen] = useState(false)
+    const [isPhoneRequestOpen, setIsPhoneRequestOpen] = useState(false)
 
     return (
         <div className='container mt-5 mb-5'>
@@ -116,10 +114,6 @@ const Resume = ({setPage}) => {
                                     <div className="h5">
                                         <HouseIcon className='me-2' />
                                         서울시 영등포구
-                                    </div>
-                                    <div className="h5">
-                                        <PhoneIcon className='me-2' />
-                                        010-4539-8503
                                     </div>
                                     <div className="h5">
                                         <EmailIcon className='me-2' />
@@ -168,7 +162,7 @@ const Resume = ({setPage}) => {
                         </div>
                     </div>
 
-                    <Collapse in={isDesOpen} className='mt-3 h5 text-muted'>
+                    <Collapse in={isDesOpen} className='mt-3 h6 text-muted'>
                         <div className="card card-body" id='techDes' style={{ lineHeight: '2rem' }}>
                             저는 단순히 가볍게 몇 번 다뤄 봤다고 이 기술을 보유하고 있다고 생각하지 않습니다.
                             무조건 프로젝트에서 사용한 적이 있고, 서툴어도 검색해 가면서 현업에서 바로
@@ -206,6 +200,106 @@ const Resume = ({setPage}) => {
             <div className="row mt-5">
                 <div className="h2">포트폴리오</div>
             </div>
+
+            <div className="row mt-5">
+                <div className="h2">더 궁금한게 있으신가요?</div>
+                    <div className="row text-muted">
+                        <div className="h5 p-3">
+                            만약 더 궁금하신게 있거나, 제게 연락해야 한다면 아래 연락처를 이용해 주세요!
+                        </div>
+                    </div>
+
+                    <div className="row text-muted">
+                        <div className="h5 p-3">
+                            이메일로 연락하셔도 보통 하루 내에는 답장 드릴 수 있지만, 정말 급하시다면 핸드폰 번호를 요청하실 수 있어요.
+                        </div>
+                    </div>
+
+                    <div className="row justify-content-center mt-5">
+                        <div className="col-5 col-md-4 align-self-center">
+
+                            <OverlayTrigger
+                                key='top'
+                                placement='top'
+                                overlay={
+                                    <Popover>
+                                        <Popover.Body>
+                                            jinpark1025@gmail.com
+                                        </Popover.Body>
+                                    </Popover>
+                                }
+                                >
+                                <button className='btn btn-primary w-100'>이메일로 연락하기</button>
+                            </OverlayTrigger>
+
+                        </div>
+
+                        <div className="col-5 col-md-4 align self-center">
+                            <button className="btn btn-primary w-100" onClick={() => {
+                                setIsPhoneRequestOpen(true)
+                            }}>
+                                휴대폰 번호 요청하기
+                            </button>
+                        </div>
+                    </div>
+
+            </div>
+
+
+            <Modal
+                show={isPhoneRequestOpen}
+                onHide={() => {
+                    setIsPhoneRequestOpen(false)
+                }}
+            >
+                <Modal.Header closeButton>
+                    <div className="h2">
+                        휴대폰 번호 요청하기
+                    </div>
+                </Modal.Header>
+                <Modal.Body>
+                    <form>
+                        <div className="form-group">
+                            <label htmlFor="">소속</label>
+                            <input type="text" name="" id="" className='form-control'/>
+                            <small className="form-text text-muted">소속을 적어주세요(회사, 대학 등)</small>
+                        </div>
+
+                        <div className="form-group mt-3">
+                            <label htmlFor="">이유</label>
+                            <input type="text" name="" id="" className='form-control'/>
+                            <small className="form-text text-muted">제 휴대폰 번호가 필요한 이유를 간단히 적어주세요</small>
+                        </div>
+
+                        <div className="form-group mt-3">
+                            <label htmlFor="">연락 받으실 휴대폰 번호</label>
+                            <div className="row">
+                                <div className="col-4">
+                                    <input type="text" name="" id="" className='form-control' maxLength={3}/>
+                                </div>
+                                <div className="col-4">
+                                    <input type="text" name="" id="" className='form-control' maxLength={4}/>
+                                </div>
+                                <div className="col-4">
+                                    <input type="text" name="" id="" className='form-control' maxLength={4}/>
+                                </div>
+                            </div>
+                            <small className="form-text text-muted">연락 받으실 휴대폰 번호를 적어 주세요</small>
+                        </div>
+
+                        <div className="row mt-3">
+                            <div className="col-6">
+                                <button type="submit" className='btn btn-primary w-100'>요청</button>
+                            </div>
+                            <div className="col-6">
+                                <button type='reset' className='btn btn-danger w-100' onClick={() => {
+                                    setIsPhoneRequestOpen(false)
+                                }}>취소</button>
+                            </div>
+                        </div>
+                    </form>
+                </Modal.Body>
+            </Modal>
         </div>
     )
 }

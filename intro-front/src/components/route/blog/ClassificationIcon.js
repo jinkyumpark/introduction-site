@@ -10,7 +10,7 @@ const ClassificationIcon = ({ data, isCs, isDev }) => {
     const { name, icon } = data
 
     return (
-        <div className='btn btn-outline-dark mt-3'>
+        <div className='btn btn-outline-dark mt-3 w-100'>
             <div className="row" style={{ height: '50px' }}>
                 <div className="col-3">
                     {
@@ -33,7 +33,7 @@ const ClassificationIcon = ({ data, isCs, isDev }) => {
                                     : icon === 2 ?
                                         <BackIcon className='' style={{ width: '50px', height: '50px' }} /> :
                                         <DevopsIcon className='' style={{ width: '50px', height: '50px' }} /> :
-                                <img src={icon} alt="ICON" />
+                                <img src={icon} alt="ICON" style={{ width: '50px', height: '50px'}} className='rounded-circle'/>
 
                     }
                 </div>

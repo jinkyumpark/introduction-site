@@ -7,7 +7,7 @@ import reactIcon from '../../images/tech-icon/reactjs-icon.png'
 import NoPost from './blog/NoPost'
 import Loading from "../common/Loading"
 
-const BlogDev = ({setPage}) => {
+const BlogDev = () => {
     const classificationData = [
         {
             name: "리엑트",
@@ -54,8 +54,6 @@ const BlogDev = ({setPage}) => {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        setPage(4)
-
         setTimeout(() => {
             setIsLoading(false)
         }, 3000);

@@ -4,10 +4,7 @@ import { Modal } from 'react-bootstrap'
 import PortfolioCard from './home/PortfolioCard'
 import NoPortfolio from './portfolio/NoPortfolio'
 
-const Portfolio = ({setPage, isPortfolioOpen, setIsPortfolioOpen, setPortfolioNum}) => {
-    useEffect(() => {
-        setPage(2)
-    }, [])
+const Portfolio = ({isPortfolioOpen, setIsPortfolioOpen, setPortfolioNum}) => {
 
     const openPortfolio = (index) => {
         setIsPortfolioOpen(true)
