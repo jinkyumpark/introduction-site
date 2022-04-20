@@ -7,7 +7,11 @@ const Login = ({ isLoginOpen, setIsLoginOpen }) => {
     }
 
     return (
-        <Modal show={isLoginOpen}>
+        <Modal show={isLoginOpen}
+                onHide={() => {
+                    setIsLoginOpen(false)
+                }}
+        >
             <Modal.Header>
                 <Modal.Title>관리자 로그인</Modal.Title>
             </Modal.Header>

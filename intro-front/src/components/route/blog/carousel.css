@@ -1,10 +1,7 @@
 .carousel-control-prev-icon {
-  display: none;
-  width: 0px;
-  height: 0px;
+  margin-right: 80%;
 }
       
-  .carousel-control-next-icon {
-    margin-right: -80%;
-  }
-  
+.carousel-control-next-icon {
+  margin-right: -80%;
+}

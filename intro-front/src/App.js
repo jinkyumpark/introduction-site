@@ -1,18 +1,21 @@
 // React
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useState } from 'react'
 
 // Components
 import Topnav from './components/common/Topnav';
-import Home from './components/route/Home';
 import Footer from './components/common/Footer';
+
 import Login from './components/route/admin/Login';
-import Resume from './components/route/Resume';
-import Portfolio from './components/route/Portfolio'
-import BlogCs from './components/route/BlogCs';
-import BlogDev from './components/route/BlogDev'
-import Post from './components/route/blog/Post';
 import Admin from './components/route/admin/Admin'
+
+import Home from './components/route/home/Home';
+import Resume from './components/route/resume/Resume';
+import Portfolio from './components/route/portfolio/Portfolio'
+import BlogCs from './components/route/blog/BlogCs';
+import BlogDev from './components/route/blog/BlogDev'
+
+import Post from './components/route/blog/Post';
 import PortfolioDetail from './components/route/portfolio/PortfolioDetail';
 
 // Bootstrap
@@ -47,7 +50,10 @@ function App() {
 															setSelectedPortfolioNum={setSelectedPortfolioNum}	
 														/>} 
 								/>
-								<Route path="/resume" element={<Resume/>} />
+								<Route path="/resume" element={<Resume
+																	setIsPortfolioOpen={setIsPortfolioOpen}
+																	setSelectedPortfolioNu={setSelectedPortfolioNum}
+								/>} />
 								<Route path="/portfolio" element={<Portfolio 
 																	isPortfolioOpen={isPortfolioOpen} 
 																	setIsPortfolioOpen={setIsPortfolioOpen}

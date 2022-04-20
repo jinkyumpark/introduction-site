@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 // Components
-import PortfolioCard from './home/PortfolioCard'
-import Profile from './home/Profile'
-import PostCard from './blog/PostCard'
-import MoreButton from './home/MoreButton'
+import Profile from './Profile'
+import PortfolioCard from './PortfolioCard'
+import PostCard from '../blog/PostCard'
+import MoreButton from '../../common/MoreButton'
+
 // Resources
-import './home/homeStyle.css'
+import './homeStyle.css'
 
 const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfolioNum }) => {
 

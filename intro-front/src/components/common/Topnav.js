@@ -27,10 +27,6 @@ const Topnav = () => {
             } else {
                 setPage(0)
             }
-
-            console.log(pathname)
-            console.log(page)
-
     }, [location])
 
     return (

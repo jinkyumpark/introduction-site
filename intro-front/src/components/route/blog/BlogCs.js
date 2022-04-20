@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import ClassificationIcon from './blog/ClassificationIcon'
-
-import reactIcon from '../../images/tech-icon/reactjs-icon.png'
+import ClassificationIcon from './ClassificationIcon'
 
 // Components
-import NoPost from './blog/NoPost'
-import Loading from "../common/Loading"
+import NoPost from './NoPost'
+import Loading from "../../common/Loading"
 
-const BlogDev = () => {
+const BlogCs = () => {
     const classificationData = [
         {
-            name: "리엑트",
-            icon: { reactIcon }
+            name: "알고리즘",
+            icon: 1
         },
         {
             name: "데이터구조",
@@ -35,21 +33,6 @@ const BlogDev = () => {
         }
     ]
 
-    const dev1 = [
-        {
-            name: 'Front',
-            icon: 1
-        },
-        {
-            name: 'Back',
-            icon: 2
-        },
-        {
-            name: 'DevOps',
-            icon: 3
-        }
-    ]
-
     const [posts, setPosts] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
 
@@ -61,22 +44,7 @@ const BlogDev = () => {
 
     return (
         <div>
-            <div className="h1">개발 기술</div>
-
-            <div className="row">
-                {
-                    dev1.map((dev) => {
-                        return (
-                            <div className="col-4">
-                                <ClassificationIcon
-                                    data={dev}
-                                    isDev={true}
-                                />
-                            </div>
-                        )
-                    })
-                }
-            </div>
+            <div className="h1">컴퓨터 과학 이론</div>
 
             <div className="row">
                 {
@@ -85,6 +53,7 @@ const BlogDev = () => {
                             <div className="col-4 col-md-2">
                                 <ClassificationIcon
                                     data={data}
+                                    isCs={true}
                                 />
                             </div>
                         )
@@ -107,4 +76,4 @@ const BlogDev = () => {
 }
 
 
-export default BlogDev
+export default BlogCs
