@@ -12,7 +12,7 @@ const ClassificationIcon = ({ data, isCs, isDev }) => {
     return (
         <div className='btn btn-outline-dark mt-3 w-100'>
             <div className="row" style={{ height: '50px' }}>
-                <div className="col-3">
+                <div className="col-3 align-self-center">
                     {
                         isCs ?
                             icon === 1 ?
@@ -37,7 +37,7 @@ const ClassificationIcon = ({ data, isCs, isDev }) => {
 
                     }
                 </div>
-                <div className="col-9">
+                <div className="col-9 align-self-center">
                     <div className="h5">{name}</div>
                 </div>
             </div>
