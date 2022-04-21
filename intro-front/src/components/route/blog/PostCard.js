@@ -1,23 +1,14 @@
 import React from 'react'
-import { BsArrowRight as DetailIcon } from 'react-icons/bs'
-import algoLogo from '../../../images/cs-algo.png'
 
-const PostCard = ({ post, setIsBlogOpen, setBlogNum }) => {
+const PostCard = ({ post }) => {
     const { num, type, title, content, createdDate } = post
 
-    const openBlog = () => {
-        setIsBlogOpen(true)
-        setBlogNum(num)
-        console.log(num)
-    }
-
-
     return (
-        <div className="card mb-4 homeCard" onClick={openBlog}>
+        <div className="card mb-4 homeCard text-dark">
             <div className="row justify-content-center justify-content-sm-start no-gutters">
 
                 <div className="col-6 col-sm-3 col-md-2 text-center ms-2 me-2 mt-3">
-                    <img className="card-img rounded-circle p-2" src={type.img} alt="Algorithms" />
+                    <img className="card-img rounded-circle p-2" src={type.img} alt="LOGO" />
                     <div className="h5 text-center">{type.name}</div>
                 </div>
 
@@ -29,7 +20,6 @@ const PostCard = ({ post, setIsBlogOpen, setBlogNum }) => {
                     </div>
                 </div>
             </div>
-
 
         </div>
     )

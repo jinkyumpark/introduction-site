@@ -17,7 +17,7 @@ const Footer = ({ setIsLoginOpen }) => {
 
 			<ul class="nav col-md-4 justify-content-end list-unstyled d-flex me-3">
 				<li className="ms-3"><a className="text-muted h2" target='_blank' href="https://github.com/jinkyumpark"><GithubIcon /></a></li>
-				<li className="ms-3"><a className="text-muted h2" target='blank' href="https://www.linkedin.com/in/jinkyum-park/"><LinkedinIcon /></a></li>
+				<li className="ms-3"><a className="text-muted h2" target='_blank' href="https://www.linkedin.com/in/jinkyum-park/"><LinkedinIcon /></a></li>
 				<li className="ms-3"><a className="text-muted h2" onClick={openLogin}><AdminIcon /></a></li>
 			</ul>
 		</footer>

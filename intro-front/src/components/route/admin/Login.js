@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const Login = ({ isLoginOpen, setIsLoginOpen }) => {
     const closeLogin = () => {
@@ -17,7 +18,7 @@ const Login = ({ isLoginOpen, setIsLoginOpen }) => {
             </Modal.Header>
 
             <Modal.Body>
-                <form action="" method="POST">
+                <form>
                     <div className="form-group">
                         <label htmlFor="">아이디</label>
                         <input type="text" name="id" id="id" className="form-control" />
@@ -29,7 +30,11 @@ const Login = ({ isLoginOpen, setIsLoginOpen }) => {
 
                     <div className="text-center row mt-3">
                         <div className="col-6">
-                            <button className='btn btn-success w-100' type='submit'>로그인</button>
+                            <Link to='/admin'>
+                                <button className='btn btn-success w-100' onClick={() => {
+                                    setIsLoginOpen(false)
+                                }}>로그인</button>
+                            </Link>
                         </div>
                         <div className="col-6">
                             <button className='btn btn-danger w-100' onClick={closeLogin} type="reset">취소</button>

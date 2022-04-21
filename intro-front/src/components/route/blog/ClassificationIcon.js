@@ -16,24 +16,24 @@ const ClassificationIcon = ({ data, isCs, isDev }) => {
                     {
                         isCs ?
                             icon === 1 ?
-                                <AlgoIcon className='' style={{ width: '50px', height: '50px' }} />
+                                <AlgoIcon className='' style={{ width: '35px', height: '35px' }} />
                                 : icon === 2 ?
-                                    <DataStructureIcon className='' style={{ width: '50px', height: '50px' }} />
+                                    <DataStructureIcon className='' style={{ width: '35px', height: '35px' }} />
                                     : icon === 3 ?
-                                        <NetworkIcon className='' style={{ width: '50px', height: '50px' }} />
+                                        <NetworkIcon className='' style={{ width: '35px', height: '35px' }} />
                                         : icon === 4 ?
-                                            <DbIcon className='' style={{ width: '50px', height: '50px' }} />
+                                            <DbIcon className='' style={{ width: '35px', height: '35px' }} />
                                             : icon === 5 ?
-                                                <ComputationIcon className='' style={{ width: '50px', height: '50px' }} />
+                                                <ComputationIcon className='' style={{ width: '35px', height: '35px' }} />
                                                 :
-                                                <OsIcon className='' style={{ width: '50px', height: '50px' }} />
+                                                <OsIcon className='' style={{ width: '35px', height: '35px' }} />
                             : isDev ?
                                 icon === 1 ?
-                                    <FrontIcon className='' style={{ width: '50px', height: '50px' }} />
+                                    <FrontIcon className='' style={{ width: '35px', height: '35px' }} />
                                     : icon === 2 ?
-                                        <BackIcon className='' style={{ width: '50px', height: '50px' }} /> :
-                                        <DevopsIcon className='' style={{ width: '50px', height: '50px' }} /> :
-                                <img src={icon} alt="ICON" style={{ width: '50px', height: '50px'}} className='rounded-circle'/>
+                                        <BackIcon className='' style={{ width: '35px', height: '35px' }} /> :
+                                        <DevopsIcon className='' style={{ width: '35px', height: '35px' }} /> :
+                                <img src={icon} alt="ICON" style={{ width: '35px', height: '35px'}} className='rounded-circle'/>
 
                     }
                 </div>

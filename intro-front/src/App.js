@@ -23,14 +23,9 @@ import { Modal } from 'react-bootstrap'
 
 function App() {
 	const [isLoginOpen, setIsLoginOpen] = useState(false)
-	const [isBlogOpen, setIsBlogOpen] = useState(false)
 	const [isPortfolioOpen, setIsPortfolioOpen] = useState(false)
-	const [blogNum, setBlogNum] = useState(null)
 	const [selectedPortfolioNum, setSelectedPortfolioNum] = useState(null)
 
-	const closeBlog = () => {
-		setIsBlogOpen(false)
-	}
 	const closePortfolio = () => {
 		setIsPortfolioOpen(false)
 	}
@@ -44,8 +39,6 @@ function App() {
 					<div className="container">
 							<Routes>
 								<Route path="/" element={<Home 
-															setIsBlogOpen={setIsBlogOpen} 
-															setBlogNum={setBlogNum} 
 															setIsPortfolioOpen={setIsPortfolioOpen}
 															setSelectedPortfolioNum={setSelectedPortfolioNum}	
 														/>} 
@@ -63,20 +56,9 @@ function App() {
 								<Route path="/blog/cs" element={<BlogCs/>} />
 								<Route path="/blog/dev" element={<BlogDev/>} />
 								<Route path="/admin" element={<Admin/>}/>
+								<Route path='/blog/post/:num' element={<Post/>}/>
 							</Routes>
 					</div>
-
-					<Modal
-						show={isBlogOpen}
-						size='xl'
-						style={{ height: '90%' }}
-						scrollable={false}
-						onHide={closeBlog}
-					>
-						<Modal.Body>
-							<Post blogNum={blogNum} setIsBlogOpen={setIsBlogOpen} />
-						</Modal.Body>
-					</Modal>
 
 					<Login
 						isLoginOpen={isLoginOpen}

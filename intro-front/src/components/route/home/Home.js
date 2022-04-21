@@ -120,7 +120,6 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
         }
     ]
 
-
     return (
         <div className='container'>
             <Profile />
@@ -156,7 +155,9 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                     csBlogData.map((post) => {
                         return (
                             <div>
-                                <PostCard post={post} setIsBlogOpen={setIsBlogOpen} setBlogNum={setBlogNum} />
+                                <Link to={'/blog/post/' + post.num } className='text-decoration-none'>
+                                    <PostCard post={post}/>
+                                </Link>
                             </div>
                         )
                     })
@@ -172,7 +173,9 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                     {
                         devBlogData.map((post) => {
                             return (
-                                <PostCard post={post} setIsBlogOpen={setIsBlogOpen} setBlogNum={setBlogNum} />
+                                <Link to={'/blog/post/' + post.num } className='text-decoration-none'>
+                                    <PostCard post={post}/>
+                                </Link>
                             )
                         })
                     }

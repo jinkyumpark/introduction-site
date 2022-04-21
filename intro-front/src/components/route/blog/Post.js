@@ -9,13 +9,12 @@ import {BiTimeFive as LengthIcon} from 'react-icons/bi'
 
 import {Carousel, OverlayTrigger, Popover} from 'react-bootstrap';
 import './carousel.css'
+import { useParams } from 'react-router-dom';
 
-const Post = ({ blogNum, setIsBlogOpen }) => {
-    const closeBlog = () => {
-        setIsBlogOpen(false)
-    }
-
+const Post = () => {
     const [isLoading, setIsLoading] = useState(true)
+
+    const { num } = useParams();
 
     useEffect(() => {
         setTimeout(() => {
@@ -77,11 +76,8 @@ const Post = ({ blogNum, setIsBlogOpen }) => {
 
             <div className='overflow-hidden'>
                 <div className="row">
-                    <div className="col-10 h1">
+                    <div className="col-12 h1">
                         {post.title}
-                    </div>
-                    <div className="col-2">
-                        <div className="btn btn-close w-100 p-3" onClick={closeBlog}></div>
                     </div>
                 </div>
 
@@ -256,7 +252,7 @@ const Post = ({ blogNum, setIsBlogOpen }) => {
 
 
                                             <div className="col-6 col-md-3">
-                                                <div className="btn btn-outline-primary w-100">
+                                                <div className="btn btn-outline-dark w-100">
                                                     <div className="row">
                                                         <div className="col-3">
                                                             <LanguageIcon/>
@@ -293,7 +289,7 @@ const Post = ({ blogNum, setIsBlogOpen }) => {
                                                 </div>
                                             </div>
                                             <div className="col-6 col-md-3">
-                                                <div className="btn btn-outline-primary w-100">
+                                                <div className="btn btn-outline-success w-100">
                                                     <div className="row">
                                                         <div className="col-3">
                                                             <LengthIcon/>
