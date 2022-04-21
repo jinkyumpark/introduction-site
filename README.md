@@ -2,7 +2,7 @@
 Good-looking website for self-introduction and presentation of portfolios is a must for any developer. 
 This website does exactly that. It shows my resume, portfolio as well as development blogs that I update every now and then.
 You can check it out right now at 
-- [JINKPARK.COM](http://jinkpark.com)
+- [JINKYUMPARK.COM](http://jinkyumpark.com)
 
 # Technology Used
 ## Front-end
@@ -10,13 +10,25 @@ You can check it out right now at
   - react-bootstrap
   - react-router
   - react-icons
+  - react-hot-toast
+  - react-textarea-code-editor
+  - react-infinite-scroller
+  - redux
 
 ## Back-end
+  - Spring Framework
+    - MyBatis
+  - Oracle DB
+    - PL/SQL
+  - VSCode
+  - IntelliJ
+  - SQLDeveloper
 
-## Project Management
+## DevOps
 - Git
 - Docker
 - Oracle Cloud
+- Tomcat Server
 
 # Development History
 ## Apr 1
