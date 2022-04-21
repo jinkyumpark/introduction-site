@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import ClassificationIcon from './ClassificationIcon'
+import { Link, useParams } from 'react-router-dom';
 
 // Components
 import NoPost from './NoPost'
 import Loading from "../../common/Loading"
 import PostCard from './PostCard'
+import Post from './Post'
 
 const BlogCs = () => {
+    const { num } = useParams();
+
     const classificationData = [
         {
             name: "알고리즘",
@@ -67,13 +71,15 @@ const BlogCs = () => {
         }
     ]
 
-    const [posts, setPosts] = useState(null)
+    const [posts, setPosts] = useState(csBlogData)
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false)
         }, 1000);
+
+        console.log(num)
     }, [])
 
     return (
@@ -101,11 +107,16 @@ const BlogCs = () => {
                         <Loading /> :
                         posts == null ?
                             <NoPost /> :
+                                num == null ?
                                 posts.map((post) => {
                                     return(
-                                        <PostCard post={post} />
+                                        <Link to={'/blog/cs/' + post.num} className='text-decoration-none'>
+                                            <PostCard post={post} />
+                                        </Link>
                                     )
                                 })
+                                :
+                                <Post/>
                 }
             </div>
         </div>

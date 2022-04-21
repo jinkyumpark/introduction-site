@@ -155,7 +155,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                     csBlogData.map((post) => {
                         return (
                             <div>
-                                <Link to={'/blog/post/' + post.num } className='text-decoration-none'>
+                                <Link to={'/blog/cs/' + post.num } className='text-decoration-none'>
                                     <PostCard post={post}/>
                                 </Link>
                             </div>
@@ -173,7 +173,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                     {
                         devBlogData.map((post) => {
                             return (
-                                <Link to={'/blog/post/' + post.num } className='text-decoration-none'>
+                                <Link to={'/blog/dev/' + post.num } className='text-decoration-none'>
                                     <PostCard post={post}/>
                                 </Link>
                             )

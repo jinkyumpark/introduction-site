@@ -26,6 +26,7 @@ function App() {
 	const [isPortfolioOpen, setIsPortfolioOpen] = useState(false)
 	const [selectedPortfolioNum, setSelectedPortfolioNum] = useState(null)
 
+
 	const closePortfolio = () => {
 		setIsPortfolioOpen(false)
 	}
@@ -53,10 +54,12 @@ function App() {
 																	setPortfolioNum={setSelectedPortfolioNum}
 																	/>} 
 								/>
-								<Route path="/blog/cs" element={<BlogCs/>} />
-								<Route path="/blog/dev" element={<BlogDev/>} />
+								<Route path="/blog/cs/" element={<BlogCs/>} />
+								<Route path="/blog/dev/" element={<BlogDev/>} />
+
+								<Route path="/blog/cs/:num" element={<BlogCs/>} />
+								<Route path="/blog/dev/:num" element={<BlogDev/>} />
 								<Route path="/admin" element={<Admin/>}/>
-								<Route path='/blog/post/:num' element={<Post/>}/>
 							</Routes>
 					</div>
 

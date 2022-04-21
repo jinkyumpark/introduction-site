@@ -9,6 +9,7 @@ const Topnav = () => {
 
     const [page, setPage] = useState(0)
 
+
     const location = useLocation()
 
     useEffect(() => {
@@ -20,13 +21,11 @@ const Topnav = () => {
                 setPage(1)
             } else if(pathname === '/portfolio') {
                 setPage(2)
-            } else if(pathname === '/blog/cs') {
+            } else if(pathname.includes('/blog/cs')) {
                 setPage(3)
-            } else if(pathname === '/blog/dev') {
+            } else if(pathname.includes('/blog/dev')) {
                 setPage(4)
-            } else {
-                setPage(0)
-            }
+            } 
     }, [location])
 
     return (
