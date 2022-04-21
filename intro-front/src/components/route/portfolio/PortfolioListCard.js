@@ -4,7 +4,7 @@ import {OverlayTrigger, Popover} from 'react-bootstrap'
 
 const PortfolioListCard = ({portfolio, openPortfolio}) => {
   return (
-    <div className="card mt-3" style={{height: '400px'}}>
+    <div className="card mt-3" style={{}}>
         <div className="row me-2 h-100" onClick={() => openPortfolio(portfolio.num)}>
 
             <div className="col-9 col-md-10 portfolioListCard">
@@ -13,7 +13,7 @@ const PortfolioListCard = ({portfolio, openPortfolio}) => {
                         <img src={portfolio.img} alt='PORTFOLIO EX' className="img-fluid" style={{ width: '300px', height: '200px' }} />
                     </div>
 
-                    <div className="col-12 col-md-7 mt-2 ms-2">
+                    <div className="col-12 col-md-7 mt-2 ms-2 ms-md-0">
                         <div className="h1">{portfolio.title}</div>
 
                         <div className="h3 text-muted">{portfolio.description}</div>
