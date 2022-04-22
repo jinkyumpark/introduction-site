@@ -21,6 +21,8 @@ import PortfolioDetail from './components/route/portfolio/PortfolioDetail';
 // Bootstrap
 import { Modal } from 'react-bootstrap'
 
+import { Toaster } from 'react-hot-toast';
+
 function App() {
 	const [isLoginOpen, setIsLoginOpen] = useState(false)
 	const [isPortfolioOpen, setIsPortfolioOpen] = useState(false)
@@ -35,6 +37,10 @@ function App() {
 			<>
 			<Router>
 				<div className="App mt-5">
+					<div><Toaster
+							position='bottom-right'
+					/></div>
+
 					<Topnav/>
 
 					<div className="container">

@@ -1,7 +1,7 @@
 import React from 'react'
 import {OverlayTrigger, Popover} from 'react-bootstrap'
 
-const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum }) => {
+const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum, isLinkActive }) => {
     const { img, title, content, link, startDate, endDate, status, num } = portfolio
 
     const openPortfolioDetail = () => {
@@ -20,7 +20,20 @@ const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum 
                         <button className='btn btn-primary w-100' onClick={openPortfolioDetail}>자세히 보기</button>
                     </div>
                     <div className="col-6">
-                        <a href={link} target='_blank' className='btn btn-primary w-100'>직접 사용해 보기</a>
+                    <OverlayTrigger
+                            key='top'
+                            placement='top'
+                            overlay={
+                                <Popover>
+                                    <Popover.Body>
+                                        실제 동작하는 사이트를 직접 사용해 보실 수 있어요
+                                    </Popover.Body>
+                                </Popover>
+                            }
+                            >
+                            <a href={link} target='_blank' className={'btn btn-primary w-100' + (!isLinkActive ? ' disabled' : '')}>직접 사용해 보기</a>
+                        </OverlayTrigger>
+
                     </div>
                 </div>
             </div>

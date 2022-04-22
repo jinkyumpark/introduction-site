@@ -178,6 +178,12 @@ const PortfolioDetail = () => {
 					<div className="h5 ps-5 text-muted">프로젝트를 하는 과정에서 특히 어려웠던 부분이나, 인상 깊었던 기능의 구현을 몇 개 소개합니다!</div>
 				</div>
 
+
+				<div className="mt-3">
+					<div className="h2">개발 이력</div>
+					
+				</div>
+
             </div>
         </div>
     </div>

@@ -62,7 +62,7 @@ const Topnav = () => {
                         </Nav>
                         <Nav className='ms-auto ms-md-2 p-2'>
                             <Link to='/blog/dev' className={(page == 4 ? 'nav-link text-decoration-none text-center active' : 'nav-link text-decoration-none text-center')}>
-                                개발공부
+                                개발실무
                             </Link>
                         </Nav>
                 </Navbar.Collapse>

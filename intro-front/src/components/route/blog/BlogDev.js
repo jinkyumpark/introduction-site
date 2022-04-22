@@ -9,6 +9,7 @@ import NoPost from './NoPost'
 import Loading from "../../common/Loading"
 import PostCard from './PostCard'
 import Post from './Post'
+import toast from 'react-hot-toast'
 
 const BlogDev = () => {
     const { num } = useParams();
@@ -19,7 +20,8 @@ const BlogDev = () => {
     const [posts, setPosts] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
-    
+    const [blogPage, setBlogPage] = useState(0)
+    const [totalPost, setTotalPost] = useState(150)
 
     // DUMMY DATA
     const dummyBlogList = [
@@ -46,8 +48,8 @@ const BlogDev = () => {
             createdDate: '2022년 4월 3일'
         },
         {
-            key: 3124132412,
-            num: 3,
+            key: 31242341132412,
+            num: 4,
             type: {
                 img: 'http://picsum.photos/500/500//',
                 name: '알고리즘'
@@ -55,10 +57,87 @@ const BlogDev = () => {
             title: '코딩 테스트에 알고리즘 이론 적용하기',
             content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
             createdDate: '2022년 4월 3일'
-        }
+        },
+        {
+            key: 31243214132412,
+            num: 5,
+            type: {
+                img: 'http://picsum.photos/500/500///',
+                name: '알고리즘'
+            },
+            title: '코딩 테스트에 알고리즘 이론 적용하기',
+            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
+            createdDate: '2022년 4월 3일'
+        },
+        {
+            key: 342351241324142312,
+            num: 6,
+            type: {
+                img: 'http://picsum.photos/500/500////',
+                name: '알고리즘'
+            },
+            title: '코딩 테스트에 알고리즘 이론 적용하기',
+            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
+            createdDate: '2022년 4월 3일'
+        },
+        {
+            key: 31241324524142312,
+            num: 7,
+            type: {
+                img: 'http://picsum.photos/500/500/////',
+                name: '알고리즘'
+            },
+            title: '코딩 테스트에 알고리즘 이론 적용하기',
+            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
+            createdDate: '2022년 4월 3일'
+        },
+        {
+            key: 312413432524142312,
+            num: 8,
+            type: {
+                img: 'http://picsum.photos/500/500//////',
+                name: '알고리즘'
+            },
+            title: '코딩 테스트에 알고리즘 이론 적용하기',
+            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
+            createdDate: '2022년 4월 3일'
+        },
+        {
+            key: 31241543324142312,
+            num: 9,
+            type: {
+                img: 'http://picsum.photos/500/500///////',
+                name: '알고리즘'
+            },
+            title: '코딩 테스트에 알고리즘 이론 적용하기',
+            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
+            createdDate: '2022년 4월 3일'
+        },
+        {
+            key: 31241324123442312,
+            num: 10,
+            type: {
+                img: 'http://picsum.photos/500/500////////',
+                name: '알고리즘'
+            },
+            title: '코딩 테스트에 알고리즘 이론 적용하기',
+            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
+            createdDate: '2022년 4월 3일'
+        },
+        {
+            key: 312413413424123442312,
+            num: 11,
+            type: {
+                img: 'http://picsum.photos/500/500/////////',
+                name: '알고리즘'
+            },
+            title: '코딩 테스트에 알고리즘 이론 적용하기',
+            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
+            createdDate: '2022년 4월 3일'
+        },
     ]
 
-    const dummySubCategory = [
+    const dummyFrontSubCategory = [
         {
             key: 184129,
             name: "HTML/CSS",
@@ -76,17 +155,62 @@ const BlogDev = () => {
         },
         {
             key: 31451435,
-            name: "데이터베이스",
+            name: "Bootstrap",
             icon: 'http://picsum.photos/400/400',
         },
         {
-            key: 41341234,
-            name: "컴퓨테이션 이론",
+            key: 31451231435,
+            name: "SwiftUI",
+            icon: 'http://picsum.photos/400/400',
+        }
+    ]
+    const dummyBackSubCategory = [
+        {
+            key: 184129,
+            name: "Spring",
             icon: 'http://picsum.photos/400/400',
         },
         {
-            key: 1341324,
-            name: "운영체제",
+            key: 31412341,
+            name: "Database(SQL)",
+            icon: 'http://picsum.photos/400/400',
+        },
+        {
+            key: 5532513,
+            name: "Node.js(Express)",
+            icon: 'http://picsum.photos/400/400',
+        },
+        {
+            key: 31451435,
+            name: "Django/Flask",
+            icon: 'http://picsum.photos/400/400',
+        }
+    ]
+    
+    const dummyDevopsSubCategory = [
+        {
+            key: 184129,
+            name: "Git",
+            icon: 'http://picsum.photos/400/400',
+        },
+        {
+            key: 31412341,
+            name: "Docker",
+            icon: 'http://picsum.photos/400/400',
+        },
+        {
+            key: 5532513,
+            name: "IDE",
+            icon: 'http://picsum.photos/400/400',
+        },
+        {
+            key: 31451435,
+            name: "Cloud",
+            icon: 'http://picsum.photos/400/400',
+        },
+        {
+            key: 31432451435,
+            name: "Testing",
             icon: 'http://picsum.photos/400/400',
         }
     ]
@@ -126,13 +250,13 @@ const BlogDev = () => {
             setSubCategoryList(null)
         } else if(selectedMainCategory == 1) {
             // fetch front
-            setSubCategoryList(dummySubCategory)
+            setSubCategoryList(dummyFrontSubCategory)
         } else if(selectedMainCategory == 2) {
             // fetch back
-
-        } else if(selectedSubCategory == 3) {
+            setSubCategoryList(dummyBackSubCategory)
+        } else if(selectedMainCategory == 3) {
             // fetch devops
-
+            setSubCategoryList(dummyDevopsSubCategory)
         }
 
     }, [selectedMainCategory])
@@ -156,6 +280,7 @@ const BlogDev = () => {
                                 <ClassificationIcon
                                     data={category}
                                     isDev={true}
+                                    isActive={(selectedMainCategory == category.icon)}
                                 />
                             </div>
                         )
@@ -177,7 +302,7 @@ const BlogDev = () => {
                         )
                     })
                     :
-                    <>ERROR</>
+                    <></>
                     :
                     <></>
                 }
@@ -190,13 +315,52 @@ const BlogDev = () => {
                         posts == null ?
                             <NoPost /> :
                                 num == null ?
-                                    posts.map((post) => {
-                                        return(
-                                            <Link to={'/blog/dev/' + post.num} className='text-decoration-none'>
-                                                <PostCard post={post}/>
-                                            </Link>
-                                        )
-                                    })
+                                    <>
+                                    {
+                                        posts.map((post) => {
+                                            return(
+                                                <Link to={'/blog/dev/' + post.num} className='text-decoration-none'>
+                                                    <PostCard post={post}/>
+                                                </Link>
+                                            )
+                                        })
+
+                                    }
+
+                                        <div className="row mt-3 justify-content-center">
+                                            <div className="col-12 align-self-center">
+                                                <ul class="pagination justify-content-center">
+                                                    <li class="page-item" onClick={() => {
+                                                        if(0 < blogPage) {
+                                                            setBlogPage(blogPage - 1)
+                                                        } else {
+                                                            toast.error('더 이상 줄일 수 없어요. 처음으로 돌아왔어요')
+                                                        }
+                                                    }}><div class="page-link" href="#">{'<'}</div></li>
+                                                    {
+                                                        [ ...Array(Math.floor(totalPost / 10)) ].map((item, index) => {
+                                                            return(
+                                                                <li class={"page-item" + (blogPage == index ? ' active' : '')}
+                                                                    onClick={() => {
+                                                                        setBlogPage(index)
+                                                                    }}
+                                                                
+                                                                ><div class="page-link">{index + 1}</div></li>
+                                                            )
+                                                        })
+                                                    }
+                                                    <li class="page-item" onClick={() => {
+                                                        if(blogPage < Math.floor(totalPost / 10) - 1) {
+                                                            setBlogPage(blogPage + 1)
+                                                        } else {
+                                                            toast.error('더 이상 포스트가 없어요')
+                                                        }
+                                                    }}><div class="page-link">{'>'}</div></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </>
                                 :
                                 <Post/>
                 }

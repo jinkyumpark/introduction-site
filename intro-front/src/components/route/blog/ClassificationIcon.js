@@ -6,11 +6,11 @@ import {
 import { FcIntegratedWebcam as FrontIcon, FcLinux as BackIcon, FcEngineering as DevopsIcon } from 'react-icons/fc'
 
 
-const ClassificationIcon = ({ data, isCs, isDev }) => {
+const ClassificationIcon = ({ data, isCs, isDev, isActive }) => {
     const { name, icon } = data
 
     return (
-        <div className='btn btn-outline-dark mt-3 w-100'>
+        <div className={'btn btn-outline-dark mt-3 w-100' + (isActive ? ' active' : '')}>
             <div className="row" style={{ height: '50px' }}>
                 <div className="col-3 align-self-center">
                     {

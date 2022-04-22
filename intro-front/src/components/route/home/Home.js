@@ -136,6 +136,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                                         portfolio={data}
                                         setIsPortfolioOpen={setIsPortfolioOpen}
                                         setSelectedPortfolioNum={setSelectedPortfolioNum}
+                                        isLinkActive={data.status == 2 || data.status == 3}
                                     />
                                 </div>
                             )
