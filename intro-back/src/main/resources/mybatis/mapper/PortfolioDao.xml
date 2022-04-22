@@ -3,8 +3,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ezen.springfeed.dao.IPostDao">
+<mapper namespace="com.jinkyumpark.introback.portfolio.PortfolioDao">
 
-    <resultMap id="PortfolioMap" type="java.util.HashMap"></resultMap>
+    <resultMap id="portfolioMap" type="java.util.HashMap"></resultMap>
+
+    <select id="getHomePortfolio"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+    >
+        {
+            CALL getHomePortfolio(
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=portfolioMap
+                }
+            )
+        }
+    </select>
 
 </mapper>

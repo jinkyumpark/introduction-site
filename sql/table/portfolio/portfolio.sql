@@ -8,7 +8,7 @@ create table portfolio(
 	site_link varchar(100),
 	start_date date default sysdate,
 	end_date date,
-	deveoper_count number(2) default 0,
+	developer_count number(2) default 0,
 	db_img varchar(100),
 
 	priority number(1) default 5,
