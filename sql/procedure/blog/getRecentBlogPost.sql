@@ -1,29 +1,46 @@
 create or replace procedure getRecentBlogPost(
-	p_type in post_category_detail.category_type%TYPE,
+	p_type in post_category.category_type%TYPE,
 	p_cur out sys_refcursor
 )
 is
 begin
-	open p_cur for
+	IF p_type = 0 THEN
 
-	select p.title, p.summary as content, p.created_date, p.num, pcd.title as category_title, pcd.img as category_img
-	from post p
+		open p_cur for
 
-	inner join post_category pc
-	on p.category = pc.num
+		select p.title, p.summary as content, p.created_date, p.num, 
 
-	inner join post_category_detail pcd
-	on pc.main_category=pcd.num
+		pc.title as category_title, pc.img as category_img
+		from post p
 
-	where p.category in(
-		select num 
-		from post_category		
-		where main_category in 
-		(
+		inner join post_category pc
+		on p.main_category = pc.num
+
+		where p.main_category in (
 			select num 
-			from post_category_detail
-			where category_type=p_type
+			from post_category		
+			where category_type = 0 
 		)
-	)
-	fetch next 4 rows only;
+		fetch next 4 rows only;
+
+	ELSE
+
+		open p_cur for
+
+		select p.title, p.summary as content, p.created_date, p.num, 
+
+		pc.title as category_title, pc.img as category_img
+		from post p
+
+		inner join post_category pc
+		on p.main_category = pc.num
+
+		where p.main_category in(
+			select num 
+			from post_category		
+			where category_type = 2
+		)
+		fetch next 4 rows only;
+
+	END IF;
 end;

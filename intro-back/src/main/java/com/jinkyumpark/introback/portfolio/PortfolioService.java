@@ -11,8 +11,8 @@ public class PortfolioService {
     @Autowired
     PortfolioDao pdao;
 
-    public void getHomePortfolio(HashMap<String, Object> paramMap) {
-        pdao.getHomePortfolio(paramMap);
+    public void getPortfolioList(HashMap<String, Object> paramMap) {
+        pdao.getPortfolioList(paramMap);
     }
 
 }

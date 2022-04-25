@@ -4,5 +4,5 @@ import java.util.HashMap;
 
 @Mapper
 public interface PortfolioDao {
-    void getHomePortfolio(HashMap<String, Object> paramMap);
+    void getPortfolioList(HashMap<String, Object> paramMap);
 }

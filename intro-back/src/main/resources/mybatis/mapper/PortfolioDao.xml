@@ -7,12 +7,14 @@
 
     <resultMap id="portfolioMap" type="java.util.HashMap"></resultMap>
 
-    <select id="getHomePortfolio"
+    <select id="getPortfolioList"
             statementType="CALLABLE"
             parameterType="java.util.HashMap"
     >
         {
-            CALL getHomePortfolio(
+            CALL getPortfolioList(
+                #{page},
+                #{fetch_num},
                 #{
                     ref_cursor,
                     mode=OUT,
