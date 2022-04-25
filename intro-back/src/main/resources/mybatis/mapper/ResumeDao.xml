@@ -25,4 +25,56 @@
         }
     </select>
 
+    <select id="getProfile"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getProfile(
+                #{id},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=resumeMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getLanguages"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getLanguages(
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=resumeMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getActivities"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+    >
+        {
+            CALL getActivities(
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=resumeMap
+                }
+            )
+        }
+    </select>
+
 </mapper>

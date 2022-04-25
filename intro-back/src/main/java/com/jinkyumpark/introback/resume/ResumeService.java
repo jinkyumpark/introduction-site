@@ -14,4 +14,16 @@ public class ResumeService {
     public void getHomeProfile(HashMap<String, Object> paramMap) {
         rdao.getHomeProfile(paramMap);
     }
+
+    public void getProfile(HashMap<String, Object> paramMap) {
+        rdao.getProfile(paramMap);
+    }
+
+    public void getLanguages(HashMap<String, Object> paramMap ) {
+        rdao.getLanguages(paramMap);
+    }
+
+    public void getActivities(HashMap<String, Object> paramMap) {
+        rdao.getActivities(paramMap);
+    }
 }

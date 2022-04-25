@@ -1,5 +1,7 @@
 create or replace procedure getRecentBlogPost(
 	p_type in post_category.category_type%TYPE,
+	p_page number,
+	p_fetch_num number,
 	p_cur out sys_refcursor
 )
 is
@@ -21,10 +23,9 @@ begin
 			from post_category		
 			where category_type = 0 
 		)
-		fetch next 4 rows only;
+		offset (p_fetch_num * p_page) rows fetch next p_fetch_num rows only;
 
 	ELSE
-
 		open p_cur for
 
 		select p.title, p.summary as content, p.created_date, p.num, 
@@ -40,7 +41,6 @@ begin
 			from post_category		
 			where category_type = 2
 		)
-		fetch next 4 rows only;
-
+		offset (p_fetch_num * p_page) rows fetch next p_fetch_num rows only;
 	END IF;
 end;

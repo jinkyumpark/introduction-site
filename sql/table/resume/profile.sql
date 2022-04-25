@@ -18,5 +18,3 @@ create table profile(
 
 	constraint pk_profile primary key(id)
 );
-
-create sequence profile_seq start with 1 increment by 1;
