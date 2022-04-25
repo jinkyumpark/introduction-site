@@ -26,4 +26,24 @@ public class ResumeService {
     public void getActivities(HashMap<String, Object> paramMap) {
         rdao.getActivities(paramMap);
     }
+
+    public void getTechHeader(HashMap<String, Object> paramMap) {
+        rdao.getTechHeader(paramMap);
+    }
+
+    public void getTechList(HashMap<String, Object> paramMap) {
+        rdao.getTechList(paramMap);
+    }
+
+    public void getTechListSummary(HashMap<String, Object> paramMap) {
+        rdao.getTechListSummary(paramMap);
+    }
+
+    public void getIntroduction(HashMap<String, Object> paramMap) {
+        rdao.getIntroduction(paramMap);
+    }
+
+    public void getInterview(HashMap<String, Object> paramMap) {
+        rdao.getInterview(paramMap);
+    }
 }

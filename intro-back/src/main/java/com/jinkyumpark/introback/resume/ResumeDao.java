@@ -10,4 +10,9 @@ public interface ResumeDao {
     void getProfile(HashMap<String, Object> paramMap);
     void getLanguages(HashMap<String, Object> paramMap);
     void getActivities(HashMap<String, Object> paramMap);
+    void getTechHeader(HashMap<String, Object> paramMap);
+    void getTechList(HashMap<String, Object> paramMap);
+    void getTechListSummary(HashMap<String, Object> paramMap);
+    void getIntroduction(HashMap<String, Object> paramMap);
+    void getInterview(HashMap<String, Object> paramMap);
 }

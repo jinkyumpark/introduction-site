@@ -15,7 +15,7 @@ public class ResumeController {
     @Autowired
     ResumeService rs;
 
-    @RequestMapping(value={"/api/resume/profile", "/api/resume/profile/{id}"})
+    @RequestMapping(value={"/api/resume/profile", "/api/resume/profile/{id}"}, produces="application/json;charset=UTF-8")
     public HashMap<String, Object> getProfile(@PathVariable(value="id", required = false) String id) {
         // Create return map
         HashMap<String, Object> profile = new HashMap<>();
@@ -45,7 +45,7 @@ public class ResumeController {
         return profile;
     }
 
-    @RequestMapping(value="/api/resume/language")
+    @RequestMapping(value="/api/resume/language", produces="application/json;charset=UTF-8")
     public ArrayList<HashMap<String, Object>> getLanguage() {
         // Create return map
         ArrayList<HashMap<String, Object>> languages = new ArrayList<>();
@@ -77,7 +77,7 @@ public class ResumeController {
         return languages;
     }
 
-    @RequestMapping(value="/api/resume/activity")
+    @RequestMapping(value="/api/resume/activity", produces="application/json;charset=UTF-8")
     public ArrayList<HashMap<String, Object>> getActivities() {
         // Create return array
         ArrayList<HashMap<String,Object>> activities = new ArrayList<>();
@@ -104,5 +104,127 @@ public class ResumeController {
         }
 
         return activities;
+    }
+
+    @RequestMapping(value="/api/resume/tech/header", produces="application/json;charset=UTF-8")
+    public HashMap<String, Object> getTechHeader() {
+        // Create return array
+        HashMap<String, Object> tech = new HashMap<>();
+
+        // Create paramMap
+        HashMap<String, Object> paramMap = new HashMap<>();
+        paramMap.put("ref_cursor", null);
+
+        // Fetch from db
+        rs.getTechHeader(paramMap);
+        ArrayList<HashMap<String, Object>> result = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+        tech.put("techNum", result.size());
+
+        // Convert to JSON
+        ArrayList<HashMap<String, Object>> techList = new ArrayList<>();
+        for(HashMap<String, Object> te : result) {
+            HashMap<String, Object> tmp = new HashMap<>();
+            tmp.put("key", UUID.randomUUID());
+            tmp.put("img", te.get("IMG"));
+            tmp.put("title", te.get("TITLE"));
+
+            techList.add(tmp);
+        }
+        tech.put("techList", techList);
+
+        return tech;
+    }
+
+    @RequestMapping(value={"api/resume/tech/list/{page}", "api/resume/tech/list"}, produces="application/json;charset=UTF-8")
+    public ArrayList<HashMap<String, Object>> getTechList(@PathVariable(value = "page", required = false) Integer page) {
+        // Create return array
+        ArrayList<HashMap<String, Object>> techList = new ArrayList<>();
+
+        // Create paramMap
+        HashMap<String, Object> paramMap = new HashMap<>();
+        paramMap.put("page", page != null ? page : 0);
+        paramMap.put("ref_cursor", null);
+
+        // Fetch from db
+        rs.getTechList(paramMap);
+        ArrayList<HashMap<String, Object>> result = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+
+        // Convert to JSON
+        for(HashMap<String, Object> tech : result) {
+            HashMap<String, Object> tmp = new HashMap<>();
+            tmp.put("name", tech.get("TITLE"));
+            tmp.put("img", tech.get("ICON"));
+            tmp.put("key", UUID.randomUUID());
+
+            // Get summary list
+            paramMap = new HashMap<>();
+            paramMap.put("num", Integer.parseInt(String.valueOf(tech.get("NUM"))));
+            paramMap.put("ref_cursor", null);
+            rs.getTechListSummary(paramMap);
+            ArrayList<HashMap<String, Object>> descriptionResult = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+            ArrayList<String> tmpList = new ArrayList<>();
+
+            for(HashMap<String, Object> des : descriptionResult) {
+                tmpList.add((String) des.get("DESCRIPTION"));
+            }
+            tmp.put("description", tmpList);
+
+            techList.add(tmp);
+        }
+
+        return techList;
+    }
+
+    @RequestMapping(value="api/resume/introduction/normal", produces="application/json;charset=UTF-8")
+    public HashMap<String, Object> getIntroduction() {
+        // Creat return map
+        HashMap<String, Object> intro = new HashMap<>();
+
+        // Create paramMap
+        HashMap<String, Object> paramMap = new HashMap<>();
+        paramMap.put("ref_cursor", null);
+
+        // Fetch from db
+        rs.getIntroduction(paramMap);
+        ArrayList<HashMap<String, Object>> result = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+
+        if(result == null || result.size() == 0) {
+            return new HashMap<>();
+        }
+
+        // Convert to JSON
+        intro.put("title", result.get(0).get("TITLE"));
+        intro.put("content", result.get(0).get("CONTENT"));
+
+        return intro;
+    }
+
+    @RequestMapping(value="/api/resume/introduction/interview", produces="application/json;charset=UTF-8")
+    public ArrayList<HashMap<String, Object>> getInterview() {
+        // Create return array
+        ArrayList<HashMap<String, Object>> interview = new ArrayList<>();
+
+        // Create paramMap
+        HashMap<String, Object> paramMap = new HashMap<>();
+        paramMap.put("ref_cursor", null);
+
+        // Fetch from DB
+        rs.getInterview(paramMap);
+        ArrayList<HashMap<String, Object>> result = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+        if(result == null || result.size() == 0) {
+            return new ArrayList<>();
+        }
+
+        // Convert to JSON
+        for(HashMap<String, Object> in : result) {
+            HashMap<String, Object> tmp = new HashMap<>();
+            tmp.put("key", UUID.randomUUID());
+            tmp.put("question", in.get("QUESTION"));
+            tmp.put("answer", in.get("ANSWER"));
+
+            interview.add(tmp);
+        }
+
+        return interview;
     }
 }

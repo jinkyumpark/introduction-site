@@ -77,4 +77,91 @@
         }
     </select>
 
+    <select id="getTechHeader"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap">
+        {
+            CALL getTechHeader(
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=resumeMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getTechList"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+        >
+            {
+                CALL getTechList(
+                    #{page},
+                    #{
+                        ref_cursor,
+                        mode=OUT,
+                        jdbcType=CURSOR,
+                        javaType=ResultSet,
+                        resultMap=resumeMap
+                    }
+                )
+            }
+    </select>
+
+    <select id="getTechListSummary"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getTechListSummary(
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=resumeMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getIntroduction"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getIntroduction(
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=resumeMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getInterview"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getInterview(
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=resumeMap
+                }
+            )
+        }
+    </select>
+
+
 </mapper>

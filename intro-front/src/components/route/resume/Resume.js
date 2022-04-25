@@ -40,9 +40,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
             title: '일본어',
             titleImage: '../../../images/flag-icons/japanflag-icon.png',
             titleImageAlt: 'jp',
-            titleDescription: `고등학교때 일본어 수업을 듣고 흥미가 생겨 공부 시작.
-            취미로 공부했으나 의사소통 자유롭고, 
-            일본어 책 100권 이상 독서해서 독해도 능숙하게 가능.
+            titleDescription: `고등학교때 일본어 수업을 듣고 흥미가 생겨 공부 시작. 취미로 공부했으나 의사소통 자유롭고, 일본어 책 100권 이상 독서해서 독해도 능숙하게 가능.
 `,
             speaking: '상',
             reading: '상',
@@ -54,9 +52,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
             title: '중국어',
             titleImage: '../../../images/flag-icons/chinaflag-icon.png',
             titleImageAlt: 'ch',
-            titleDescription: `초등학교 1학년 ~ 초등학교 3학년까지 아버지의 직장으로 중국에서 유학.
-            그 후 중국어를 적극적으로 사용하지 않아 많이 서툴러졌으나 기본적인 일상 회화는 가능.
-            현재 취미로 공부 중.`,
+            titleDescription: `초등학교 1학년 ~ 초등학교 3학년까지 아버지의 직장으로 중국에서 유학. 그 후 중국어를 적극적으로 사용하지 않아 많이 서툴러졌으나 기본적인 일상 회화는 가능. 현재 취미로 공부 중.`,
             speaking: '하',
             reading: '하',
             testScore: 'HSK 3급',
@@ -311,10 +307,8 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
 
     }, [techPage])
 
-
-
-
     const [isPhoneRequestOpen, setIsPhoneRequestOpen] = useState(false)
+
     return (
         <div className='container mt-5 mb-5'>
             
