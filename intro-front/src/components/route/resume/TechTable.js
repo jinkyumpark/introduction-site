@@ -1,8 +1,13 @@
+// React
 import React, { useEffect, useState } from 'react'
-import { Collapse, Button, OverlayTrigger, Popover, Modal, Carousel } from 'react-bootstrap'
 
+// Components
 import TechCard from './TechCard'
 import Error from '../../common/Error'
+
+// Library
+import { Collapse, Button, OverlayTrigger, Popover, Modal, Carousel } from 'react-bootstrap'
+import toast from 'react-hot-toast'
 
 const TechTable = ({techData, techHeaderData, techPage, setTechPage}) => {
     const [isDesOpen, setIsDesOpen] = useState(false)
@@ -91,53 +96,60 @@ const TechTable = ({techData, techHeaderData, techPage, setTechPage}) => {
             techData == null || techData.length == 0 ?
             <Error/>
             :
-            techData.map((data) => {
-                return (
-                    <TechCard
-                        tech={data}
-                    />
-                )
-            })
+            <div>
+                {
+                    techData.map((data) => {
+                        return (
+                            <TechCard
+                                tech={data}
+                            />
+                        )
+                    })
+                }
+            </div>
         }
 
         {
-            // techData == null ?
-            // <div className="row mt-3 justify-content-center">
-            //     <div className="col-12 align-self-center">
-            //         <ul class="pagination justify-content-center">
-            //             <li className='page-item'>0</li>
-            //         </ul>
-            //     </div>
-            // </div>
-            // :
-            // <div className="row mt-3 justify-content-center">
-            //     <div className="col-12 align-self-center">
-            //         <ul class="pagination justify-content-center">
-            //             <li class="page-item" onClick={() => {
-            //                 if(techPage >= 1) {
-            //                     setTechPage(techPage - 1)
-            //                 }
-            //             }}><div class="page-link" href="#">{'<'}</div></li>
-            //             {
-            //                 [ ...Array(Math.floor(techData.techNum / 3)) ].map((item, index) => {
-            //                     return(
-            //                         <li class={"page-item" + (techPage == index ? ' active' : '')}
-            //                             onClick={() => {
-            //                                 setTechPage(index)
-            //                             }}
-                                    
-            //                         ><div class="page-link">{index + 1}</div></li>
-            //                     )
-            //                 })
-            //             }
-            //             <li class="page-item" onClick={() => {
-            //                 if(techPage < Math.floor(techData.techNum / 3) - 1) {
-            //                     setTechPage(techPage + 1)
-            //                 }
-            //             }}><div class="page-link">{'>'}</div></li>
-            //         </ul>
-            //     </div>
-            // </div>
+            techData == null ?
+            <div className="row mt-3 justify-content-center">
+                <div className="col-12 align-self-center">
+                    <ul class="pagination justify-content-center">
+                        <li className='page-item'>0</li>
+                    </ul>
+                </div>
+            </div>
+            :
+            <div className="row mt-3 justify-content-center">
+                <div className="col-12 align-self-center">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" onClick={() => {
+                            if(techPage >= 1) {
+                                setTechPage(techPage - 1)
+                            } else {
+                                toast.error('가장 처음 페이지에 있어요')
+                            }
+                        }}><div class="page-link" href="#">{'<'}</div></li>
+                        {
+                            [ ...Array(Math.ceil(techHeaderData.techNum / 3)) ].map((item, index) => {
+                                return(
+                                    <li class={"page-item" + (techPage == index ? ' active' : '')}
+                                        onClick={() => {
+                                            setTechPage(index)
+                                        }}
+                                    ><div class="page-link">{index + 1}</div></li>
+                                )
+                            })
+                        }
+                        <li class="page-item" onClick={() => {
+                            if(techPage < Math.floor(techHeaderData.techNum / 3) - 1) {
+                                setTechPage(techPage + 1)
+                            } else {
+                                toast.error('더 이상 보유기술이 없어요')
+                            }
+                        }}><div class="page-link">{'>'}</div></li>
+                    </ul>
+                </div>
+            </div>
         }
 
 

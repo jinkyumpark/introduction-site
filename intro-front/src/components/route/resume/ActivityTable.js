@@ -15,13 +15,29 @@ const ActivityTable = ({activityData}) => {
 					:
 					activityData.map((data) => {
 						return(
+							data.content == null || data.content == '' ?
+							<li className="list-group-item">
+								<div className="row">
+									<div className="col-6 col-md-8">
+										{data.title}
+									</div>
+									<div className="col-6 col-md-4 text-end">
+										{data.date}
+									</div>
+								</div>
+
+								<div className="mt-2 text-muted">
+									{data.content}
+								</div>
+							</li>
+							:
 							<OverlayTrigger
 							key='top'
 							placement='top'
 							overlay={
 								<Popover>
 									<Popover.Body>
-										{data.desciption}
+										{data.content}
 									</Popover.Body>
 								</Popover>
 							}

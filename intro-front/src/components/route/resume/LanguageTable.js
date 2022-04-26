@@ -49,8 +49,8 @@ const LanguageTable = ({languageData}) => {
                                         </th>
                                     </OverlayTrigger>
                 
-                                        <td>{language.speaking}</td>
-                                        <td>{language.reading}</td>
+                                        <td>{language.speaking == 0 ? '하' : language.speaking == 1 ? '중' : '상'}</td>
+                                        <td>{language.reading == 0 ? '하' : language.reading == 1 ? '중' : '상'}</td>
                 
                                         <OverlayTrigger
                                         key='top'
