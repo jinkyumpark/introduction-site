@@ -2,7 +2,7 @@ import React from 'react'
 
 import { OverlayTrigger, Popover } from 'react-bootstrap'
 
-import icon from '../../../images/flag-icons/usflag-icon.png'
+import Error from '../../common/Error'
 
 const LanguageTable = ({languageData}) => {
 
@@ -20,6 +20,9 @@ const LanguageTable = ({languageData}) => {
 
                 <tbody>
                     {
+                        languageData == null ?
+                        <Error/>
+                        :
                         languageData.map((language) => {
                             return(
                                 <tr>
@@ -37,7 +40,7 @@ const LanguageTable = ({languageData}) => {
                                         <th scope='row'>
                                             <div className="row">
                                                 <div className="col-4">
-                                                    <img src={language.titleImage} alt={language.titleImageAlt} style={{width: '20px'}}/>
+                                                    <img src={'/images/' + language.titleImage} alt={language.titleImageAlt} style={{width: '20px'}}/>
                                                 </div>
                                                 <div className="col-6">
                                                     {language.title}

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
-
 import { OverlayTrigger, Popover } from 'react-bootstrap'
+
+import Error from '../../common/Error'
 
 const InterviewTable = ({questionData, introductionData}) => {
     const [isInterviewSelected, setIsInterviewSelected] = useState(true)
@@ -43,22 +44,28 @@ const InterviewTable = ({questionData, introductionData}) => {
             <div className="card">
                 {
                     isInterviewSelected ? 
-                    <>
-                        <div className="card-header text-center h4">{questionData.title}</div>
+                        introductionData == null ?
+                        <Error/>
+                        :
+                        <>
+                            <div className="card-header text-center h4">{introductionData.questionTitle}</div>
 
-                        <div className="card-body">
-                            {
-                                questionData.qna.map((data) => {
-                                    return(
-                                        <div>
-                                            <div className="card-title h5 mt-2">{data.question}</div>
-                                            <p className="card-text mt-2" style={{lineHeight: '1.7rem'}}>{data.answer}</p>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>                
-                    </>
+                            <div className="card-body">
+                                {
+                                    questionData == null ?
+                                    <Error/>
+                                    :
+                                    questionData.map((data) => {
+                                        return(
+                                            <div>
+                                                <div className="card-title h5 mt-2">{data.question}</div>
+                                                <p className="card-text mt-2" style={{lineHeight: '1.7rem'}}>{data.answer}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>                
+                        </>   
                     :
                     <>
                         <div className="card-header text-center h4">{introductionData.title}</div>

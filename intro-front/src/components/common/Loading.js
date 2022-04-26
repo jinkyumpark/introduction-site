@@ -8,7 +8,7 @@ const Loading = () => {
             </div>
 
             <div className="h1 mt-5">
-                로딩 중 이에요
+                로딩중이에요
             </div>
         </div>
     )

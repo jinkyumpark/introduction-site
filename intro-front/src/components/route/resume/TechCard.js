@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
-import reactIcon from '../../../images/tech-icon/reactjs-icon.png'
+
+import Error from '../../common/Error'
+
 import { MdOutlineDoNotDisturb as ErrorIcon } from 'react-icons/md'
 
 const TechCard = ({ tech }) => {
@@ -93,12 +95,12 @@ const TechCard = ({ tech }) => {
                 <div className="col-12 col-md-2 align-self-center">
                     <div className="row justify-content-center">
                         <div className="col-6 col-md-12">
-                            <img src={require('../../../images/tech-icon/' + img)} alt="React Icon" style={{ width: '75px' }} className='w-100' />
+                            <img src={'/images/' + img} alt="" style={{ width: '75px' }} className='w-100' />
                         </div>
                     </div>
                     <div className="h3 text-center">{name}</div>
                 </div>
-                <div className="col-12 col-md-10" style={{overflowY: 'auto', height: '150px'}}>
+                <div className="col-12 col-md-10" style={{overflowY: 'auto', height: '200px'}}>
                     {
                         section == 0 ?
                         <IntroSection tech={tech}/> :
@@ -120,14 +122,30 @@ const TechCard = ({ tech }) => {
 }
 
 const IntroSection = ({tech}) => {
-    const { name, img, summary } = tech
+    const { name, img, description } = tech
 
     return(
         <div className="col align-self-center">
         <ul className="list-group list-group-flush">
-            <li className="list-group-item p-3">{summary.sum1}</li>
-            <li className="list-group-item p-3">{summary.sum2}</li>
-            <li className="list-group-item p-3">{summary.sum3}</li>
+            {
+                description == null  || description.length == 0 ?
+                <div className="h1 text-center mt-5">
+                    아직 보유 기술에 대한 요약이 없어요
+                </div>
+                :
+                description.map((des) => {
+                    return(
+                        <>
+                            {
+                                des == null ?
+                                <Error/>
+                                :
+                                <li className="list-group-item p-3">{des}</li>
+                            }                        
+                        </>
+                    )
+                })
+            }
         </ul>
     </div>
     )

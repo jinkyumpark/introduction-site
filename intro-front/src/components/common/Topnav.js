@@ -9,6 +9,7 @@ const Topnav = () => {
 
     const [page, setPage] = useState(0)
 
+    const [isNavbarOpen, setIsNavbarOpen] = useState(false)
 
     const location = useLocation()
 
@@ -26,10 +27,12 @@ const Topnav = () => {
             } else if(pathname.includes('/blog/dev')) {
                 setPage(4)
             } 
+
+            setIsNavbarOpen(false)
     }, [location])
 
     return (
-        <Navbar bg="primary" fixed="top" expand="lg" className='navbar-dark pt-0 pb-0'>
+        <Navbar bg="primary" fixed="top" expand="lg" className='navbar-dark pt-0 pb-0' expanded={isNavbarOpen}>
             <Container>
                 <Navbar.Brand>
                     <Link to='/' className='text-decoration-none'>
@@ -40,7 +43,9 @@ const Topnav = () => {
                         </Nav.Link>
                     </Link>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls='navbarLink'></Navbar.Toggle>
+                <Navbar.Toggle aria-controls='navbarLink' onClick={() => {
+                    setIsNavbarOpen(!isNavbarOpen)
+                }}></Navbar.Toggle>
 
                 <Navbar.Collapse id="navbarLink">
                         <Nav className={'ms-auto ms-md-2 p-2 active'}>

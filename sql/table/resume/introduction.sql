@@ -5,4 +5,3 @@ create table introduction(
 	content varchar2(10000),
 
 	constraint pk_introduction primary key(num)
-);

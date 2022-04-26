@@ -1,192 +1,165 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+
 // Components
 import Profile from './Profile'
 import PortfolioCard from './PortfolioCard'
 import PostCard from '../blog/PostCard'
 import MoreButton from '../../common/MoreButton'
+import Error from '../../common/Error'
+import Loading from '../../common/Loading'
 
 // Resources
 import './homeStyle.css'
 
 const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfolioNum }) => {
+    const [isLoading, setIsLoading] = useState(false)
 
-    const portfolioData = [
-        {
-            num: 0,
-            img: 'http://picsum.photos/400/200',
-            title: 'Portfolio 1',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus dolor reprehenderit id assumenda enim expedita esse ratione veniam porro quisquam debitis, architecto velit alias placeat fugit dignissimos error amet?',
-            link: 'http://income.jinkpark.com',
-            startDate: '2022년 2월',
-            endDate: '2022년 3월',
-            status: 1
-        },
-        {
-            num: 1,
-            img: 'http://picsum.photos/400/200/',
-            title: 'Portfolio 2',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus dolor reprehenderit id assumenda enim expedita esse ratione veniam porro quisquam debitis, architecto velit alias placeat fugit dignissimos error amet?',
-            link: 'http://income.jinkpark.com',
-            startDate: '2022년 2월',
-            endDate: '2022년 3월',
-            status: 0
-        },
-        {
-            num: 2,
-            img: 'http://picsum.photos/400/200//',
-            title: 'Portfolio 3',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus dolor reprehenderit id assumenda enim expedita esse ratione veniam porro quisquam debitis, architecto velit alias placeat fugit dignissimos error amet?',
-            link: 'http://income.jinkpark.com',
-            startDate: '2022년 2월',
-            endDate: '2022년 3월',
-            status: 0
-        },
-        {
-            num: 3,
-            img: 'http://picsum.photos/400/200///',
-            title: 'Portfolio 4',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus dolor reprehenderit id assumenda enim expedita esse ratione veniam porro quisquam debitis, architecto velit alias placeat fugit dignissimos error amet?',
-            link: 'http://income.jinkpark.com',
-            startDate: '2022년 2월',
-            endDate: '2022년 3월',
-            status: 3
-        }
-    ]
+    const [portfolioData, setPortfolioData] = useState(null)
+    const [csBlogData, setCsBlogData] = useState(null)
+    const [devBlogData, setDevBlogData] = useState(null)
+    const [profileData, setProfileData] = useState(null)
 
-    const csBlogData = [
-        {
-            num: 1,
-            type: {
-                img: 'http://picsum.photos/500/500',
-                name: '알고리즘'
-            },
-            title: '정렬 알고리즘 총 정리',
-            content: '알고리즘을 처음 배울 때 배우는게 바로 정렬 알고리즘입니다.',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            num: 2,
-            type: {
-                img: 'http://picsum.photos/500/500/',
-                name: '알고리즘'
-            },
-            title: '탐색 알고리즘 총 정리',
-            content: '알고리즘을 처음 배울 때 배우는게 바로 탐색 알고리즘입니다.',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            num: 3,
-            type: {
-                img: 'http://picsum.photos/500/500//',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        }
-    ]
+    // Initial Fetch
+    useEffect(() =>{
+        setIsLoading(true)
+        Promise.all([
+            // Profile
+            fetch('/api/home/profile')
+                .then((res) => {
+                    return res.json()
+                })
+                .then((data) => {
+                    setProfileData(data)
+                })
+                .catch((err) => {
+                    return err
+                }),
 
-    const devBlogData = [
-        {
-            num: 1,
-            type: {
-                img: 'http://picsum.photos/500/500',
-                name: '알고리즘'
-            },
-            title: '정렬 알고리즘 총 정리',
-            content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius veniam sunt laudantium dolores nulla ipsam dolor ratione error eaque dignissimos quaerat earum distinctio doloribus, libero minus saepe? Id, cumque facere.',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            num: 2,
-            type: {
-                img: 'http://picsum.photos/500/500/',
-                name: '알고리즘'
-            },
-            title: '탐색 알고리즘 총 정리',
-            content: '알고리즘을 처음 배울 때 배우는게 바로 탐색 알고리즘입니다.',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            num: 3,
-            type: {
-                img: 'http://picsum.photos/500/500//',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        }
-    ]
+            // Portfolio
+            fetch('/api/portfolio/list')
+                .then((res) => {
+                    return res.json()
+                })
+                .then((data) => {
+                    setPortfolioData(data)
+                })
+                .catch((err) => {
+                    return err
+                }),
+
+            // Blog
+            fetch('/api/home/blog/cs')
+                .then((res) => {
+                    return res.json()
+                })
+                .then((data) => {
+                    setCsBlogData(data)
+                })
+                .catch((err) => {
+                    return err
+                }),
+            fetch('/api/home/blog/dev')
+                .then((res) => {
+                    return res.json()
+                })
+                .then((data) => {
+                    setDevBlogData(data)
+                })
+                .catch((err) => {
+                    return err
+                })
+        ])
+            .finally(() => {
+                setIsLoading(false)
+            })
+    }, [])
 
     return (
-        <div className='container'>
-            <Profile />
+        <>
+        {
+            isLoading ?
+            <Loading/>
+            :
+            <div className='container'>
+                <Profile 
+                    profile={profileData}
+                />
 
-            <div className='mb-5'>
-                <div className="h1 mb-3">포트폴리오 </div>
+                <div className='mb-5'>
+                    <div className="h1 mb-3">포트폴리오 </div>
 
-                <div className="row">
+                    <div className="row">
+                        {
+                            portfolioData == null ?
+                            <Error/>
+                            :
+                            portfolioData.map((data) => {
+                                return (
+                                    <div className="col-12 col-md-6">
+                                        <PortfolioCard 
+                                            portfolio={data}
+                                            setIsPortfolioOpen={setIsPortfolioOpen}
+                                            setSelectedPortfolioNum={setSelectedPortfolioNum}
+                                            isLinkActive={data.status == 2 || data.status == 3}
+                                        />
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+
+                    <Link to="/portfolio">
+                        <MoreButton />
+                    </Link>
+                </div>
+
+                <div className="mb-5">
+                    <div className="h1 mb-3">CS 이론 공부</div>
+
                     {
-                        portfolioData.map((data) => {
+                        csBlogData == null ?
+                        <Error/>
+                        :
+                        csBlogData.map((post) => {
                             return (
-                                <div className="col-12 col-md-6">
-                                    <PortfolioCard 
-                                        portfolio={data}
-                                        setIsPortfolioOpen={setIsPortfolioOpen}
-                                        setSelectedPortfolioNum={setSelectedPortfolioNum}
-                                        isLinkActive={data.status == 2 || data.status == 3}
-                                    />
+                                <div>
+                                    <Link to={'/blog/cs/' + post.num } className='text-decoration-none'>
+                                        <PostCard post={post}/>
+                                    </Link>
                                 </div>
                             )
                         })
                     }
+                    <Link to="/blog/cs">
+                        <MoreButton />
+                    </Link>
                 </div>
 
-                <Link to="/portfolio">
-                    <MoreButton />
-                </Link>
+                <div className="mb-5">
+                    <div className="h1 mb-3">개발 실무 공부</div>
+
+                        {
+                            devBlogData == null ?
+                            <Error/>
+                            :
+                            devBlogData.map((post) => {
+                                return (
+                                    <Link to={'/blog/dev/' + post.num } className='text-decoration-none'>
+                                        <PostCard post={post}/>
+                                    </Link>
+                                )
+                            })
+                        }
+
+                    <Link to="/blog/dev">
+                        <MoreButton />
+                    </Link>
+                </div>
+
             </div>
-
-            <div className="mb-5">
-                <div className="h1 mb-3">CS 이론 공부</div>
-
-                {
-                    csBlogData.map((post) => {
-                        return (
-                            <div>
-                                <Link to={'/blog/cs/' + post.num } className='text-decoration-none'>
-                                    <PostCard post={post}/>
-                                </Link>
-                            </div>
-                        )
-                    })
-                }
-                <Link to="/blog/cs">
-                    <MoreButton />
-                </Link>
-            </div>
-
-            <div className="mb-5">
-                <div className="h1 mb-3">개발 실무 공부</div>
-
-                    {
-                        devBlogData.map((post) => {
-                            return (
-                                <Link to={'/blog/dev/' + post.num } className='text-decoration-none'>
-                                    <PostCard post={post}/>
-                                </Link>
-                            )
-                        })
-                    }
-
-                <Link to="/blog/dev">
-                    <MoreButton />
-                </Link>
-            </div>
-
-        </div>
+        }
+        </>
     )
 }
 

@@ -36,12 +36,16 @@ public class UtilController {
     @ResponseBody
     @GetMapping(value="/images/{name}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] getImage(@PathVariable("name") String name) throws IOException {
-        InputStream in = getClass().getResourceAsStream("/images/" + name);
+        InputStream in = getClass().getResourceAsStream("/images/" + name.replaceAll("\\s+",""));
+
+        if(in == null) {
+            in = getClass().getResourceAsStream("/images/noimg.png");
+        }
 
         return IOUtils.toByteArray(in);
     }
 
-    @RequestMapping(value="/api/footer", produces = "application/json")
+    @RequestMapping(value="/api/footer", produces = "application/json;UTF-8")
     public HashMap<String, Object> getFooter() {
         // Create return map
         HashMap<String, Object> footer = new HashMap<>();

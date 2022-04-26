@@ -1,7 +1,9 @@
 import React from 'react'
-import { OverlayTrigger, Popover } from 'react-bootstrap'
 
-const MoreInfoTable = ({setIsPhoneRequestOpen}) => {
+import { OverlayTrigger, Popover } from 'react-bootstrap'
+import toast from 'react-hot-toast'
+
+const MoreInfoTable = ({setIsPhoneRequestOpen, email}) => {
   return (
     <>
         <div className="h2">더 궁금한게 있으신가요?</div>
@@ -26,18 +28,21 @@ const MoreInfoTable = ({setIsPhoneRequestOpen}) => {
                     overlay={
                         <Popover>
                             <Popover.Body>
-                                jinpark1025@gmail.com
+                                {email}
                             </Popover.Body>
                         </Popover>
                     }
                     >
-                    <button className='btn btn-primary w-100'>이메일로 연락하기</button>
+                    <button className='btn btn-primary w-100' onClick={() => {
+                        navigator.clipboard.writeText(email)
+                        toast.success('이메일 주소가 복사 되었어요')
+                    }}>이메일로 연락하기</button>
                 </OverlayTrigger>
 
             </div>
 
             <div className="col-5 col-md-4 align self-center">
-                <button className="btn btn-primary w-100" onClick={() => {
+                <button className="btn btn-primary w-100 disabled" onClick={() => {
                     setIsPhoneRequestOpen(true)
                 }}>
                     휴대폰 번호 요청하기

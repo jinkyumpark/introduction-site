@@ -1,15 +1,15 @@
 import React from 'react'
 
 const PostCard = ({ post }) => {
-    const { num, type, title, content, createdDate } = post
+    const { num, category, title, content, createdDate } = post
 
     return (
         <div className="card mb-4 homeCard text-dark">
             <div className="row justify-content-center justify-content-sm-start no-gutters">
 
                 <div className="col-6 col-sm-3 col-md-2 text-center ms-2 me-2 mt-3">
-                    <img className="card-img rounded-circle p-2" src={type.img} alt="LOGO" />
-                    <div className="h5 text-center">{type.name}</div>
+                    <img className="card-img rounded-circle p-2" src={'/images/' + category.img} alt="LOGO" />
+                    <div className="h5 text-center">{category.name}</div>
                 </div>
 
                 <div className="col-9 col-sm-8 mb-3">

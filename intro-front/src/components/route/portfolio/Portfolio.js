@@ -1,13 +1,44 @@
+// React
 import React, { useEffect, useState } from 'react'
-import { Modal } from 'react-bootstrap'
 
+// Components
 import PortfolioCard from '../home/PortfolioCard'
 import PortfolioListCard from './PortfolioListCard'
 import NoPortfolio from './NoPortfolio'
+import Loading from '../../common/Loading'
 
+// Library
+import { Modal } from 'react-bootstrap'
+
+// Resource
 import './portfolio.css'
 
 const Portfolio = ({isPortfolioOpen, setIsPortfolioOpen, setPortfolioNum}) => {
+    const [isLoading, setIsLoading] = useState(false)
+
+    const [portfolioData, setPortfolioData] = useState(null)
+
+    // Initial fetch
+    useEffect(() => {
+        setIsLoading(true)
+        Promise.all([
+            fetch('/api/portfolio/list')
+                .then((res) => {
+                    return res.json()
+                })
+                .then((data) => {
+                    console.log(data)
+                    setPortfolioData(data)
+                })
+                .catch((err) => {
+                    return err
+                })
+        ])
+            .finally(() => {
+                setIsLoading(false)
+            })
+    }, [])
+
 
     const openPortfolio = (index) => {
         setIsPortfolioOpen(true)
@@ -17,46 +48,14 @@ const Portfolio = ({isPortfolioOpen, setIsPortfolioOpen, setPortfolioNum}) => {
         setIsPortfolioOpen(false)
     }
 
-    const portfolioData = [
-        {
-            key: 0,
-            num: 0,
-            title: 'TITLE 1',
-            description: 'DESCRIPTION 1',
-            img: 'http://picsum.photos/400/400/',
-            status: 3         
-        },
-        {
-            key: 1,
-            num: 1,
-            title: 'TITLE 2',
-            description: 'DESCRIPTION 1',
-            img: 'http://picsum.photos/400/400/',
-            status: 1         
-        },
-        {
-            key: 2,
-            num: 2,
-            title: 'TITLE 3',
-            description: 'DESCRIPTION 1',
-            img: 'http://picsum.photos/400/400/',
-            status: 2         
-        },
-        {
-            key: 3,
-            num: 3,
-            title: 'TITLE 4',
-            description: 'DESCRIPTION 1',
-            img: 'http://picsum.photos/400/400/',
-            status: 4         
-        }
-    ]
-
     return (
         <div>
             <div className="h1">포트폴리오</div>
 
             {
+                isLoading ?
+                <Loading/>
+                :
                 portfolioData == null || portfolioData.length == 0 ? 
                     <NoPortfolio/> :
 

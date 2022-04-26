@@ -16,7 +16,7 @@ public class PortfolioController {
     @Autowired
     PortfolioService ps;
 
-    @RequestMapping(value="/api/portfolio/list/{page}")
+    @RequestMapping(value= {"/api/portfolio/list/{page}", "/api/portfolio/list"}, produces="application/json;charset=UTF-8")
     public ArrayList<HashMap<String, Object>> getHomePortfolio(@PathVariable(value = "page", required = false) Integer page, @RequestParam(value="fetchNum", required = false) Integer fetchNum) {
         // Create return HashMap
         ArrayList<HashMap<String, Object>> portfolios = new ArrayList<>();

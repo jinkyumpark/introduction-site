@@ -24,7 +24,7 @@ public class HomeController {
     @Autowired
     BlogService bs;
 
-    @RequestMapping("/api/home/profile")
+    @RequestMapping(value="/api/home/profile", produces="application/json;charset=UTF-8")
     public HashMap<String, Object> getHomeProfile() {
         // Create return hashMap
         HashMap<String, Object> profile = new HashMap<>();
@@ -56,7 +56,7 @@ public class HomeController {
         return profile;
     }
 
-    @RequestMapping(value={"/api/home/blog/cs/{page}", "/api/home/blog/cs"})
+    @RequestMapping(value={"/api/home/blog/cs/{page}", "/api/home/blog/cs"}, produces="application/json;charset=UTF-8")
     public ArrayList<HashMap<String, Object>> getRecentCsBlogPost(@PathVariable(value="page", required = false) Integer page, @RequestParam(value="fetch", required = false) Integer fetchNum) {
         // Create return map
         ArrayList<HashMap<String, Object>> posts = new ArrayList<>();
@@ -99,7 +99,7 @@ public class HomeController {
         return posts;
     }
 
-    @RequestMapping(value={"/api/home/blog/dev/{page}", "api/home/blog/dev"})
+    @RequestMapping(value={"/api/home/blog/dev/{page}", "api/home/blog/dev"}, produces="application/json;charset=UTF-8")
     public ArrayList<HashMap<String, Object>> getRecentDevBlogPost(@PathVariable(value="page", required = false) Integer page, @RequestParam(value="fetch", required = false) Integer fetchNum) {
         // Create return array
         ArrayList<HashMap<String, Object>> posts = new ArrayList<>();

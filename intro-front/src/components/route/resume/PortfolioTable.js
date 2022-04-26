@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import PortfolioCard from '../home/PortfolioCard'
-
+import Error from '../../common/Error'
 
 const PortfolioTable = ({portfolioData, setIsPortfolioOpen, setSelectedPortfolioNum}) => {
 
@@ -11,6 +11,9 @@ const PortfolioTable = ({portfolioData, setIsPortfolioOpen, setSelectedPortfolio
         <div className="h2 mb-3">포트폴리오</div>
     
         {
+            portfolioData == null || portfolioData.length == 0 ?
+            <Error/>
+            :
             portfolioData.map((portfolio) => {
                 return(
                     <div className="col-12 col-md-6">

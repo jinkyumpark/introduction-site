@@ -1,8 +1,11 @@
 import React from 'react'
 import MoreButton from '../../common/MoreButton'
 import {BsGithub as GithubIcon, BsLink45Deg as LinkIcon} from 'react-icons/bs'
+import {AiOutlineClose as CloseIcon} from 'react-icons/ai'
+import { Modal } from 'react-bootstrap'
 
 const PortfolioDetail = () => {
+
   const portfolio = {
     title: '자기소개 사이트',
     image: 'http://picsum.photos/400/400',
@@ -83,9 +86,10 @@ const PortfolioDetail = () => {
 
   return (
     <div className="card container">
-        <div className="card-header text-center">
+		<Modal.Header closeButton className='text-center'>
             <div className="h1">{portfolio.title}</div>
-        </div>
+		</Modal.Header>
+
         <div className="card-body">
             <div className="card-content">
                 <img src={portfolio.image} alt="" style={{height: '400px'}} className='img-fluid w-100'/>

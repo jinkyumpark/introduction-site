@@ -1,4 +1,5 @@
 import React from 'react'
+import Error from '../../common/Error'
 
 import { OverlayTrigger, Popover } from 'react-bootstrap'
 
@@ -9,6 +10,9 @@ const ActivityTable = ({activityData}) => {
 
 			<ul className='list-group'>
 				{
+					activityData == null ?
+					<Error/>
+					:
 					activityData.map((data) => {
 						return(
 							<OverlayTrigger

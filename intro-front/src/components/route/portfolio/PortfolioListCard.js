@@ -1,29 +1,31 @@
+// React
 import React from 'react'
 
+// Bootstrap
 import {OverlayTrigger, Popover} from 'react-bootstrap'
 
 const PortfolioListCard = ({portfolio, openPortfolio}) => {
   return (
-    <div className="card mt-3" style={{}}>
-        <div className="row me-2 h-100" onClick={() => openPortfolio(portfolio.num)}>
+    <div className="card mt-3">
+        <div className="row me-2 h-100" onClick={() => openPortfolio(portfolio.portfolioNum)}>
 
             <div className="col-9 col-md-10 portfolioListCard">
                 <div className="row">
                     <div className="col-12 col-md-5">
-                        <img src={portfolio.img} alt='PORTFOLIO EX' className="img-fluid" style={{ width: '300px', height: '200px' }} />
+                        <img src={'/images/' + portfolio.img} alt='PORTFOLIO DEMO' className="img-fluid" style={{ width: '300px', height: '200px' }} />
                     </div>
 
                     <div className="col-12 col-md-7 mt-2 ms-2 ms-md-0">
-                        <div className="h1">{portfolio.title}</div>
+                        <div className="h2">{portfolio.title}</div>
 
-                        <div className="h3 text-muted">{portfolio.description}</div>
+                        <div className="h4 text-muted">{portfolio.content == null ? '아직 포트폴리오에 대한 소개가 없어요' : portfolio.content}</div>
                     </div>
                 </div>
             </div>
 
             <div className="col-3 col-md-2 align-self-center">
                 <OverlayTrigger
-                    key='top'
+                    key='notStarted'
                     placement='top'
                     overlay={
                         <Popover>
@@ -36,7 +38,7 @@ const PortfolioListCard = ({portfolio, openPortfolio}) => {
                     <div className={"btn btn-outline-danger w-100 mt-2" + (portfolio.status == 0 ? ' active' : '')}>시작전</div>
                 </OverlayTrigger>
                 <OverlayTrigger
-                    key='top'
+                    key='progressing'
                     placement='top'
                     overlay={
                         <Popover>
@@ -51,7 +53,7 @@ const PortfolioListCard = ({portfolio, openPortfolio}) => {
                 </OverlayTrigger>
 
                 <OverlayTrigger
-                    key='top'
+                    key='finished'
                     placement='top'
                     overlay={
                         <Popover>
@@ -65,7 +67,7 @@ const PortfolioListCard = ({portfolio, openPortfolio}) => {
                     <div className={"btn btn-outline-success w-100 mt-2" + (portfolio.status == 2 ? ' active' : '')}>완료</div>
                 </OverlayTrigger>
                 <OverlayTrigger
-                    key='top'
+                    key='maintaining'
                     placement='top'
                     overlay={
                         <Popover>
@@ -79,8 +81,8 @@ const PortfolioListCard = ({portfolio, openPortfolio}) => {
                     <div className={"btn btn-outline-warning w-100 mt-2" + (portfolio.status == 3 ? ' active' : '')}>유지보수</div>
                 </OverlayTrigger>
             </div>
-        </div>
 
+        </div>
     </div>
 )
 }

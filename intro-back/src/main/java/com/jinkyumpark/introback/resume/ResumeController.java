@@ -152,20 +152,23 @@ public class ResumeController {
         // Convert to JSON
         for(HashMap<String, Object> tech : result) {
             HashMap<String, Object> tmp = new HashMap<>();
+            tmp.put("key", UUID.randomUUID());
+            int num = Integer.parseInt(String.valueOf(tech.get("NUM")));
+            tmp.put("num", num);
             tmp.put("name", tech.get("TITLE"));
             tmp.put("img", tech.get("ICON"));
-            tmp.put("key", UUID.randomUUID());
 
             // Get summary list
             paramMap = new HashMap<>();
-            paramMap.put("num", Integer.parseInt(String.valueOf(tech.get("NUM"))));
+            paramMap.put("num", num);
             paramMap.put("ref_cursor", null);
+
             rs.getTechListSummary(paramMap);
             ArrayList<HashMap<String, Object>> descriptionResult = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
             ArrayList<String> tmpList = new ArrayList<>();
 
             for(HashMap<String, Object> des : descriptionResult) {
-                tmpList.add((String) des.get("DESCRIPTION"));
+                tmpList.add((String) des.get("CONTENT"));
             }
             tmp.put("description", tmpList);
 
@@ -195,6 +198,7 @@ public class ResumeController {
         // Convert to JSON
         intro.put("title", result.get(0).get("TITLE"));
         intro.put("content", result.get(0).get("CONTENT"));
+        intro.put("questionTitle", result.get(0).get("TITLE_QUESTION"));
 
         return intro;
     }

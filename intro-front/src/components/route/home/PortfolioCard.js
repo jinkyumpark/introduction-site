@@ -11,7 +11,7 @@ const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum,
 
     return (
         <div className="card mb-4">
-            <img src={img} alt="" className="card-img-top" />
+            <img src={'/images/' + img} alt="" className="card-img-top" />
             <div className="card-body" onClick={() => openPortfolioDetail}>
                 <div className="card-title h5">{title}</div>
                 <p className="card-text">{content}</p>

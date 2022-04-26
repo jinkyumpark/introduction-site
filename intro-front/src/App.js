@@ -79,6 +79,8 @@ function App() {
 						style={{ minHeight: '90vh'}}
 						scrollable={false}
 						onHide={closePortfolio}
+						backdrop="static"
+						fullscreen='sm-down'
 					>
 						<PortfolioDetail
 							portfolioNum={selectedPortfolioNum}
