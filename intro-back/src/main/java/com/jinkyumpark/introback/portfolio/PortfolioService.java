@@ -15,4 +15,7 @@ public class PortfolioService {
         pdao.getPortfolioList(paramMap);
     }
 
+    public void getPortfolioLength(HashMap<String, Object> paramMap) {
+        pdao.getPortfolioLength(paramMap);
+    }
 }

@@ -26,4 +26,20 @@
         }
     </select>
 
+    <select id="getPortfolioLength"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            resultType="_int"
+            >
+        {
+            CALL getPortfolioLength(
+                #{
+                    length,
+                    mode=OUT,
+                    jdbcType=INTEGER
+                }
+            )
+        }
+    </select>
+
 </mapper>

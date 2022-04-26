@@ -17,7 +17,7 @@ public class PortfolioController {
     PortfolioService ps;
 
     @RequestMapping(value= {"/api/portfolio/list/{page}", "/api/portfolio/list"}, produces="application/json;charset=UTF-8")
-    public ArrayList<HashMap<String, Object>> getHomePortfolio(@PathVariable(value = "page", required = false) Integer page, @RequestParam(value="fetchNum", required = false) Integer fetchNum) {
+    public ArrayList<HashMap<String, Object>> getPortfolios(@PathVariable(value = "page", required = false) Integer page, @RequestParam(value="fetchNum", required = false) Integer fetchNum) {
         // Create return HashMap
         ArrayList<HashMap<String, Object>> portfolios = new ArrayList<>();
 
@@ -25,7 +25,7 @@ public class PortfolioController {
         HashMap<String, Object> paramMap = new HashMap<>();
         paramMap.put("ref_cursor", null);
         paramMap.put("page", page != null ? page : 0);
-        paramMap.put("fetch_num", fetchNum != null ? fetchNum : 4);
+        paramMap.put("fetch_num", fetchNum != null ? fetchNum : 5);
 
         // Fetch from DB
         ps.getPortfolioList(paramMap);
@@ -56,4 +56,25 @@ public class PortfolioController {
         return portfolios;
     }
 
+    // For Infinite Scroll
+    @RequestMapping(value="/api/portfolio/length", produces="application/json;charset=UTF-8")
+    public HashMap<String, Object> getPortfolioLength() {
+        // Create paramMap
+        HashMap<String, Object> paramMap = new HashMap<>();
+        paramMap.put("ref_cursor", null);
+
+        // Fetch from db
+        ps.getPortfolioLength(paramMap);
+        if(paramMap.get("length") == null) {
+            HashMap<String, Object> result = new HashMap<>();
+            result.put("length", 0);
+            return result;
+        }
+
+        Integer length = Integer.parseInt(String.valueOf(paramMap.get("length")));
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("length", length);
+
+        return result;
+    }
 }

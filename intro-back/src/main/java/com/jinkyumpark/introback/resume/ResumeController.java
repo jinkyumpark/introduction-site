@@ -125,7 +125,7 @@ public class ResumeController {
         for(HashMap<String, Object> te : result) {
             HashMap<String, Object> tmp = new HashMap<>();
             tmp.put("key", UUID.randomUUID());
-            tmp.put("img", te.get("IMG"));
+            tmp.put("img", te.get("ICON"));
             tmp.put("title", te.get("TITLE"));
 
             techList.add(tmp);

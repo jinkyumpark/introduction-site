@@ -9,16 +9,9 @@ import Error from '../../common/Error'
 import { Collapse, Button, OverlayTrigger, Popover, Modal, Carousel } from 'react-bootstrap'
 import toast from 'react-hot-toast'
 
-const TechTable = ({techData, techHeaderData, techPage, setTechPage}) => {
+const TechTable = ({techData, techHeaderData, techLength, techPage, setTechPage}) => {
     const [isDesOpen, setIsDesOpen] = useState(false)
 
-    const splitArray = (data) => {
-        const result = 
-            new Array(Math.ceil(data.length / 4))
-                .fill()
-                .map(_ => data.splice(0, 4))
-        return result
-    }
 
     const techSummary = {
         buttonTitle: '기술이 있다의 기준은?',
@@ -27,17 +20,11 @@ const TechTable = ({techData, techHeaderData, techPage, setTechPage}) => {
         사용할 수 있다고 생각하는 기술만 포함했습니다.`
     }
 
-    useEffect(() => {
-        if(techHeaderData != null) {
-            console.log(JSON.stringify(techHeaderData))
-        }
-    })
-
   return (
       <>
         <div className="row">
             <div className="col-md-8 col-lg-9 col-6">
-                <div className="h2">보유기술 {techHeaderData == null || techHeaderData.techNum == undefined ? '' : '(총 ' + techHeaderData.techNum + '개)'}</div>
+                <div className="h2">보유기술 (총 {techLength}개)</div>
             </div>
             <div className="col-md-4 col-lg-3 col-6">
 
@@ -59,10 +46,10 @@ const TechTable = ({techData, techHeaderData, techPage, setTechPage}) => {
         <div className='mt-3 mb-5'>
             <Carousel variant='dark' indicators={false}>
                 {
-                    techHeaderData == null || techHeaderData.techList.length == 0 ?
+                    techHeaderData == null || techHeaderData.length == 0 ?
                     <Error/>
                     :
-                    splitArray(techHeaderData.techList).map((arr) => {
+                    techHeaderData.map((arr) => {
                         return(
                             <Carousel.Item>
                                 <div className="row ps-5 pe-5" style={{height: '100px'}}>
@@ -130,7 +117,7 @@ const TechTable = ({techData, techHeaderData, techPage, setTechPage}) => {
                             }
                         }}><div class="page-link" href="#">{'<'}</div></li>
                         {
-                            [ ...Array(Math.ceil(techHeaderData.techNum / 3)) ].map((item, index) => {
+                            [ ...Array(Math.ceil(techLength / 3)) ].map((item, index) => {
                                 return(
                                     <li class={"page-item" + (techPage == index ? ' active' : '')}
                                         onClick={() => {
@@ -141,7 +128,7 @@ const TechTable = ({techData, techHeaderData, techPage, setTechPage}) => {
                             })
                         }
                         <li class="page-item" onClick={() => {
-                            if(techPage < Math.floor(techHeaderData.techNum / 3) - 1) {
+                            if(techPage < Math.floor(techLength / 3)) {
                                 setTechPage(techPage + 1)
                             } else {
                                 toast.error('더 이상 보유기술이 없어요')

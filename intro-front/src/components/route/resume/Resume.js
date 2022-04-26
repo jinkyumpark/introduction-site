@@ -18,9 +18,11 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
     const [techPage, setTechPage] = useState(0)
     const [isPhoneRequestOpen, setIsPhoneRequestOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+
     const [profileData, setProfileData] = useState(null)
     const [techHeaderData, setTechHeaderData] = useState(null)
-    const [techData, setTechData] = useState(null)
+    const [techLength, setTechLength] = useState(0)
+    const [techData, setTechData] = useState([])
     const [languageData, setLanguageData] = useState(null)
     const [activityData, setActivityData] = useState(null)
     const [introductionData, setIntroductionData] = useState(null)
@@ -73,14 +75,23 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                     return res.json()
                 })
                 .then((data) => {
-                    console.log(JSON.stringify(data))
-                    setTechHeaderData(data)
+                    const splitArray = (data) => {
+                        const result = 
+                            new Array(Math.ceil(data.length / 4))
+                                .fill()
+                                .map(_ => data.splice(0, 4))
+                        return result
+                    }                
+
+                    setTechLength(data.techNum)
+                    if(data.techList != null) {
+                        setTechHeaderData(splitArray(data.techList))
+                    }
                 })
                 .catch((err) => {
                     return err
                 }),
-
-            fetch('/api/resume/tech/list/' + techPage)
+            fetch('/api/resume/tech/list')
                 .then((res) => {
                     return res.json()
                 })
@@ -114,7 +125,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                 }),
     
             // Portfolio
-            fetch('/api/portfolio/list')
+            fetch('/api/portfolio/list?fetchNum=4')
                 .then((res) => {
                     return res.json()
                 })
@@ -178,6 +189,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                     <TechTable
                         techData={techData}
                         techHeaderData={techHeaderData}
+                        techLength={techLength}
                         techPage={techPage}
                         setTechPage={setTechPage}
                     />
