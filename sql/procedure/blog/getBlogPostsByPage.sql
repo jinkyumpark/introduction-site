@@ -6,7 +6,6 @@ create or replace procedure getBlogPostsByPage(
 is
 begin
 	if p_type = 0 then
-        open p_cur for
 		select p.num, p.title, p.summary as content, p.created_date, pc.title, pc.img
 		from post p
 		inner join post_category pc
@@ -14,7 +13,6 @@ begin
 		where pc.category_type=0
 		order by created_date desc;
 	else
-        open p_cur for
 		select p.num, p.title, p.summary as content, p.created_date, pc.title, pc.img
 		from post p
 		inner join post_category pc
