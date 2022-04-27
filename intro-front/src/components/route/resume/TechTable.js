@@ -52,7 +52,7 @@ const TechTable = ({techData, techHeaderData, techLength, techPage, setTechPage}
                     techHeaderData.map((arr) => {
                         return(
                             <Carousel.Item>
-                                <div className="row ps-5 pe-5" style={{height: '100px'}}>
+                                <div className="row ps-5 pe-5" style={{height: '120px'}}>
                                 {
                                     arr.map((tech) => {
                                         return(

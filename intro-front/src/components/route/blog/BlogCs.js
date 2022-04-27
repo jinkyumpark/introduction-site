@@ -11,13 +11,15 @@ import PostCard from './PostCard'
 import Post from './Post'
 
 const BlogCs = () => {
+    const [isLoading, setIsLoading] = useState(false)
+    const [blogPage, setBlogPage] = useState(0)
+    const [selectedCategory, setSelectedCategory] = useState(0)
+    
     const { num } = useParams();
     const [totalPost, setTotalPost] = useState(100)
-    const [blogPage, setBlogPage] = useState(0)
-    const [isLoading, setIsLoading] = useState(false)
-    const [selectedCategory, setSelectedCategory] = useState(0)
-
-    const classificationData = [
+    
+    // DUMMY DATA
+    const dummyClassificationData = [
         {
             name: "알고리즘",
             icon: 1
@@ -43,145 +45,31 @@ const BlogCs = () => {
             icon: 6
         }
     ]
-
-    // DUMMY DATA
-    const dummyBlogData = [
-        {
-            num: 1,
-            type: {
-                img: 'http://picsum.photos/500/500',
-                name: '알고리즘'
-            },
-            title: '정렬 알고리즘 총 정리',
-            content: '알고리즘을 처음 배울 때 배우는게 바로 정렬 알고리즘입니다.',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            num: 2,
-            type: {
-                img: 'http://picsum.photos/500/500/',
-                name: '알고리즘'
-            },
-            title: '탐색 알고리즘 총 정리',
-            content: '알고리즘을 처음 배울 때 배우는게 바로 탐색 알고리즘입니다.',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            num: 3,
-            type: {
-                img: 'http://picsum.photos/500/500//',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            key: 342351241324142312,
-            num: 6,
-            type: {
-                img: 'http://picsum.photos/500/500////',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            key: 31241324524142312,
-            num: 7,
-            type: {
-                img: 'http://picsum.photos/500/500/////',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            key: 312413432524142312,
-            num: 8,
-            type: {
-                img: 'http://picsum.photos/500/500//////',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            key: 31241543324142312,
-            num: 9,
-            type: {
-                img: 'http://picsum.photos/500/500///////',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            key: 31241324123442312,
-            num: 10,
-            type: {
-                img: 'http://picsum.photos/500/500////////',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            key: 312413413424123442312,
-            num: 11,
-            type: {
-                img: 'http://picsum.photos/500/500/////////',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        }
-    ]
-
-    const dummySubCategory = [
-        {
-            key: 184129,
-            name: "HTML/CSS",
-            icon: 'http://picsum.photos/400/400',
-        },
-        {
-            key: 31412341,
-            name: "JS",
-            icon: 'http://picsum.photos/400/400',
-        },
-        {
-            key: 5532513,
-            name: "React",
-            icon: 'http://picsum.photos/400/400',
-        },
-        {
-            key: 31451435,
-            name: "데이터베이스",
-            icon: 'http://picsum.photos/400/400',
-        },
-        {
-            key: 41341234,
-            name: "컴퓨테이션 이론",
-            icon: 'http://picsum.photos/400/400',
-        },
-        {
-            key: 1341324,
-            name: "운영체제",
-            icon: 'http://picsum.photos/400/400',
-        }
-    ]
     // DUMMY DATA
 
-    const [posts, setPosts] = useState(dummyBlogData)
+    const [classificationData, setClassificationData] = useState(dummyClassificationData)
+    const [posts, setPosts] = useState(null)
 
+    // Initial Fetch
     useEffect(() => {
-        // fetch blog post here (page = 0)
+        setIsLoading(true)
+        Promise.all([
+            // Blog post (page 0)
+            fetch('/api/blog/0')
+                .then((res) => {
+                    return res.json()
+                })
+                .then((data) => {
+                    setPosts(data)
+                })
+                .catch((err) => {
+                    return err
+                }),
+            // Classification
+        ])
+            .finally(() => {
+                setIsLoading(false)
+            })    
     }, [])
 
     useEffect(() => {
@@ -190,6 +78,21 @@ const BlogCs = () => {
 
     useEffect(() => {
         // fetch paging blog post here
+        setIsLoading(true)
+
+        fetch('/api/blog/' + blogPage)
+            .then((res) => {
+                return res.json()
+            })
+            .then((data) => {
+                setPosts(data)
+            })
+            .catch((err) => {
+                return err
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }, [blogPage])
 
     return (

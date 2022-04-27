@@ -5,7 +5,7 @@ import logo from '../../images/logo.png'
 // Bootstrap
 import { Nav, Navbar, Container } from 'react-bootstrap'
 
-const Topnav = () => {
+const Topnav = ({setIsPortfolioOpen, setIsLoginOpen}) => {
 
     const [page, setPage] = useState(0)
 
@@ -29,6 +29,9 @@ const Topnav = () => {
             } 
 
             setIsNavbarOpen(false)
+            setIsPortfolioOpen(false)
+            setIsLoginOpen(false)
+
     }, [location])
 
     return (

@@ -41,7 +41,10 @@ function App() {
 							position='bottom-right'
 					/></div>
 
-					<Topnav/>
+					<Topnav
+						setIsPortfolioOpen={setIsPortfolioOpen}
+						setIsLoginOpen={setIsLoginOpen}
+					/>
 
 					<div className="container">
 							<Routes>

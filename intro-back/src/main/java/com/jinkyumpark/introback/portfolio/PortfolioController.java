@@ -25,7 +25,7 @@ public class PortfolioController {
         HashMap<String, Object> paramMap = new HashMap<>();
         paramMap.put("ref_cursor", null);
         paramMap.put("page", page != null ? page : 0);
-        paramMap.put("fetch_num", fetchNum != null ? fetchNum : 5);
+        paramMap.put("fetch_num", fetchNum != null ? fetchNum : 4);
 
         // Fetch from DB
         ps.getPortfolioList(paramMap);

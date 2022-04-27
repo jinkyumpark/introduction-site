@@ -14,7 +14,7 @@ const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum,
             <img src={'/images/' + img} alt="" className="card-img-top" />
             <div className="card-body" onClick={() => openPortfolioDetail}>
                 <div className="card-title h5">{title}</div>
-                <p className="card-text">{content}</p>
+                <p className="card-text">{content == null ? '아직 포트폴리오에 대한 설명이 없어요' : content}</p>
                 <div className="row">
                     <div className="col-6">
                         <button className='btn btn-primary w-100' onClick={openPortfolioDetail}>자세히 보기</button>
@@ -37,7 +37,23 @@ const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum,
                     </div>
                 </div>
             </div>
-            <div className="card-footer text-muted text-center">{startDate} - {endDate}</div>
+            <div className="card-footer text-muted text-center">{
+                startDate
+                    .substring(0, startDate.indexOf('T'))
+                    .replace('-', '년 ')
+                    .replace('-', '월 ')
+                    .concat('일')
+                    .substring(2)
+            } ~ {
+                endDate != null ?
+                endDate
+                    .substring(0, endDate.indexOf('T'))
+                    .replace('-', '년 ')
+                    .replace('-', '월 ')
+                    .concat('일')
+                    .substring(2)
+                : '(진행중)'
+            }</div>
             <div className="card-footer">
                 <div className="row">
                     <div className="col-3">

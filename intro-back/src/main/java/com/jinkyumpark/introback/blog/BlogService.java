@@ -14,4 +14,8 @@ public class BlogService {
     public void getRecentBlogPost(HashMap<String, Object> paramMap) {
         bdao.getRecentBlogPost(paramMap);
     }
+
+    public void getBlogPostsByPage(HashMap<String, Object> paramMap) {
+        bdao.getBlogPostsByPage(paramMap);
+    }
 }
