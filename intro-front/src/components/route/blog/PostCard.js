@@ -16,7 +16,13 @@ const PostCard = ({ post }) => {
                     <div className="row mt-3">
                         <h5 className="card-title">{title}</h5>
                         <p className="card-text">{content}</p>
-                        <div className="text-muted">{createdDate}</div>
+                        <div className="text-muted">{
+                            createdDate
+                                .substring(2, createdDate.indexOf('T'))
+                                .replace('-', '년 ')
+                                .replace('-', '월 ')
+                                .concat('일')    
+                        }</div>
                     </div>
                 </div>
             </div>
