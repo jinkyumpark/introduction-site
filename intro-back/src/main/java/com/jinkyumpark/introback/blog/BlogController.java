@@ -22,7 +22,7 @@ public class BlogController {
         // Create paramMap
         HashMap<String, Object> paramMap = new HashMap<>();
         paramMap.put("ref_cursor", null);
-        // cs / dev
+        // cs : 0 / dev : 1
         paramMap.put("type", type);
         paramMap.put("page", page == null ? 0 : page);
 

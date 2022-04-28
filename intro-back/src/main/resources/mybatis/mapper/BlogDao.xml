@@ -32,7 +32,7 @@
             parameterType="java.util.HashMap"
             >
         {
-            CALL getBLogPostsByPage(
+            CALL getBlogPostsByPage(
                 #{type},
                 #{page},
                 #{
