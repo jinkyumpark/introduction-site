@@ -16,33 +16,39 @@ const BlogCs = () => {
     const [selectedCategory, setSelectedCategory] = useState(0)
     
     const { num } = useParams();
-    const [totalPost, setTotalPost] = useState(100)
+    const [totalPost, setTotalPost] = useState(10)
     
     // DUMMY DATA
     const dummyClassificationData = [
         {
+            key: 12,
             name: "알고리즘",
-            icon: 1
+            icon: 'algo-icon.png'
         },
         {
+            key: 12,
             name: "데이터구조",
-            icon: 2
+            icon: 'datastructure-icon.png'
         },
         {
+            key: 12,
             name: "네트워크",
-            icon: 3
+            icon: 'network-icon.png'
         },
         {
+            key: 12,
             name: "데이터베이스",
-            icon: 4
+            icon: 'db-icon.png'
         },
         {
+            key: 12,
             name: "컴퓨테이션 이론",
-            icon: 5
+            icon: 'computation-icon.png'
         },
         {
+            key: 12,
             name: "운영체제",
-            icon: 6
+            icon: 'os-icon.png'
         }
     ]
     // DUMMY DATA
@@ -105,17 +111,16 @@ const BlogCs = () => {
                         return (
                             <div className="col-4 col-md-2"
                                     onClick={() => {
-                                        if(data.icon == selectedCategory) {
-                                            setSelectedCategory(0)
+                                        if(data.name == selectedCategory) {
+                                            setSelectedCategory(null)
                                         } else {
-                                            setSelectedCategory(data.icon)
+                                            setSelectedCategory(data.name)
                                         }
                                     }}
                             >
                                 <ClassificationIcon
                                     data={data}
-                                    isCs={true}
-                                    isActive={data.icon == selectedCategory}
+                                    isActive={data.name == selectedCategory}
                                 />
                             </div>
                         )

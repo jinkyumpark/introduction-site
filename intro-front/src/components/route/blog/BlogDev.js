@@ -136,7 +136,6 @@ const BlogDev = () => {
             createdDate: '2022년 4월 3일'
         },
     ]
-
     const dummyFrontSubCategory = [
         {
             key: 184129,
@@ -186,7 +185,6 @@ const BlogDev = () => {
             icon: 'http://picsum.photos/400/400',
         }
     ]
-    
     const dummyDevopsSubCategory = [
         {
             key: 184129,
@@ -215,7 +213,6 @@ const BlogDev = () => {
         }
     ]
     // DUMMY DATA
-
 
     const mainCategory = [
         {
