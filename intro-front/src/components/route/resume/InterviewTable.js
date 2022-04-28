@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { OverlayTrigger, Popover } from 'react-bootstrap'
+import parse from 'html-react-parser'
 
 import Error from '../../common/Error'
 
@@ -71,7 +72,7 @@ const InterviewTable = ({questionData, introductionData}) => {
                         <div className="card-header text-center h4">{introductionData.title}</div>
                         
                         <div className="card-body p-4">
-                            {introductionData.content}
+                            {parse(introductionData.content)}
                         </div>
                     </>
                 }

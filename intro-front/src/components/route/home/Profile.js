@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { BsArrowRight as DetailIcon } from 'react-icons/bs'
 import Error from '../../common/Error'
+import parse from 'html-react-parser'
 
 const Profile = ({ profile }) => {
     return (
@@ -19,7 +20,7 @@ const Profile = ({ profile }) => {
                         </div>
                         <div className="col">
                             <p className='' style={{ lineHeight: '2' }}>
-                                {profile.content}
+                                {parse(profile.content)}
                             </p>
                         </div>
                         <div className="col-1 d-none d-md-block">

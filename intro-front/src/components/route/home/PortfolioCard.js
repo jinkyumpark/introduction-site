@@ -1,12 +1,17 @@
 import React from 'react'
 import {OverlayTrigger, Popover} from 'react-bootstrap'
+import toast from 'react-hot-toast'
 
 const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum, isLinkActive }) => {
-    const { img, title, content, link, startDate, endDate, status, num } = portfolio
+    const { img, title, content, link, startDate, endDate, status, portfolioNum : num } = portfolio
 
     const openPortfolioDetail = () => {
-        setIsPortfolioOpen(true)
-        setSelectedPortfolioNum(num)
+        if(num != null && typeof num != undefined) {
+            setIsPortfolioOpen(true)
+            setSelectedPortfolioNum(num)
+        } else {
+            toast.error('죄송해요, 포트폴리오를 열 수 없어요')
+        }
     }
 
     return (
