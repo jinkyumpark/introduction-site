@@ -42,4 +42,148 @@
         }
     </select>
 
+    <select id="getPortfolioDetail"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getPortfolioDetail(
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=portfolioMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getPortfolioDetailFunction"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getPortfolioDetailFunction(
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=portfolioMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getPortfolioDetailTech"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getPortfolioDetailTech(
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=portfolioMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getPortfolioDetailDb"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getPortfolioDetailDb(
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=portfolioMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getPortfolioDetailExplanation"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getPortfolioDetailExplanation(
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=portfolioMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getPortfolioDetailExplanationPost"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+    >
+        {
+            CALL getPortfolioDetailExplanationPost(
+                #{explanation_num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=portfolioMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getPortfolioDetailHistory"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getPortfolioDetailHistory(
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=portfolioMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getPortfolioDetailReview"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getPortfolioDetailReview(
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=portfolioMap
+                }
+            )
+        }
+    </select>
+
 </mapper>
