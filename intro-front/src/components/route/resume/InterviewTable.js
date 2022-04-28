@@ -61,6 +61,7 @@ const InterviewTable = ({questionData, introductionData}) => {
                                             <div>
                                                 <div className="card-title h5 mt-2">{data.question}</div>
                                                 <p className="card-text mt-2" style={{lineHeight: '1.7rem'}}>{data.answer}</p>
+                                                <br/>
                                             </div>
                                         )
                                     })
