@@ -14,6 +14,7 @@ You can check it out right now at
   - react-textarea-code-editor
   - react-infinite-scroller
   - redux
+  - html-react-parser
 
 ## Back-end
   - Spring Framework
