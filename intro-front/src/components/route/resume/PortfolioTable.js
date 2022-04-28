@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import PortfolioCard from '../home/PortfolioCard'
 import Error from '../../common/Error'
+import MoreButton from '../../common/MoreButton'
 
 const PortfolioTable = ({portfolioData, setIsPortfolioOpen, setSelectedPortfolioNum}) => {
 
@@ -28,11 +29,14 @@ const PortfolioTable = ({portfolioData, setIsPortfolioOpen, setSelectedPortfolio
         }      
 
         <div className="col-12">
-            <Link to='/portfolio'>
-                <div className="btn btn-success w-100">
-                    더 보기
-                </div>
-            </Link>
+            {
+                (portfolioData == null || portfolioData.length < 4) ?
+                <></>
+                :
+                <Link to='/portfolio'>
+                    <MoreButton/>
+                </Link>
+            }
         </div>
     </div>
     )

@@ -108,10 +108,15 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                             })
                         }
                     </div>
-
-                    <Link to="/portfolio">
-                        <MoreButton />
-                    </Link>
+                    
+                    {
+                        (portfolioData == null || portfolioData.length < 4) ?
+                        <></>
+                        :
+                        <Link to="/portfolio">
+                            <MoreButton />
+                        </Link>
+                    }
                 </div>
 
                 <div className="mb-5">
@@ -131,9 +136,15 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                             )
                         })
                     }
-                    <Link to="/blog/cs">
-                        <MoreButton />
-                    </Link>
+
+                    {
+                        (csBlogData == null || csBlogData.length < 3) ?
+                        <></>
+                        :
+                        <Link to="/blog/cs">
+                            <MoreButton />
+                        </Link>
+                    }
                 </div>
 
                 <div className="mb-5">
@@ -152,9 +163,14 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                             })
                         }
 
-                    <Link to="/blog/dev">
-                        <MoreButton />
-                    </Link>
+                    {
+                        (devBlogData == null || devBlogData.length < 3) ?
+                        <></>
+                        :
+                        <Link to="/blog/dev">
+                            <MoreButton />
+                        </Link>
+                    }
                 </div>
 
             </div>
