@@ -2,17 +2,9 @@ import React from 'react'
 import { Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const Login = ({ isLoginOpen, setIsLoginOpen }) => {
-    const closeLogin = () => {
-        setIsLoginOpen(false)
-    }
-
+const Login = ({setIsLoginOpen }) => {
     return (
-        <Modal show={isLoginOpen}
-                onHide={() => {
-                    setIsLoginOpen(false)
-                }}
-        >
+        <>
             <Modal.Header>
                 <Modal.Title>관리자 로그인</Modal.Title>
             </Modal.Header>
@@ -37,7 +29,9 @@ const Login = ({ isLoginOpen, setIsLoginOpen }) => {
                             </Link>
                         </div>
                         <div className="col-6">
-                            <button className='btn btn-danger w-100' onClick={closeLogin} type="reset">취소</button>
+                            <button className='btn btn-danger w-100' onClick={() => {
+                                setIsLoginOpen(false)
+                            }} type="reset">취소</button>
                         </div>
                     </div>
                 </form>
@@ -47,7 +41,7 @@ const Login = ({ isLoginOpen, setIsLoginOpen }) => {
                 이 로그인 페이지는 관리자를 위한 페이지에요.
                 특정 서비스를 이용하실려면 각각의 페이지를 방문하셔서 로그인해 주세요
             </Modal.Footer>
-        </Modal>
+        </>
     )
 }
 

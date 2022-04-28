@@ -128,7 +128,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                         <Error/>
                         :
                         csBlogData.length == 0 ?
-                        <NoContent/>
+                        <NoContent message={'죄송해요, 아직 게시물이 없어요'}/>
                         :
                         csBlogData.map((post) => {
                             return (
@@ -159,7 +159,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                             <Error/>
                             :
                             devBlogData.length == 0 ?
-                            <NoContent/>
+                            <NoContent message={'죄송해요, 아직 게시물이 없어요'}/>
                             :  
                             devBlogData.map((post) => {
                                 return (
