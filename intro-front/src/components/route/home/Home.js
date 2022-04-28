@@ -8,6 +8,7 @@ import PostCard from '../blog/PostCard'
 import MoreButton from '../../common/MoreButton'
 import Error from '../../common/Error'
 import Loading from '../../common/Loading'
+import NoPost from '../blog/NoPost'
 
 // Resources
 import './homeStyle.css'
@@ -126,6 +127,9 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                         csBlogData == null ?
                         <Error/>
                         :
+                        csBlogData.length == 0 ?
+                        <NoPost/>
+                        :
                         csBlogData.map((post) => {
                             return (
                                 <div>
@@ -154,6 +158,9 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                             devBlogData == null ?
                             <Error/>
                             :
+                            devBlogData.length == 0 ?
+                            <NoPost/>
+                            :  
                             devBlogData.map((post) => {
                                 return (
                                     <Link to={'/blog/dev/' + post.num } className='text-decoration-none'>
