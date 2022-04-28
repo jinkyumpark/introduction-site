@@ -10,252 +10,131 @@ import Loading from "../../common/Loading"
 import PostCard from './PostCard'
 import Post from './Post'
 import toast from 'react-hot-toast'
+import Error from '../../common/Error'
 
 const BlogDev = () => {
     const { num } = useParams();
     const [selectedMainCategory, setSelectedMainCategory] = useState(0)
     const [selectedSubCategory, setSelectedSubCategory] = useState(null)
-
     const [subCategoryList, setSubCategoryList] = useState(null)
     const [posts, setPosts] = useState(null)
-    const [isLoading, setIsLoading] = useState(false)
-
+    const [isLoading, setIsLoading] = useState(true)
     const [blogPage, setBlogPage] = useState(0)
-    const [totalPost, setTotalPost] = useState(150)
+    const [totalPost, setTotalPost] = useState(0)
+
 
     // DUMMY DATA
-    const dummyBlogList = [
+    const mainCategory = [
         {
-            key: 1332434,
-            num: 1,
-            type: {
-                img: 'http://picsum.photos/500/500',
-                name: '알고리즘'
-            },
-            title: '정렬 알고리즘 총 정리',
-            content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius veniam sunt laudantium dolores nulla ipsam dolor ratione error eaque dignissimos quaerat earum distinctio doloribus, libero minus saepe? Id, cumque facere.',
-            createdDate: '2022년 4월 3일'
+            key: 13471923,
+            name: 'Front',
+            icon: 'front-icon.png'
         },
         {
-            key: 134134,
-            num: 2,
-            type: {
-                img: 'http://picsum.photos/500/500/',
-                name: '알고리즘'
-            },
-            title: '탐색 알고리즘 총 정리',
-            content: '알고리즘을 처음 배울 때 배우는게 바로 탐색 알고리즘입니다.',
-            createdDate: '2022년 4월 3일'
+            key: 2134523455,
+            name: 'Back',
+            icon: 'linux-icon.png'
         },
         {
-            key: 31242341132412,
-            num: 4,
-            type: {
-                img: 'http://picsum.photos/500/500//',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            key: 31243214132412,
-            num: 5,
-            type: {
-                img: 'http://picsum.photos/500/500///',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            key: 342351241324142312,
-            num: 6,
-            type: {
-                img: 'http://picsum.photos/500/500////',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            key: 31241324524142312,
-            num: 7,
-            type: {
-                img: 'http://picsum.photos/500/500/////',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            key: 312413432524142312,
-            num: 8,
-            type: {
-                img: 'http://picsum.photos/500/500//////',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            key: 31241543324142312,
-            num: 9,
-            type: {
-                img: 'http://picsum.photos/500/500///////',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            key: 31241324123442312,
-            num: 10,
-            type: {
-                img: 'http://picsum.photos/500/500////////',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
-        {
-            key: 312413413424123442312,
-            num: 11,
-            type: {
-                img: 'http://picsum.photos/500/500/////////',
-                name: '알고리즘'
-            },
-            title: '코딩 테스트에 알고리즘 이론 적용하기',
-            content: '알고리즘을 막상 배워도 코딩 테스트에 어떻게 적용해야 할지 헷갈리는 경우가 많습니다',
-            createdDate: '2022년 4월 3일'
-        },
+            key: 1451345,
+            name: 'DevOps',
+            icon: 'devops-icon.png'
+        }
     ]
     const dummyFrontSubCategory = [
         {
             key: 184129,
             name: "HTML/CSS",
-            icon: 'http://picsum.photos/400/400',
+            icon: 'html-icon.png',
         },
         {
             key: 31412341,
             name: "JS",
-            icon: 'http://picsum.photos/400/400',
+            icon: 'js-icon.jpg',
         },
         {
             key: 5532513,
             name: "React",
-            icon: 'http://picsum.photos/400/400',
+            icon: 'reactjs-icon.png',
         },
         {
             key: 31451435,
             name: "Bootstrap",
-            icon: 'http://picsum.photos/400/400',
+            icon: 'bootstrap-icon.png',
         },
         {
             key: 31451231435,
             name: "SwiftUI",
-            icon: 'http://picsum.photos/400/400',
+            icon: 'swiftui-icon.png',
         }
     ]
     const dummyBackSubCategory = [
         {
             key: 184129,
             name: "Spring",
-            icon: 'http://picsum.photos/400/400',
+            icon: 'spring-icon.png',
         },
         {
             key: 31412341,
             name: "Database(SQL)",
-            icon: 'http://picsum.photos/400/400',
+            icon: 'plsql-icon.png',
         },
         {
             key: 5532513,
             name: "Node.js(Express)",
-            icon: 'http://picsum.photos/400/400',
-        },
-        {
-            key: 31451435,
-            name: "Django/Flask",
-            icon: 'http://picsum.photos/400/400',
+            icon: 'node-icon.jpeg',
         }
     ]
     const dummyDevopsSubCategory = [
         {
             key: 184129,
             name: "Git",
-            icon: 'http://picsum.photos/400/400',
+            icon: 'git-icon.png',
         },
         {
             key: 31412341,
             name: "Docker",
-            icon: 'http://picsum.photos/400/400',
-        },
-        {
-            key: 5532513,
-            name: "IDE",
-            icon: 'http://picsum.photos/400/400',
-        },
-        {
-            key: 31451435,
-            name: "Cloud",
-            icon: 'http://picsum.photos/400/400',
-        },
-        {
-            key: 31432451435,
-            name: "Testing",
-            icon: 'http://picsum.photos/400/400',
+            icon: 'docker-icon.png',
         }
     ]
     // DUMMY DATA
 
-    const mainCategory = [
-        {
-            key: 13471923,
-            name: 'Front',
-            icon: 1
-        },
-        {
-            key: 2134523455,
-            name: 'Back',
-            icon: 2
-        },
-        {
-            key: 1451345,
-            name: 'DevOps',
-            icon: 3
-        }
-    ]
-
+    // Initial fetch
     useEffect(() => {
-        setPosts(dummyBlogList)
+        Promise.all([
+            fetch('/api/blog/1')
+                .then((res) => {
+                    return res.json()
+                })
+                .then((data) => {
+                    setPosts(data)
+                })
+        ])
+            .finally(() => {
+                setIsLoading(false)
+            })
     }, [])
-
+    
+    // Fetch blogData when page changes
     useEffect(() => {
-        // Fetch blogData by page
 
     }, [selectedMainCategory, selectedSubCategory])
 
+    // Fetch sub category when selectedMainCategory changes
     useEffect(() => {
         // Fetch subCategory by selectedMainCategory
-        if(selectedMainCategory == 0) {
+        if(selectedMainCategory == null) {
             setSubCategoryList(null)
-        } else if(selectedMainCategory == 1) {
+        } else if(selectedMainCategory == 'Front') {
             // fetch front
             setSubCategoryList(dummyFrontSubCategory)
-        } else if(selectedMainCategory == 2) {
+        } else if(selectedMainCategory == 'Back') {
             // fetch back
             setSubCategoryList(dummyBackSubCategory)
-        } else if(selectedMainCategory == 3) {
+        } else if(selectedMainCategory == 'DevOps') {
             // fetch devops
             setSubCategoryList(dummyDevopsSubCategory)
         }
-
     }, [selectedMainCategory])
 
     return (
@@ -267,10 +146,10 @@ const BlogDev = () => {
                     mainCategory.map((category) => {
                         return (
                             <div className="col-4" onClick={() => {
-                                if(selectedMainCategory != category.icon) {
-                                    setSelectedMainCategory(category.icon)
+                                if(selectedMainCategory != category.name) {
+                                    setSelectedMainCategory(category.name)
                                 } else {
-                                    setSelectedMainCategory(0)
+                                    setSelectedMainCategory(null)
                                 }
                             }}
                             >                                    
@@ -287,8 +166,9 @@ const BlogDev = () => {
 
             <div className="row">
                 {
-                    selectedMainCategory != 0 ?
+                    selectedMainCategory != null ?
                     subCategoryList != null ?
+
                     subCategoryList.map((data) => {
                         return (
                             <div className="col-6 col-md-3">
@@ -310,7 +190,9 @@ const BlogDev = () => {
                     isLoading ?
                         <Loading /> :
                         posts == null ?
-                            <NoPost /> :
+                            <Error /> :
+                                posts.length == 0 ?
+                                    <NoPost/> :
                                 num == null ?
                                     <>
                                     {
