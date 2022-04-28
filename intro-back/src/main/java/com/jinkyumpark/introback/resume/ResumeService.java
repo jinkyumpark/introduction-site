@@ -7,7 +7,6 @@ import java.util.HashMap;
 
 @Service
 public class ResumeService {
-
     @Autowired
     ResumeDao rdao;
 

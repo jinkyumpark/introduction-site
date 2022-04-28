@@ -19,7 +19,7 @@ const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum,
             <img src={'/images/' + img} alt="" className="card-img-top" />
             <div className="card-body" onClick={() => openPortfolioDetail}>
                 <div className="card-title h5">{title}</div>
-                <p className="card-text">{content == null ? '아직 포트폴리오에 대한 설명이 없어요' : content}</p>
+                <p className={"card-text" + (content == null ? ' text-center text-muted pt-5' : '')} style={{height: '100px'}}>{content == null ? '아직 포트폴리오에 대한 설명이 없어요' : content}</p>
                 <div className="row">
                     <div className="col-6">
                         <button className='btn btn-primary w-100' onClick={openPortfolioDetail}>자세히 보기</button>
