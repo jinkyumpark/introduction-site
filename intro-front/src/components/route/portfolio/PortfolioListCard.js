@@ -6,8 +6,9 @@ import {OverlayTrigger, Popover} from 'react-bootstrap'
 
 const PortfolioListCard = ({portfolio, openPortfolio}) => {
   return (
-    <div className="card mt-3">
+    <div className="card mt-4">
         <div className="row me-2 h-100" onClick={() => openPortfolio(portfolio.portfolioNum)}>
+
 
             <div className="col-9 col-md-10 portfolioListCard">
                 <div className="row">
@@ -18,7 +19,7 @@ const PortfolioListCard = ({portfolio, openPortfolio}) => {
                     <div className="col-12 col-md-7 mt-2 ms-2 ms-md-0">
                         <div className="h2">{portfolio.title}</div>
 
-                        <div className="h4 text-muted">{portfolio.content == null ? '아직 포트폴리오에 대한 소개가 없어요' : portfolio.content}</div>
+                        <div className="h5 text-muted mt-2">{portfolio.content == null ? '아직 포트폴리오에 대한 소개가 없어요' : portfolio.content}</div>
                     </div>
                 </div>
             </div>
@@ -37,6 +38,7 @@ const PortfolioListCard = ({portfolio, openPortfolio}) => {
                     >
                     <div className={"btn btn-outline-danger w-100 mt-2" + (portfolio.status == 0 ? ' active' : '')}>시작전</div>
                 </OverlayTrigger>
+
                 <OverlayTrigger
                     key='progressing'
                     placement='top'
@@ -66,6 +68,7 @@ const PortfolioListCard = ({portfolio, openPortfolio}) => {
                     >
                     <div className={"btn btn-outline-success w-100 mt-2" + (portfolio.status == 2 ? ' active' : '')}>완료</div>
                 </OverlayTrigger>
+
                 <OverlayTrigger
                     key='maintaining'
                     placement='top'
@@ -81,6 +84,7 @@ const PortfolioListCard = ({portfolio, openPortfolio}) => {
                     <div className={"btn btn-outline-warning w-100 mt-2" + (portfolio.status == 3 ? ' active' : '')}>유지보수</div>
                 </OverlayTrigger>
             </div>
+
 
         </div>
     </div>

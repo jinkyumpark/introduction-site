@@ -15,7 +15,7 @@ import InfiniteScroll from 'react-infinite-scroller'
 import './portfolio.css'
 import toast from 'react-hot-toast'
 
-const Portfolio = ({isPortfolioOpen, setIsPortfolioOpen, setPortfolioNum}) => {
+const Portfolio = ({setIsPortfolioOpen, setPortfolioNum}) => {
     const [isLoading, setIsLoading] = useState(false)
 
     const [portfolioData, setPortfolioData] = useState(null)
@@ -45,18 +45,16 @@ const Portfolio = ({isPortfolioOpen, setIsPortfolioOpen, setPortfolioNum}) => {
     }, [])
 
     useEffect(() => {
-        if(!hasMore) {
+        if(!hasMore && page != 0) {
             toast.error('더 이상 포트폴리오가 없어요')
         }
     }, [hasMore])
 
 
     const openPortfolio = (index) => {
-        setIsPortfolioOpen(true)
+        console.log('index : ' + index)
         setPortfolioNum(index)
-    }
-    const closeDetail = () => {
-        setIsPortfolioOpen(false)
+        setIsPortfolioOpen(true)
     }
 
     const fetchPortfolio = () => {
@@ -87,12 +85,11 @@ const Portfolio = ({isPortfolioOpen, setIsPortfolioOpen, setPortfolioNum}) => {
     return (
         <div>
             <div className="h1">포트폴리오</div>
-
             {
                 isLoading ?
                 <Loading/>
                 :
-                portfolioData == null || portfolioData.length == 0 ? 
+                (portfolioData == null || portfolioData.length == 0) ? 
                     <NoPortfolio/> :
 
                     <InfiniteScroll
@@ -107,6 +104,7 @@ const Portfolio = ({isPortfolioOpen, setIsPortfolioOpen, setPortfolioNum}) => {
                                     <PortfolioListCard
                                         portfolio={data}
                                         openPortfolio={openPortfolio}
+                                        className='mt-5'
                                     />                            
                                 )
                             })

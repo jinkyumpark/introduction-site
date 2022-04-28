@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
 // Components
-import NoPost from './NoPost'
+import NoContent from './NoPost'
 import Loading from "../../common/Loading"
 import PostCard from './PostCard'
 import Post from './Post'
@@ -133,7 +133,7 @@ const BlogCs = () => {
                     isLoading ?
                         <Loading /> :
                         posts == null ?
-                            <NoPost /> :
+                            <NoContent /> :
                                 num == null ?
                                 <>
                                 {

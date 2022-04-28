@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdOutlineDoNotDisturb as ErrorIcon } from 'react-icons/md'
 
-const NoPost = () => {
+const NoContent = ({message}) => {
     return (
         <div className='container mt-5'>
             <div className="row text-center">
@@ -12,11 +12,11 @@ const NoPost = () => {
             </div>
             <div className="row mt-3">
                 <div className="h2 text-center">
-                    죄송해요, 포스트가 없어요!
+                    {message}
                 </div>
             </div>
         </div>
     )
 }
 
-export default NoPost
+export default NoContent

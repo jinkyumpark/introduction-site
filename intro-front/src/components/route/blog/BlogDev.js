@@ -5,7 +5,7 @@ import ClassificationIcon from './ClassificationIcon'
 import reactIcon from '../../../images/tech-icon/reactjs-icon.png'
 
 // Components
-import NoPost from './NoPost'
+import NoContent from './NoPost'
 import Loading from "../../common/Loading"
 import PostCard from './PostCard'
 import Post from './Post'
@@ -192,7 +192,7 @@ const BlogDev = () => {
                         posts == null ?
                             <Error /> :
                                 posts.length == 0 ?
-                                    <NoPost/> :
+                                    <NoContent/> :
                                 num == null ?
                                     <>
                                     {

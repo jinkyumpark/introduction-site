@@ -8,7 +8,7 @@ import PostCard from '../blog/PostCard'
 import MoreButton from '../../common/MoreButton'
 import Error from '../../common/Error'
 import Loading from '../../common/Loading'
-import NoPost from '../blog/NoPost'
+import NoContent from '../blog/NoPost'
 
 // Resources
 import './homeStyle.css'
@@ -128,7 +128,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                         <Error/>
                         :
                         csBlogData.length == 0 ?
-                        <NoPost/>
+                        <NoContent/>
                         :
                         csBlogData.map((post) => {
                             return (
@@ -159,7 +159,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                             <Error/>
                             :
                             devBlogData.length == 0 ?
-                            <NoPost/>
+                            <NoContent/>
                             :  
                             devBlogData.map((post) => {
                                 return (

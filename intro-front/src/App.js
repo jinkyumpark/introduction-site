@@ -28,11 +28,6 @@ function App() {
 	const [isPortfolioOpen, setIsPortfolioOpen] = useState(false)
 	const [selectedPortfolioNum, setSelectedPortfolioNum] = useState(null)
 
-
-	const closePortfolio = () => {
-		setIsPortfolioOpen(false)
-	}
-
 	return (
 			<>
 			<Router>
@@ -58,7 +53,6 @@ function App() {
 																	setSelectedPortfolioNu={setSelectedPortfolioNum}
 								/>} />
 								<Route path="/portfolio" element={<Portfolio 
-																	isPortfolioOpen={isPortfolioOpen} 
 																	setIsPortfolioOpen={setIsPortfolioOpen}
 																	setPortfolioNum={setSelectedPortfolioNum}
 																	/>} 
@@ -81,8 +75,9 @@ function App() {
 						size='xl'
 						style={{ minHeight: '90vh'}}
 						scrollable={false}
-						onHide={closePortfolio}
-						backdrop="static"
+						onHide={() => {
+							setIsPortfolioOpen(false)
+						}}
 						fullscreen='sm-down'
 					>
 						<PortfolioDetail
