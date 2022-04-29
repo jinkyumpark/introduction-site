@@ -7,7 +7,9 @@ import {OverlayTrigger, Popover} from 'react-bootstrap'
 const PortfolioListCard = ({portfolio, openPortfolio}) => {
   return (
     <div className="card mt-4">
-        <div className="row me-2 h-100" onClick={() => openPortfolio(portfolio.portfolioNum)}>
+        <div className="row me-2 h-100" onClick={() => {
+            openPortfolio(portfolio.portfolioNum)
+            }}>
 
 
             <div className="col-9 col-md-10 portfolioListCard">

@@ -14,6 +14,7 @@ import { Modal } from 'react-bootstrap'
 
 const PortfolioDetail = ({selectedPortfolioNum}) => {
 	const [portfolio, setPortfolio] = useState(null)
+	
 	const [isLoading, setIsLoading] = useState(true)
 	const [isError, setIsError] = useState(false)
 

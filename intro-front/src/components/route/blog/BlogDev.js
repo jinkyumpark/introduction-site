@@ -156,7 +156,7 @@ const BlogDev = () => {
                                 <ClassificationIcon
                                     data={category}
                                     isDev={true}
-                                    isActive={(selectedMainCategory == category.icon)}
+                                    isActive={(selectedMainCategory == category.name)}
                                 />
                             </div>
                         )
@@ -192,7 +192,7 @@ const BlogDev = () => {
                         posts == null ?
                             <Error /> :
                                 posts.length == 0 ?
-                                    <NoContent/> :
+                                    <NoContent message='죄송해요, 포스트가 아직 없어요'/> :
                                 num == null ?
                                     <>
                                     {
