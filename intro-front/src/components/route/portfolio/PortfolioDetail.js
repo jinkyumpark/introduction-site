@@ -153,8 +153,12 @@ const PortfolioDetail = ({selectedPortfolioNum}) => {
 								})
 							}
 						</div>
-
-						<MoreButton/>
+						{
+							(portfolio.func == null || portfolio.func.length < 4) ?
+							<></>
+							:
+							<MoreButton/>
+						}
 
 					</div>
 
