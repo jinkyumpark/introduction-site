@@ -300,9 +300,9 @@ const PortfolioDetail = ({selectedPortfolioNum}) => {
 								portfolio.review.map((re) => {
 									return(
 										<div className="list-group-item">
-											<div className="h5">
+											<p>
 												{re}
-											</div>
+											</p>
 										</div>
 									)
 								})
