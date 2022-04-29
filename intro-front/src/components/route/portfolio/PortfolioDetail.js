@@ -371,7 +371,7 @@ const TechIcon = ({tech}) => {
     return(
         <div className="row h-100 w-100 border justify-content-center">
             <div className="col-12 align-self-center text-center mt-2">
-                <img src={tech.img} alt="" style={{width: '50px', height: '50px'}} className='img-fluid mx-auto d-block rounded-circle'/>
+                <img src={'/images/' + tech.img} alt="" style={{width: '50px', height: '50px'}} className='img-fluid mx-auto d-block rounded-circle'/>
             </div>
             <div className="col-12 align-self-center">
                 <div className="h3 text-center">
