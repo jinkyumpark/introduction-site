@@ -11,9 +11,10 @@ import {GrLanguage as LanguageIcon, GrCompliance as ProgressIcon} from 'react-ic
 import {BsGearWideConnected as ComplexityIcon} from 'react-icons/bs'
 import {BiTimeFive as LengthIcon} from 'react-icons/bi'
 
-// Bootstrap
+// Library
 import {Carousel, OverlayTrigger, Popover} from 'react-bootstrap';
 import './carousel.css'
+import parse from 'html-react-parser'
 
 const Post = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -24,7 +25,7 @@ const Post = () => {
         subtitle: '리엑트를 학원 Final Project에서 사용하기 위해 기초만 빠르게 공부',
         classification: {
             name: "React.js",
-            icon: 'http://picsum.photos/400/400',
+            icon: 'reactjs-icon.png',
             type: 'theory'
         },
         summary: [
@@ -76,14 +77,14 @@ const Post = () => {
         ],
         content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, 
         saepe natus consequuntur optio esse nostrum sequi, necessitatibus assumenda placeat est veritatis. Voluptatem dolores praesentium nulla ad?
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, 
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, <br/><br/>
+        saepe natus consequuntur optio esse nostrum sequi, necessitatibus assumenda placeat est veritatis. Voluptatem dolores praesentium nulla ad?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, 
+        saepe natus consequuntur optio esse nostrum sequi, necessitatibus assumenda placeat est veritatis. Voluptatem dolores praesentium nulla ad?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, 
+        saepe natus consequuntur optio esse nostrum sequi, necessitatibus assumenda placeat est veritatis. <br/><br/>Voluptatem dolores praesentium nulla ad?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, 
         saepe natus consequuntur optio esse nostrum sequi, necessitatibus assumenda placeat est veritatis. Voluptatem dolores praesentium nulla ad?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, 
         saepe natus consequuntur optio esse nostrum sequi, necessitatibus assumenda placeat est veritatis. Voluptatem dolores praesentium nulla ad?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, 
         saepe natus consequuntur optio esse nostrum sequi, necessitatibus assumenda placeat est veritatis. Voluptatem dolores praesentium nulla ad?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, 
-        saepe natus consequuntur optio esse nostrum sequi, necessitatibus assumenda placeat est veritatis. Voluptatem dolores praesentium nulla ad?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, 
-        saepe natus consequuntur optio esse nostrum sequi, necessitatibus assumenda placeat est veritatis. Voluptatem dolores praesentium nulla ad?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, 
-        saepe natus consequuntur optio esse nostrum sequi, necessitatibus assumenda placeat est veritatis. Voluptatem dolores praesentium nulla ad?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, 
-        saepe natus consequuntur optio esse nostrum sequi, necessitatibus assumenda placeat est veritatis. Voluptatem dolores praesentium nulla ad?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, 
+        saepe natus consequuntur optio esse nostrum sequi, necessitatibus assumenda placeat est veritatis. <br/><br/>Voluptatem dolores praesentium nulla ad?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam, 
         saepe natus consequuntur optio esse nostrum sequi, necessitatibus assumenda placeat est veritatis. Voluptatem dolores praesentium nulla ad?
         `,
         learningContent: [
@@ -91,7 +92,7 @@ const Post = () => {
                 key: 0,
                 classification: {
                     title: 'React.js',
-                    Icon: 'http://picsum.photos/400/400'
+                    icon: 'reactjs-icon.png'
                 },
                 title: 'Freecodecamp 유튜브 React 강의',
                 link: 'https://www.youtube.com/watch?v=4UZrsTqkcW4&t=18978s',
@@ -102,76 +103,19 @@ const Post = () => {
                 finishPercent: 10,
                 difficulty: 0,
                 duration: 5,
-            },
-            {
-                key: 1,
-                classification: {
-                    title: 'React.js',
-                    Icon: 'http://picsum.photos/400/400'
-                },
-                title: 'Freecodecamp 유튜브 React 강의',
-                link: 'https://www.youtube.com/watch?v=4UZrsTqkcW4&t=18978s',
-                content: `리엑트의 기초 문법과 react를 개발하기 위해 필요한 다양한 기능을 다루는 강의.
-                다양한 hooks(useState, useEffect)의 특징과 기능,
-                React-router 등을 다룸`,
-                language: '영어',
-                finishPercent: 10,
-                difficulty: 0,
-                duration: 5,
-            },
-            {
-                key: 2,
-                classification: {
-                    title: 'React.js',
-                    Icon: 'http://picsum.photos/400/400'
-                },
-                title: 'Freecodecamp 유튜브 React 강의',
-                link: 'https://www.youtube.com/watch?v=4UZrsTqkcW4&t=18978s',
-                content: `리엑트의 기초 문법과 react를 개발하기 위해 필요한 다양한 기능을 다루는 강의.
-                다양한 hooks(useState, useEffect)의 특징과 기능,
-                React-router 등을 다룸`,
-                language: '영어',
-                finishPercent: 10,
-                difficulty: 0,
-                duration: 5,
-            },
-            {
-                key: 3,
-                classification: {
-                    title: 'React.js',
-                    Icon: 'http://picsum.photos/400/400'
-                },
-                title: 'Freecodecamp 유튜브 React 강의',
-                link: 'https://www.youtube.com/watch?v=4UZrsTqkcW4&t=18978s',
-                content: `리엑트의 기초 문법과 react를 개발하기 위해 필요한 다양한 기능을 다루는 강의.
-                다양한 hooks(useState, useEffect)의 특징과 기능,
-                React-router 등을 다룸`,
-                language: '영어',
-                finishPercent: 10,
-                difficulty: 0,
-                duration: 5,
-            },
-            {
-                key: 4,
-                classification: {
-                    title: 'React.js',
-                    Icon: 'http://picsum.photos/400/400'
-                },
-                title: 'Freecodecamp 유튜브 React 강의',
-                link: 'https://www.youtube.com/watch?v=4UZrsTqkcW4&t=18978s',
-                content: `리엑트의 기초 문법과 react를 개발하기 위해 필요한 다양한 기능을 다루는 강의.
-                다양한 hooks(useState, useEffect)의 특징과 기능,
-                React-router 등을 다룸`,
-                language: '영어',
-                finishPercent: 10,
-                difficulty: 0,
-                duration: 5,
-            },
+            }
         ]
     }
     
+    // Initial Fetch
     useEffect(() => {
-        // Fetch Data Here
+        Promise.all([
+            // Fetch Data Here
+
+        ])
+            .finally(() => {
+                setIsLoading(false)
+            })
         setPost(dummyPost);
     }, [])
 
@@ -263,7 +207,7 @@ const Post = () => {
 
 
                     <div className='mt-5 mb-5'>
-                        {post.content}
+                        {parse(post.content)}
                     </div>
 
                     <div>
@@ -286,7 +230,7 @@ const LearingContentCard = ({content}) => {
         <div className="row mb-4">
         <div className="col-2 align-self-center">
             <div className="row justify-content-center">
-                <img src={content.classification.icon} alt={content.classification.title + 'Icon'} className='img-fluid rounded-circle'/>
+                <img src={'/images/' + content.classification.icon} alt={content.classification.title + 'Icon'} className='img-fluid rounded-circle'/>
                 <div className="h3 text-center">{content.classification.title}</div>
             </div>
         </div>
@@ -303,7 +247,7 @@ const LearingContentCard = ({content}) => {
                             href={content.link}
                             target='_blank'
                             >
-                                    링크
+                                링크
                             </a>
                         </div>
                     </div>
@@ -318,7 +262,7 @@ const LearingContentCard = ({content}) => {
                     <div className="row">
 
 
-                        <div className="col-6 col-md-3">
+                        <div className="col-6 col-md-3 p-2">
                             <div className="btn btn-outline-dark w-100">
                                 <div className="row">
                                     <div className="col-3">
@@ -331,7 +275,7 @@ const LearingContentCard = ({content}) => {
                             </div>
                         </div>
 
-                        <div className="col-6 col-md-3">
+                        <div className="col-6 col-md-3 p-2">
                             <div className={"btn w-100 " + (content.finishPercent < 30 ? 'btn-outline-danger' : content.finishPercent < 60 ? 'btn-outline-warning' : 'btn-outline-success')}>
                                 <div className="row">
                                     <div className="col-3">
@@ -351,7 +295,7 @@ const LearingContentCard = ({content}) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-6 col-md-3">
+                        <div className="col-6 col-md-3 p-2">
                             <div className={"btn w-100 " + (content.difficulty == 0 ? 'btn-outline-danger' : content.difficulty == 1 ? 'btn-outline-warning' : 'btn-outline-success')}>
                                 <div className="row">
                                     <div className="col-3">
@@ -369,7 +313,7 @@ const LearingContentCard = ({content}) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-6 col-md-3">
+                        <div className="col-6 col-md-3 p-2">
                             <div className={"btn w-100 " + (content.duration < 1 ? 'btn-outline-danger' : content.duration < 3 ? 'btn-outline-warning' : 'btn-outline-success')}>
                                 <div className="row">
                                     <div className="col-3">
