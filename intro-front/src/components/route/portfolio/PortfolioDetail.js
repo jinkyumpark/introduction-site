@@ -76,14 +76,14 @@ const PortfolioDetail = ({selectedPortfolioNum}) => {
 
 			<div className="card-body">
 				<div className="card-content">
-					<img src={'/images/' + portfolio.image} alt="" style={{height: '400px'}} className='img-fluid w-100'/>
+					<img src={'/images/' + portfolio.image} alt="" className='img-fluid w-100'/>
 
 					<div className="row">
 						<div className="col-9 col-md-10">
 							<div className="h5 mt-3 text-muted ps-5">{portfolio.summary}</div>
 						</div>
 
-						<div className="col-3 col-md-2 align-self-center text-center">
+						<div className="col-3 col-md-2 align-self-center text-center mt-3">
 							<a className="text-muted h2 me-3" target='_blank' href={portfolio.githubLink}><GithubIcon /></a>
 							<a className="text-muted h2" target='_blank' href={portfolio.websiteLink}><LinkIcon /></a>
 						</div>
