@@ -228,8 +228,13 @@ const PortfolioDetail = ({selectedPortfolioNum}) => {
 								})
 							}
 						</div>
-
-						<MoreButton/>
+						
+						{
+							(portfolio.explanation == null || portfolio.explanation.length < 4) ?
+							<></>
+							:
+							<MoreButton/>
+						}
 					</div>
 
 
