@@ -13,51 +13,36 @@ import Error from '../../common/Error'
 import {BsGithub as GithubIcon, BsLink45Deg as LinkIcon} from 'react-icons/bs'
 import { Modal } from 'react-bootstrap'
 
-const PortfolioDetail = ({selectedPortfolioNum}) => {
+const PortfolioDetail = ({portfolioNum}) => {
 	const [portfolio, setPortfolio] = useState(null)
 	
 	const [isLoading, setIsLoading] = useState(true)
 	const [isError, setIsError] = useState(false)
-
-  useEffect(() => {
-	// if(selectedPortfolioNum == null || typeof selectedPortfolioNum == undefined) {
-	// 	setIsError(true)
-	// 	setIsLoading(false)
-	// } else {
-	// 	fetch('/api/portfolio/detail/' + selectedPortfolioNum)
-	// 		.then((res) => {
-	// 			return res.json()
-	// 		})
-	// 		.then((data) => {
-	// 			setPortfolio(data)
-	// 		})
-	// 		.catch((err) => {
-	// 			return err
-	// 		})
-	// 		.finally(() => {
-	// 			setIsLoading(false)
-	// 		})
-	// }
-
-	fetch('/api/portfolio/detail/21')
-		.then((res) => {
-			return res.json()
-		})
-		.then((data) => {
-			setPortfolio(data)
-		})
-		.catch((err) => {
-			return err
-		})
-		.finally(() => {
+		
+	useEffect(() => {
+		if(portfolioNum == null || typeof portfolioNum == undefined) {
+			setIsError(true)
 			setIsLoading(false)
-		})
-  }, [])
+		} else {
+			fetch('/api/portfolio/detail/' + portfolioNum)
+				.then((res) => {
+					return res.json()
+				})
+				.then((data) => {
+					setPortfolio(data)
+				})
+				.catch((err) => {
+					return err
+				})
+				.finally(() => {
+					setIsLoading(false)
+				})
+		}
+	}, [])
 
   return (
     <div className="card container">
 		{
-
 
 		isLoading ?
 		<Loading/>
@@ -67,8 +52,6 @@ const PortfolioDetail = ({selectedPortfolioNum}) => {
 			<Error/>
 		</div>
 		:
-		
-
 		<>
 			<Modal.Header closeButton className='text-center'>
 				<div className="h1">{portfolio.title}</div>
