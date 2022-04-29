@@ -326,11 +326,11 @@ const ExplanationCard = ({explanation}) => {
 
 	return(
 		<div className="col-12 col-md-6 mb-3">
-			<div className="card" style={{height: '500px'}}>
+			<div className="card" style={{height: '700px'}}>
 				<div className="card-header text-center">
 					{title}
 				</div>
-				<div className="card-body" style={{overflow: 'auto'}}>
+				<div className="card-body">
 					<div className="h5">왜 어려웠어요?</div>
 					<p className='text-muted'>
 						{why}
