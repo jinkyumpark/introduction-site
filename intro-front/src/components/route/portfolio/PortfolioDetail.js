@@ -353,11 +353,11 @@ const FunctionCard = ({func}) => {
 
 			<div className="card-body">
 
-				<p>
+				<p style={{height: '150px', overflow: 'auto'}}>
 					{func.content}
 				</p>
 
-				<img src={func.img} alt="" className='img-fluid'/>
+				<img src={'/images/' + func.img} alt="" className='img-fluid'/>
 
 			</div>
 		</div>
