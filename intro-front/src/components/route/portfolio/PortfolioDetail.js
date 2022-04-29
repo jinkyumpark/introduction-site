@@ -201,7 +201,7 @@ const PortfolioDetail = ({portfolioNum}) => {
 						{
 							portfolio.db == null ?
 							<div className="h1">
-								DB에 대한 설명이 없어요
+								<NoContent message='DB에 대한 설명이 없어요'/>
 							</div>
 							:
 							<div>
@@ -258,11 +258,8 @@ const PortfolioDetail = ({portfolioNum}) => {
 
 						{
 							portfolio.history == null || portfolio.history.length == 0 ?
-								<div className="h1">
-									개발이력이 없어요
-								</div>
-								:
-
+							<NoContent message='개발이력이 아직 없어요'/>	
+							:
 							<div className="list-group mt-3 mb-3">
 								{
 									(portfolio.history == null || portfolio.history.length == 0) ?
@@ -310,7 +307,7 @@ const PortfolioDetail = ({portfolioNum}) => {
 						<div className="list-group mt-3">
 							{
 								portfolio.review == null || portfolio.review.length == 0 ?
-								<div className="h1">후기가 아직 없어요</div>
+								<NoContent message='후기가 아직 없어요'/>
 								:
 								portfolio.review.map((re) => {
 									return(
