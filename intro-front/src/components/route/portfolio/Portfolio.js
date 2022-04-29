@@ -50,7 +50,6 @@ const Portfolio = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
         }
     }, [hasMore])
 
-
     const openPortfolio = (index) => {
         setSelectedPortfolioNum(index)
         setIsPortfolioOpen(true)
@@ -102,7 +101,8 @@ const Portfolio = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                                 return(
                                     <PortfolioListCard
                                         portfolio={data}
-                                        openPortfolio={openPortfolio}
+                                        setIsPortfolioOpen={setIsPortfolioOpen}
+                                        setSelectedPortfolioNum={setSelectedPortfolioNum}
                                         className='mt-5'
                                     />                            
                                 )

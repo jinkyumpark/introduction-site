@@ -4,12 +4,13 @@ import React from 'react'
 // Bootstrap
 import {OverlayTrigger, Popover} from 'react-bootstrap'
 
-const PortfolioListCard = ({portfolio, openPortfolio}) => {
+const PortfolioListCard = ({portfolio, setIsPortfolioOpen, setSelectedPortfolioNum}) => {
   return (
     <div className="card mt-4">
         <div className="row me-2 h-100" onClick={() => {
-            openPortfolio(portfolio.portfolioNum)
-            }}>
+            setIsPortfolioOpen(true)
+            setSelectedPortfolioNum(portfolio.portfolioNum)
+        }}>
 
 
             <div className="col-9 col-md-10 portfolioListCard">
