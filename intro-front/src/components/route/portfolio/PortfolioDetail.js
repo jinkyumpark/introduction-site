@@ -257,7 +257,7 @@ const PortfolioDetail = ({selectedPortfolioNum}) => {
 										return(
 											<div className="list-group-item">
 												<div className="row">
-													<div className="col-2 col-md-3 align-self-center">
+													<div className="col-4 col-md-3 align-self-center">
 														{
 															his.date
 																.substring(2, his.date.indexOf('T'))
@@ -267,7 +267,7 @@ const PortfolioDetail = ({selectedPortfolioNum}) => {
 														}
 													</div>
 
-													<div className="col-9 col-md-8 align-self-center">
+													<div className="col-7 col-md-8 align-self-center">
 														{his.content}
 													</div>
 
