@@ -281,8 +281,12 @@ const PortfolioDetail = ({selectedPortfolioNum}) => {
 								}
 							</div>
 						}
-
-						<MoreButton/>
+						{
+							(portfolio.history == null || portfolio.history.length < 5) ?
+							<></>
+							:
+							<MoreButton/>
+						}
 					</div>
 
 					<div className="mt-3 mb-3">
