@@ -11,7 +11,7 @@ import Error from '../../common/Error'
 
 // Library
 import {BsGithub as GithubIcon, BsLink45Deg as LinkIcon} from 'react-icons/bs'
-import { Modal } from 'react-bootstrap'
+import { Modal, Popover, OverlayTrigger } from 'react-bootstrap'
 
 const PortfolioDetail = ({portfolioNum}) => {
 	const [portfolio, setPortfolio] = useState(null)
@@ -67,8 +67,33 @@ const PortfolioDetail = ({portfolioNum}) => {
 						</div>
 
 						<div className="col-3 col-md-2 align-self-center text-center mt-3">
-							<a className="text-muted h2 me-3" target='_blank' href={portfolio.githubLink}><GithubIcon /></a>
-							<a className="text-muted h2" target='_blank' href={portfolio.websiteLink}><LinkIcon /></a>
+							<OverlayTrigger
+								key='portfolioGithubLink'
+								placement='top'
+								overlay={
+									<Popover>
+										<Popover.Body>
+											코드를 자세히 보실 수 있는 깃허브 Repository로 이동해요
+										</Popover.Body>
+									</Popover>
+								}
+								>
+								<a className="text-muted h2 me-3" target='_blank' href={portfolio.githubLink}><GithubIcon /></a>
+							</OverlayTrigger>
+
+							<OverlayTrigger
+								key='portfolioSiteLink'
+								placement='top'
+								overlay={
+									<Popover>
+										<Popover.Body>
+											실제로 동작하는 사이트를 둘러보실 수 있어요
+										</Popover.Body>
+									</Popover>
+								}
+								>
+								<a className="text-muted h2" target='_blank' href={portfolio.websiteLink}><LinkIcon /></a>
+							</OverlayTrigger>
 						</div>
 					</div>
 
