@@ -219,7 +219,7 @@ const PortfolioDetail = ({selectedPortfolioNum}) => {
 						<div className="row mt-3 mb-3">
 							{
 								portfolio.explanation == null || portfolio.explanation.length == 0 ?
-								<div className="h1">구현 설명이 아직 없어요</div>
+								<NoContent message='구현 설명이 아직 없어요'/>
 								:
 								portfolio.explanation.map((ex) => {
 									return(
@@ -331,7 +331,7 @@ const ExplanationCard = ({explanation}) => {
 					<div className="row">
 						{
 							relatedPost == null || relatedPost.length == 0 ?
-							<div className="h1">관련된 포스트가 없어요</div>
+							<NoContent message='관련된 포스트가 없어요'/>
 							:
 							relatedPost.map((post) => {
 								return(
