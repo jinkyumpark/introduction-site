@@ -250,12 +250,21 @@ const PortfolioDetail = ({selectedPortfolioNum}) => {
 
 							<div className="list-group mt-3 mb-3">
 								{
+									(portfolio.history == null || portfolio.history.length == 0) ?
+									<NoContent message='개발이력이 아직 없어요'/>
+									:
 									portfolio.history.map((his) => {
 										return(
 											<div className="list-group-item">
 												<div className="row">
 													<div className="col-2 col-md-3 align-self-center">
-														{his.date}
+														{
+															his.date
+																.substring(2, his.date.indexOf('T'))
+																.replace('-', '년 ')
+																.replace('-', '월 ')
+																.concat('일')
+														}
 													</div>
 
 													<div className="col-9 col-md-8 align-self-center">
