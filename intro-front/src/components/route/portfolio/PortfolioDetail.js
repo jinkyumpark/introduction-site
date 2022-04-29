@@ -12,6 +12,7 @@ import Error from '../../common/Error'
 // Library
 import {BsGithub as GithubIcon, BsLink45Deg as LinkIcon} from 'react-icons/bs'
 import { Modal, Popover, OverlayTrigger } from 'react-bootstrap'
+import toast from 'react-hot-toast'
 
 const PortfolioDetail = ({portfolioNum}) => {
 	const [portfolio, setPortfolio] = useState(null)
@@ -92,7 +93,13 @@ const PortfolioDetail = ({portfolioNum}) => {
 									</Popover>
 								}
 								>
-								<a className="text-muted h2" target='_blank' href={portfolio.websiteLink}><LinkIcon /></a>
+								<a className={"text-muted h2"} target='_blank' onClick={() => {
+									if(portfolio.websiteLink == 'http://jinkyumpark.com') {
+										toast.error('지금 둘러보시고 있는 사이트가 바로 이 포트폴리오에요!')
+									} else {
+										window.open(portfolio.websiteLink)
+									}
+								}}><LinkIcon /></a>
 							</OverlayTrigger>
 						</div>
 					</div>
