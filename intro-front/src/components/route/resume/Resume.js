@@ -14,7 +14,6 @@ import Loading from '../../common/Loading'
 import { Modal } from 'react-bootstrap'
 
 import fetchUrl from '../../common/fetchvar'
-import useWindowDimensions from '../../common/useWindow'
 
 const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
     const [techPage, setTechPage] = useState(0)
@@ -31,8 +30,6 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
     const [introductionData, setIntroductionData] = useState(null)
     const [portfolioData, setPortfolioData] = useState(null)
     const [questionData, setQuestionData] = useState(null)
-
-    const {windowWidth, windowHeight} = useWindowDimensions()
 
     const splitArray = (data, split) => {
         const result = 
@@ -92,14 +89,13 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                     setTechLength(data.techNum)
 
                     if(data.techList != null) {
-                        if(windowWidth > 576) {
-                            setTechHeaderData(splitArray(data.techList, 4))
-                        } else {
+                        const { innerWidth: width } = window;
+                        if(width < 576) {
                             setTechHeaderData(splitArray(data.techList, 3))
+                        } else {
+                            setTechHeaderData(splitArray(data.techList, 4))
                         }
                     }
-
-                    
                 })
                 .catch((err) => {
                     return err
@@ -170,16 +166,6 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                 })
         }
     }, [techPage])
-
-    useEffect(() => {
-        if(techHeaderRowData != null) {
-            if(windowWidth < 576) {
-                setTechHeaderData(splitArray(techHeaderRowData, 3))
-            } else {
-                setTechHeaderData(splitArray(techHeaderRowData, 4))
-            }
-        }
-    }, [windowWidth])
 
     return (
         <>

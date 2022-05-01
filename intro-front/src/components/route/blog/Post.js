@@ -8,9 +8,8 @@ import Error from '../../common/Error';
 import NoContent from './NoPost';
 
 // React icons
-import {GrLanguage as LanguageIcon, GrCompliance as ProgressIcon} from 'react-icons/gr'
 import {BsGearWideConnected as ComplexityIcon} from 'react-icons/bs'
-import {BiTimeFive as LengthIcon} from 'react-icons/bi'
+import {BiTimeFive as LengthIcon, BiWorld as LanguageIcon, BiTask as ProgressIcon} from 'react-icons/bi'
 
 // Library
 import {Carousel, OverlayTrigger, Popover} from 'react-bootstrap';
@@ -221,7 +220,8 @@ const LearingContentCard = ({content}) => {
 
                         <div className="row">
                             <div className="col-6 col-md-3 p-2">
-                                <div className="btn btn-outline-dark w-100">
+
+                                <div className="btn w-100 btn-outline-dark">
                                     <div className="row">
                                         <div className="col-3">
                                             <LanguageIcon/>
@@ -235,9 +235,11 @@ const LearingContentCard = ({content}) => {
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                             <div className="col-6 col-md-3 p-2">
+
                                 <div className={"btn w-100 " + (content.finishPercent < 30 ? 'btn-outline-danger' : content.finishPercent < 60 ? 'btn-outline-warning' : 'btn-outline-success')}>
                                     <div className="row">
                                         <div className="col-3">
@@ -256,7 +258,9 @@ const LearingContentCard = ({content}) => {
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
+
                             <div className="col-6 col-md-3 p-2">
                                 <div className={"btn w-100 " + (content.difficulty == 0 ? 'btn-outline-danger' : content.difficulty == 1 ? 'btn-outline-warning' : 'btn-outline-success')}>
                                     <div className="row">
@@ -266,15 +270,17 @@ const LearingContentCard = ({content}) => {
                                         <div className="col-9">
                                             {
                                                 content.difficulty == 0 ?
-                                                '하'
+                                                    '하'
                                                 : content.difficulty == 1 ?
-                                                '중'
-                                                : '상'
+                                                    '중'
+                                                : 
+                                                    '상'
                                             }
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div className="col-6 col-md-3 p-2">
                                 <div className={"btn w-100 " + (content.duration < 60 ? 'btn-outline-danger' : content.duration < 180 ? 'btn-outline-warning' : 'btn-outline-success')}>
                                     <div className="row">
@@ -282,14 +288,12 @@ const LearingContentCard = ({content}) => {
                                             <LengthIcon/>
                                         </div>
                                         <div className="col-9">
-                                            
                                             {
                                                 content.duration < 60 ?
-                                                content.duration + '분'
+                                                    content.duration + '분'
                                                 :
-                                                '약 ' + Math.round(content.duration / 60) + '시간'
+                                                    '약 ' + Math.round(content.duration / 60) + '시간'
                                             }
-                                            
                                         </div>
                                     </div>
                                 </div>
