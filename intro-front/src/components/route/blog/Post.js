@@ -22,82 +22,6 @@ const Post = ({num}) => {
     const [isLoading, setIsLoading] = useState(true)
     const [post, setPost] = useState(null)
     const [concept, setConcept] = useState(null)
-
-    const dummyPost = {
-        title: '리엑트 기초 공부',
-        subtitle: '리엑트를 학원 Final Project에서 사용하기 위해 기초만 빠르게 공부',
-        classification: {
-            name: "React.js",
-            icon: 'reactjs-icon.png',
-            type: 'theory'
-        },
-        summary: [
-            '리엑트는 프론트엔드 개발을 쉽게 해 주는 JS 라이브러리이다.',
-            '리엑트는 UI를 Component화 하고, state와 virtual DOM을 사용해 효율적으로 UI의 변화를 관리해 준다.',
-            '리엑트는 JS를 사용해 재로딩 하지 않고 페이지를 이동하게 해 주는 SPA를 만들 수 있게 해 준다.'
-        ],
-        concepts: [
-            {
-                key: 524350,
-                title: 'useEffect',
-                content: ''
-            },
-            {
-                key: 43521,
-                title: 'useRef',
-                content: ''
-            },
-            {
-                key: 24352342,
-                title: 'useReducer',
-                content: ''
-            },
-            {
-                key: 85673563,
-                title: 'Context API',
-                content: ''
-            },
-            {
-                key: 84684,
-                title: 'Custom Hooks',
-                content: ''
-            },
-            {
-                key: 56523456368,
-                title: 'Router',
-                content: ''
-            },
-            {
-                key: 68468,
-                title: 'useMemo',
-                content: ''
-            },
-            {
-                key: 262467,
-                title: 'useCallback',
-                content: ''
-            },
-        ],
-        content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum et beatae exercitationem, ullam,`,
-        learningContent: [
-            {
-                key: 0,
-                classification: {
-                    title: 'React.js',
-                    icon: 'reactjs-icon.png'
-                },
-                title: 'Freecodecamp 유튜브 React 강의',
-                link: 'https://www.youtube.com/watch?v=4UZrsTqkcW4&t=18978s',
-                content: `리엑트의 기초 문법과 react를 개발하기 위해 필요한 다양한 기능을 다루는 강의.
-                다양한 hooks(useState, useEffect)의 특징과 기능,
-                React-router 등을 다룸`,
-                language: '영어',
-                finishPercent: 10,
-                difficulty: 0,
-                duration: 5,
-            }
-        ]
-    }
     
     // Initial Fetch
     useEffect(() => {
@@ -136,33 +60,33 @@ const Post = ({num}) => {
             <Error/>
             :
             <div className='overflow-hidden'>
-                <div className="row">
-                    <div className="col-12 h2 text-center">
+                <div className="row justify-content-center">
+                    <div className="col-7 col-md-9 h2 text-center align-self-center">
                         {post.title}
+                    </div>
+
+                    <div className="col-5 col-md-3 align-self-center">
+                        <ClassificationIcon data={post.classification}/>
                     </div>
                 </div>
 
-                <div className="row">
-                    <div className="col-5 col-md-3">
-                        <ClassificationIcon data={post.classification}/>
-                    </div>
-
-                    <div className="col-7 col-md-9 text-muted h4 mt-3">
+                <div className="row mt-3 justify-content-center">
+                    <div className="col-12 p-3 text-muted h4 mt-3">
                         {post.subtitle}
                     </div>
                 </div>
 
-                <div className='mt-3'>
+                <div className='mt-5'>
 
-                    <div className='mb-3'>
+                    <div className='mb-5'>
                         <div className="h3 mt-3">
                             배운 내용
                         </div>
 
                         <Carousel variant='dark' indicators={false}>
                             {
-                                post.concepts == null || post.concepts.length == 0 ?
-                                <div className='text-center h3'>
+                                (post.concepts == null) ?
+                                <div className='text-center h3 text-muted'>
                                     배운 개념이 없어요
                                 </div>
                                 :
@@ -191,7 +115,7 @@ const Post = ({num}) => {
                     </div>
 
 
-                    <div className='mb-3'>
+                    <div className='mb-3 mt-5'>
                         <div className="h3 mt-3">
                             3줄요약
                         </div>
@@ -215,7 +139,7 @@ const Post = ({num}) => {
                         </div>
                     </div>
 
-                    <div className='mb-3'>
+                    <div className='mb-3 mt-5'>
                         <div className="h3 mt-3">
                             본문
                         </div>
@@ -233,7 +157,7 @@ const Post = ({num}) => {
 
 
 
-                    <div>
+                    <div className='mt-5'>
                         <div className="h3 mt-3 mb-2 mb-3">공부한 자료, 강의</div>
                         {
                             (post.learningContent == null) ?
@@ -296,8 +220,6 @@ const LearingContentCard = ({content}) => {
                     <div className="card-footer bg-transparent">
 
                         <div className="row">
-
-
                             <div className="col-6 col-md-3 p-2">
                                 <div className="btn btn-outline-dark w-100">
                                     <div className="row">
@@ -305,7 +227,11 @@ const LearingContentCard = ({content}) => {
                                             <LanguageIcon/>
                                         </div>
                                         <div className="col-9">
-                                            {content.language}
+                                            {
+                                                content.language == 0 ?
+                                                '영어' :
+                                                '한국어'
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -368,13 +294,11 @@ const LearingContentCard = ({content}) => {
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
         </>
     )
 }
