@@ -24,8 +24,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <start-class>com.car.CarFactoryApplicationKt</start-class>
-        <webapp.lib>${basedir}/src/lib</webapp.lib>
+        <start-class>com.jinkyumpark.introback.IntroBackApplication</start-class>
+        <webapp.lib>${basedir}/src/resources</webapp.lib>
     </properties>
 
     <dependencies>
@@ -45,6 +45,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -59,20 +60,18 @@
         </dependency>
         <dependency>
             <groupId>com.oracle.database.security</groupId>
-            <artifactId>oraclepki</artifactId>
-            <version>21.5.0.0</version>
+            <artifactId>osdt_cert</artifactId>
+            <version>21.1.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.oracle.database.security</groupId>
             <artifactId>osdt_core</artifactId>
-            <version>21.5.0.0</version>
+            <version>21.1.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.oracle.database.security</groupId>
-            <artifactId>osdt_cert</artifactId>
-            <version>21.3.0.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/jar/osdt_cert-21.3.0.0.jar</systemPath>
+            <artifactId>oraclepki</artifactId>
+            <version>21.1.0.0</version>
         </dependency>
 
         <dependency>
@@ -86,21 +85,10 @@
     <build>
         <plugins>
             <plugin>
-
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-
             </plugin>
         </plugins>
     </build>
-
 
 </project>

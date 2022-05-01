@@ -7,8 +7,13 @@ import java.util.HashMap;
 
 @Service
 public class UtilService {
-    @Autowired
+
     UtilDao udao;
+
+    @Autowired
+    public UtilService(UtilDao udao) {
+        this.udao = udao;
+    }
 
     public void getFooter(HashMap<String, Object> paramMap) {
         udao.getFooter(paramMap);

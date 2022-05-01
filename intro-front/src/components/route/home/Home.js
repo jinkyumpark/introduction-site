@@ -15,6 +15,7 @@ import './homeStyle.css'
 
 const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfolioNum }) => {
     const [isLoading, setIsLoading] = useState(false)
+    const [isError, setIsError] = useState(false)
 
     const [portfolioData, setPortfolioData] = useState(null)
     const [csBlogData, setCsBlogData] = useState(null)
@@ -82,6 +83,9 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
             isLoading ?
             <Loading/>
             :
+            isError ? 
+            <Error/>
+            :
             <div className='container'>
                 <Profile 
                     profile={profileData}
@@ -92,7 +96,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
 
                     <div className="row">
                         {
-                            portfolioData == null ?
+                            (portfolioData == null || portfolioData.length == 0) ?
                             <Error/>
                             :
                             portfolioData.map((data) => {

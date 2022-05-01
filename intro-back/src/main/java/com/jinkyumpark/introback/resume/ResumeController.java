@@ -12,8 +12,12 @@ import java.util.UUID;
 @RestController
 public class ResumeController {
 
-    @Autowired
     ResumeService rs;
+
+    @Autowired
+    public ResumeController(ResumeService rs) {
+        this.rs = rs;
+    }
 
     @RequestMapping(value={"/api/resume/profile", "/api/resume/profile/{id}"}, produces="application/json;charset=UTF-8")
     public HashMap<String, Object> getProfile(@PathVariable(value="id", required = false) String id) {

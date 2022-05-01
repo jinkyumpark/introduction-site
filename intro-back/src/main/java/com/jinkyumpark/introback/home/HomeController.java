@@ -12,17 +12,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+
 @RestController
 public class HomeController {
 
-    @Autowired
     ResumeService rs;
-
-    @Autowired
     PortfolioService ps;
+    BlogService bs;
 
     @Autowired
-    BlogService bs;
+    public HomeController(ResumeService rs, PortfolioService ps, BlogService bs) {
+        this.rs = rs;
+        this.ps = ps;
+        this.bs = bs;
+    }
 
     @RequestMapping(value="/api/home/profile", produces="application/json;charset=UTF-8")
     public HashMap<String, Object> getHomeProfile() {

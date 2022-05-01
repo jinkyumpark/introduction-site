@@ -1,12 +1,13 @@
 package com.jinkyumpark.introback.resume;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 
 @Mapper
-@Repository
+@Component
 public interface ResumeDao {
     void getHomeProfile(HashMap<String, Object> paramMap);
     void getProfile(HashMap<String, Object> paramMap);

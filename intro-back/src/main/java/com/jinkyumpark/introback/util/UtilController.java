@@ -16,8 +16,13 @@ import java.util.HashMap;
 
 @Controller
 public class UtilController {
-    @Autowired
+
     UtilService us;
+
+    @Autowired
+    public UtilController(UtilService us) {
+        this.us = us;
+    }
 
     @ResponseBody
     @GetMapping(value="/images/{name}", produces = MediaType.IMAGE_PNG_VALUE)

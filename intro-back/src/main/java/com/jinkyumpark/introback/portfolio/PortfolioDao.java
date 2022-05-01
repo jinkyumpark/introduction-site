@@ -1,11 +1,12 @@
 package com.jinkyumpark.introback.portfolio;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 
 @Mapper
-@Repository
+@Component
 public interface PortfolioDao {
     void getPortfolioList(HashMap<String, Object> paramMap);
     void getPortfolioLength(HashMap<String, Object> paramMap);

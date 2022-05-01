@@ -7,8 +7,13 @@ import java.util.HashMap;
 
 @Service
 public class ResumeService {
-    @Autowired
+
     ResumeDao rdao;
+
+    @Autowired
+    public ResumeService(ResumeDao rdao) {
+        this.rdao = rdao;
+    }
 
     public void getHomeProfile(HashMap<String, Object> paramMap) {
         rdao.getHomeProfile(paramMap);
