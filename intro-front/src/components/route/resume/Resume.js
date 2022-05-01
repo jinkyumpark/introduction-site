@@ -12,9 +12,9 @@ import Loading from '../../common/Loading'
 
 // Bootstrap
 import { Modal } from 'react-bootstrap'
-import toast from 'react-hot-toast'
 
 import fetchUrl from '../../common/fetchvar'
+import useWindowDimensions from '../../common/useWindow'
 
 const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
     const [techPage, setTechPage] = useState(0)
@@ -23,6 +23,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
 
     const [profileData, setProfileData] = useState(null)
     const [techHeaderData, setTechHeaderData] = useState(null)
+    const [techHeaderRowData, setTechHeaderRowData] = useState(null)
     const [techLength, setTechLength] = useState(0)
     const [techData, setTechData] = useState([])
     const [languageData, setLanguageData] = useState(null)
@@ -30,6 +31,16 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
     const [introductionData, setIntroductionData] = useState(null)
     const [portfolioData, setPortfolioData] = useState(null)
     const [questionData, setQuestionData] = useState(null)
+
+    const {windowWidth, windowHeight} = useWindowDimensions()
+
+    const splitArray = (data, split) => {
+        const result = 
+            new Array(Math.ceil(data.length / split))
+                .fill()
+                .map(_ => data.splice(0, split))
+        return result
+    }                
 
     // Initial Fetch
     useEffect(() => {
@@ -77,18 +88,18 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                     return res.json()
                 })
                 .then((data) => {
-                    const splitArray = (data) => {
-                        const result = 
-                            new Array(Math.ceil(data.length / 4))
-                                .fill()
-                                .map(_ => data.splice(0, 4))
-                        return result
-                    }                
-
+                    setTechHeaderRowData(data)
                     setTechLength(data.techNum)
+
                     if(data.techList != null) {
-                        setTechHeaderData(splitArray(data.techList))
+                        if(windowWidth > 576) {
+                            setTechHeaderData(splitArray(data.techList, 4))
+                        } else {
+                            setTechHeaderData(splitArray(data.techList, 3))
+                        }
                     }
+
+                    
                 })
                 .catch((err) => {
                     return err
@@ -159,6 +170,16 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                 })
         }
     }, [techPage])
+
+    useEffect(() => {
+        if(techHeaderRowData != null) {
+            if(windowWidth < 576) {
+                setTechHeaderData(splitArray(techHeaderRowData, 3))
+            } else {
+                setTechHeaderData(splitArray(techHeaderRowData, 4))
+            }
+        }
+    }, [windowWidth])
 
     return (
         <>

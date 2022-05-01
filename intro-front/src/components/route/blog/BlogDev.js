@@ -39,6 +39,11 @@ const BlogDev = () => {
             key: 1451345,
             name: 'DevOps',
             icon: 'devops-icon.png'
+        },
+        {
+            key: 12335443,
+            name: '기타',
+            icon: 'dot-icon.png'
         }
     ]
     const dummyFrontSubCategory = [
@@ -97,6 +102,7 @@ const BlogDev = () => {
             icon: 'docker-icon.png',
         }
     ]
+    const dummyEtcSubCategory = null
     // DUMMY DATA
 
     // Initial fetch
@@ -117,7 +123,7 @@ const BlogDev = () => {
     
     // Fetch blogData when page changes
     useEffect(() => {
-
+        
     }, [selectedMainCategory, selectedSubCategory])
 
     // Fetch sub category when selectedMainCategory changes
@@ -134,6 +140,8 @@ const BlogDev = () => {
         } else if(selectedMainCategory == 'DevOps') {
             // fetch devops
             setSubCategoryList(dummyDevopsSubCategory)
+        } else {
+            setSubCategoryList(dummyEtcSubCategory)
         }
     }, [selectedMainCategory])
 
@@ -145,7 +153,7 @@ const BlogDev = () => {
                 {
                     mainCategory.map((category) => {
                         return (
-                            <div className="col-4" onClick={() => {
+                            <div className="col-12 col-md-6" onClick={() => {
                                 if(selectedMainCategory != category.name) {
                                     setSelectedMainCategory(category.name)
                                 } else {

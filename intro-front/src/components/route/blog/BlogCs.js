@@ -111,7 +111,7 @@ const BlogCs = () => {
                 {
                     classificationData.map((data) => {
                         return (
-                            <div className="col-4 col-lg-2"
+                            <div className="col-6 col-md-4 col-lg-2"
                                     onClick={() => {
                                         if(data.name == selectedCategory) {
                                             setSelectedCategory(null)

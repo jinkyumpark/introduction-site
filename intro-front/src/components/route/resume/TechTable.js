@@ -13,7 +13,6 @@ import fetchUrl from '../../common/fetchvar'
 const TechTable = ({techData, techHeaderData, techLength, techPage, setTechPage}) => {
     const [isDesOpen, setIsDesOpen] = useState(false)
 
-
     const techSummary = {
         buttonTitle: '기술이 있다의 기준은?',
         buttonDescription: `단순히 가볍게 몇 번 다뤄 봤다고 이 기술을 보유하고 있다고는 생각하지 않습니다.

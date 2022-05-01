@@ -109,7 +109,7 @@ const PortfolioDetail = ({portfolioNum}) => {
 
 					<div className="row">
 
-						<div className="col-6">
+						<div className="col-12 col-md-6 mb-3">
 
 						<div className="card">
 							<div className="card-header text-center">
@@ -138,7 +138,7 @@ const PortfolioDetail = ({portfolioNum}) => {
 
 						</div>
 
-						<div className="col-6">
+						<div className="col-12 col-md-6">
 							<div className="card">
 								<div className="card-header text-center">
 									개발인원
@@ -255,7 +255,7 @@ const PortfolioDetail = ({portfolioNum}) => {
 
 
 					<div className="mt-3">
-						<div className="h2">개발 이력</div>
+						<div className="h2">개발이력</div>
 
 						{
 							portfolio.history == null || portfolio.history.length == 0 ?
@@ -339,7 +339,7 @@ const ExplanationCard = ({explanation}) => {
 
 	return(
 		<div className="col-12 col-md-6 mb-3">
-			<div className="card" style={{height: '700px'}}>
+			<div className="card" style={{height: '600px'}}>
 				<div className="card-header text-center">
 					{title}
 				</div>
@@ -357,7 +357,7 @@ const ExplanationCard = ({explanation}) => {
 					<div className="row">
 						{
 							relatedPost == null || relatedPost.length == 0 ?
-							<NoContent message='관련된 포스트가 없어요'/>
+							<NoContent message='관련된 포스트가 없어요' size='100'/>
 							:
 							relatedPost.map((post) => {
 								return(

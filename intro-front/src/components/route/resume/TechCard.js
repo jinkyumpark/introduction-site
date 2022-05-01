@@ -101,7 +101,7 @@ const TechCard = ({ tech }) => {
                     </div>
                     <div className="h3 text-center">{name}</div>
                 </div>
-                <div className="col-12 col-md-10" style={{overflowY: 'auto', height: '200px'}}>
+                <div className="col-12 col-md-10" style={{overflowY: 'auto', height: '220px'}}>
                     {
                         section == 0 ?
                         <IntroSection tech={tech}/> :
