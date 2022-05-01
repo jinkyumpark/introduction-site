@@ -13,7 +13,12 @@ const ClassificationIcon = ({ data, isActive }) => {
                     }
                 </div>
                 <div className="col-9 align-self-center">
-                    <div className="h5">{name}</div>
+                    <div className="h5">{
+                        (name == null || name == '') ?
+                        '카테고리 없음'
+                        :
+                        name
+                    }</div>
                 </div>
             </div>
         </div >

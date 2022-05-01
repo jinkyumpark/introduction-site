@@ -241,7 +241,7 @@ const BlogDev = () => {
 
                                     </>
                                 :
-                                <Post/>
+                                <Post num={num}/>
                 }
             </div>
         </div>

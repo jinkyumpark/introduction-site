@@ -18,4 +18,20 @@ public class BlogService {
     public void getBlogPostsByPage(HashMap<String, Object> paramMap) {
         bdao.getBlogPostsByPage(paramMap);
     }
+
+    public void getBlogPostDetail(HashMap<String, Object> paramMap) {
+        bdao.getBlogPostDetail(paramMap);
+    }
+
+    public void getBlogPostDetailLearn(HashMap<String, Object> paramMap) {
+        bdao.getBlogPostDetailLearn(paramMap);
+    }
+
+    public void getBlogPostDetailStudyMaterial(HashMap<String, Object> paramMap) {
+        bdao.getBlogPostDetailStudyMaterial(paramMap);
+    }
+
+    public void getBlogPostDetailSummary(HashMap<String, Object> paramMap) {
+        bdao.getBlogPostDetailSummary(paramMap);
+    }
 }

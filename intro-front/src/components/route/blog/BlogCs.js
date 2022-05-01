@@ -183,7 +183,7 @@ const BlogCs = () => {
 
                                 </>
                                 :
-                                <Post/>
+                                <Post num={num}/>
                 }
             </div>
         </div>

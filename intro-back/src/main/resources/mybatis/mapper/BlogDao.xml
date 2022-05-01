@@ -46,5 +46,74 @@
         }
     </select>
 
+    <select id="getBlogPostDetail"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap">
+        {
+            CALL getBlogPostDetail(
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=blogMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getBlogPostDetailLearn"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap">
+        {
+            CALL getBlogPostDetailLearn(
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=blogMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getBlogPostDetailStudyMaterial"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getBlogPostDetailStudyMaterial(
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=blogMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getBlogPostDetailSummary"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getBLogPostDetailSummary(
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=blogMap
+                }
+            )
+        }
+    </select>
 
 </mapper>
