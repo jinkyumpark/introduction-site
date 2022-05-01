@@ -61,12 +61,12 @@ const Post = ({num}) => {
             :
             <div className='overflow-hidden'>
                 <div className="row justify-content-center">
-                    <div className="col-7 col-md-9 h2 text-center align-self-center">
-                        {post.title}
-                    </div>
-
                     <div className="col-5 col-md-3 align-self-center">
                         <ClassificationIcon data={post.classification}/>
+                    </div>
+
+                    <div className="col-7 col-md-9 h2 text-center align-self-center">
+                        {post.title}
                     </div>
                 </div>
 
