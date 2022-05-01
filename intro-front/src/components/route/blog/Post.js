@@ -15,6 +15,7 @@ import {BiTimeFive as LengthIcon} from 'react-icons/bi'
 import {Carousel, OverlayTrigger, Popover} from 'react-bootstrap';
 import './carousel.css'
 import parse from 'html-react-parser'
+import fetchUrl from '../../common/fetchvar';
 
 const Post = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -230,7 +231,7 @@ const LearingContentCard = ({content}) => {
         <div className="row mb-4">
         <div className="col-2 align-self-center">
             <div className="row justify-content-center">
-                <img src={'/images/' + content.classification.icon} alt={content.classification.title + 'Icon'} className='img-fluid rounded-circle'/>
+                <img src={fetchUrl + '/images/' + content.classification.icon} alt={content.classification.title + 'Icon'} className='img-fluid rounded-circle'/>
                 <div className="h3 text-center">{content.classification.title}</div>
             </div>
         </div>

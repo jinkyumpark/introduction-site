@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import ClassificationIcon from './ClassificationIcon'
 
-import reactIcon from '../../../images/tech-icon/reactjs-icon.png'
-
 // Components
 import NoContent from './NoPost'
 import Loading from "../../common/Loading"
@@ -11,6 +9,8 @@ import PostCard from './PostCard'
 import Post from './Post'
 import toast from 'react-hot-toast'
 import Error from '../../common/Error'
+
+import fetchUrl from '../../common/fetchvar'
 
 const BlogDev = () => {
     const { num } = useParams();
@@ -102,7 +102,7 @@ const BlogDev = () => {
     // Initial fetch
     useEffect(() => {
         Promise.all([
-            fetch('/api/blog/1')
+            fetch(fetchUrl + '/api/blog/1')
                 .then((res) => {
                     return res.json()
                 })

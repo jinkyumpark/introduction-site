@@ -10,6 +10,8 @@ import Loading from "../../common/Loading"
 import PostCard from './PostCard'
 import Post from './Post'
 
+import fetchUrl from '../../common/fetchvar';
+
 const BlogCs = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [blogPage, setBlogPage] = useState(0)
@@ -61,7 +63,7 @@ const BlogCs = () => {
         setIsLoading(true)
         Promise.all([
             // Blog post (page 0)
-            fetch('/api/blog/0')
+            fetch(fetchUrl + '/api/blog/0')
                 .then((res) => {
                     return res.json()
                 })
@@ -86,7 +88,7 @@ const BlogCs = () => {
         // fetch paging blog post here
         setIsLoading(true)
 
-        fetch('/api/blog/' + blogPage)
+        fetch(fetchUrl + '/api/blog/' + blogPage)
             .then((res) => {
                 return res.json()
             })
@@ -133,7 +135,7 @@ const BlogCs = () => {
                     isLoading ?
                         <Loading /> :
                         posts == null ?
-                            <NoContent /> :
+                            <NoContent message='죄송해요, 아직 포스트가 없어요' /> :
                                 num == null ?
                                 <>
                                 {

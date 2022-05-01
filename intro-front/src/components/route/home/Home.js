@@ -12,6 +12,7 @@ import NoContent from '../blog/NoPost'
 
 // Resources
 import './homeStyle.css'
+import fetchUrl from '../../common/fetchvar'
 
 const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfolioNum }) => {
     const [isLoading, setIsLoading] = useState(false)
@@ -27,7 +28,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
         setIsLoading(true)
         Promise.all([
             // Profile
-            fetch('/api/home/profile')
+            fetch(fetchUrl + '/api/home/profile')
                 .then((res) => {
                     return res.json()
                 })
@@ -39,7 +40,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                 }),
 
             // Portfolio
-            fetch('/api/portfolio/list')
+            fetch(fetchUrl + '/api/portfolio/list')
                 .then((res) => {
                     return res.json()
                 })
@@ -51,7 +52,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                 }),
 
             // Blog
-            fetch('/api/home/blog/cs')
+            fetch(fetchUrl + '/api/home/blog/cs')
                 .then((res) => {
                     return res.json()
                 })
@@ -61,7 +62,7 @@ const Home = ({ setIsBlogOpen, setBlogNum, setIsPortfolioOpen, setSelectedPortfo
                 .catch((err) => {
                     return err
                 }),
-            fetch('/api/home/blog/dev')
+            fetch(fetchUrl + '/api/home/blog/dev')
                 .then((res) => {
                     return res.json()
                 })

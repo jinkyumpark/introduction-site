@@ -8,6 +8,7 @@ import Error from '../../common/Error'
 // Library
 import { Collapse, Button, OverlayTrigger, Popover, Modal, Carousel } from 'react-bootstrap'
 import toast from 'react-hot-toast'
+import fetchUrl from '../../common/fetchvar'
 
 const TechTable = ({techData, techHeaderData, techLength, techPage, setTechPage}) => {
     const [isDesOpen, setIsDesOpen] = useState(false)
@@ -59,7 +60,7 @@ const TechTable = ({techData, techHeaderData, techLength, techPage, setTechPage}
                                             <div className="col-4 col-md-3">
                                                 <div className="row h-100 w-100 border justify-content-center">
                                                     <div className="col-12 align-self-center text-center mt-2">
-                                                        <img src={'/images/' + tech.img} alt="" style={{width: '50px', height: '50px'}} className='img-fluid mx-auto d-block rounded-circle'/>
+                                                        <img src={fetchUrl + '/images/' + tech.img} alt="" style={{width: '50px', height: '50px'}} className='img-fluid mx-auto d-block rounded-circle'/>
                                                     </div>
                                                     <div className="col-12 align-self-center">
                                                         <div className="h3 text-center">

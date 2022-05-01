@@ -14,6 +14,7 @@ import InfiniteScroll from 'react-infinite-scroller'
 // Resource
 import './portfolio.css'
 import toast from 'react-hot-toast'
+import fetchUrl from '../../common/fetchvar'
 
 const Portfolio = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
     const [isLoading, setIsLoading] = useState(false)
@@ -27,7 +28,7 @@ const Portfolio = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
     useEffect(() => {
         setIsLoading(true)
         Promise.all([
-            fetch('/api/portfolio/list')
+            fetch(fetchUrl + '/api/portfolio/list')
                 .then((res) => {
                     return res.json()
                 })
@@ -56,7 +57,7 @@ const Portfolio = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
     }
 
     const fetchPortfolio = () => {
-        fetch('/api/portfolio/list/' + page)
+        fetch(fetchUrl + '/api/portfolio/list/' + page)
             .then((res) => {
                 return res.json()
             })
@@ -69,7 +70,7 @@ const Portfolio = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
             .finally(() => {
                 setPage(page + 1)
             })
-        fetch('/api/portfolio/list/' + (page + 1))
+        fetch(fetchUrl + '/api/portfolio/list/' + (page + 1))
             .then((res) => {
                 return res.json()
             })

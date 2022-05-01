@@ -4,6 +4,8 @@ import { OverlayTrigger, Popover } from 'react-bootstrap'
 
 import Error from '../../common/Error'
 
+import fetchUrl from '../../common/fetchvar'
+
 const LanguageTable = ({languageData}) => {
 
     return (
@@ -40,7 +42,7 @@ const LanguageTable = ({languageData}) => {
                                         <th scope='row'>
                                             <div className="row">
                                                 <div className="col-4">
-                                                    <img src={'/images/' + language.titleImage} alt={language.titleImageAlt} style={{width: '20px'}}/>
+                                                    <img src={fetchUrl + '/images/' + language.titleImage} alt={language.titleImageAlt} style={{width: '20px'}}/>
                                                 </div>
                                                 <div className="col-6">
                                                     {language.title}

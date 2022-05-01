@@ -13,6 +13,7 @@ import Error from '../../common/Error'
 import {BsGithub as GithubIcon, BsLink45Deg as LinkIcon} from 'react-icons/bs'
 import { Modal, Popover, OverlayTrigger } from 'react-bootstrap'
 import toast from 'react-hot-toast'
+import fetchUrl from '../../common/fetchvar'
 
 const PortfolioDetail = ({portfolioNum}) => {
 	const [portfolio, setPortfolio] = useState(null)
@@ -25,7 +26,7 @@ const PortfolioDetail = ({portfolioNum}) => {
 			setIsError(true)
 			setIsLoading(false)
 		} else {
-			fetch('/api/portfolio/detail/' + portfolioNum)
+			fetch(fetchUrl + '/api/portfolio/detail/' + portfolioNum)
 				.then((res) => {
 					return res.json()
 				})
@@ -60,7 +61,7 @@ const PortfolioDetail = ({portfolioNum}) => {
 
 			<div className="card-body">
 				<div className="card-content">
-					<img src={'/images/' + portfolio.image} alt="" className='img-fluid w-100'/>
+					<img src={fetchUrl + '/images/' + portfolio.image} alt="" className='img-fluid w-100'/>
 
 					<div className="row">
 						<div className="col-9 col-md-10">
@@ -391,7 +392,7 @@ const FunctionCard = ({func}) => {
 					{func.content}
 				</p>
 
-				<img src={'/images/' + func.img} alt="" className='img-fluid'/>
+				<img src={fetchUrl + '/images/' + func.img} alt="" className='img-fluid'/>
 
 			</div>
 		</div>
@@ -401,7 +402,7 @@ const TechIcon = ({tech}) => {
     return(
         <div className="row h-100 w-100 border justify-content-center">
             <div className="col-12 align-self-center text-center mt-2">
-                <img src={'/images/' + tech.img} alt="" style={{width: '50px', height: '50px'}} className='img-fluid mx-auto d-block rounded-circle'/>
+                <img src={fetchUrl + '/images/' + tech.img} alt="" style={{width: '50px', height: '50px'}} className='img-fluid mx-auto d-block rounded-circle'/>
             </div>
             <div className="col-12 align-self-center">
                 <div className="h3 text-center">

@@ -3,6 +3,7 @@ import React from 'react'
 
 // Bootstrap
 import {OverlayTrigger, Popover} from 'react-bootstrap'
+import fetchUrl from '../../common/fetchvar'
 
 const PortfolioListCard = ({portfolio, setIsPortfolioOpen, setSelectedPortfolioNum}) => {
   return (
@@ -16,7 +17,7 @@ const PortfolioListCard = ({portfolio, setIsPortfolioOpen, setSelectedPortfolioN
             <div className="col-9 col-md-10 portfolioListCard">
                 <div className="row">
                     <div className="col-12 col-md-5">
-                        <img src={'/images/' + portfolio.img} alt='PORTFOLIO DEMO' className="img-fluid" style={{ width: '300px', height: '200px' }} />
+                        <img src={fetchUrl + '/images/' + portfolio.img} alt='PORTFOLIO DEMO' className="img-fluid" style={{ width: '300px', height: '200px' }} />
                     </div>
 
                     <div className="col-12 col-md-7 mt-2 ms-2 ms-md-0">

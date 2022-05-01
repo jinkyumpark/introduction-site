@@ -1,6 +1,7 @@
 import React from 'react'
 import {OverlayTrigger, Popover} from 'react-bootstrap'
 import toast from 'react-hot-toast'
+import fetchUrl from '../../common/fetchvar'
 
 const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum, isLinkActive }) => {
     const { img, title, content, link, startDate, endDate, status, portfolioNum : num } = portfolio
@@ -16,7 +17,7 @@ const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum,
 
     return (
         <div className="card mb-4">
-            <img src={'/images/' + img} alt="" className="card-img-top" />
+            <img src={fetchUrl + '/images/' + img} alt="" className="card-img-top" />
             <div className="card-body" onClick={() => openPortfolioDetail}>
                 <div className="card-title h5">{title}</div>
                 <p className={"card-text" + (content == null ? ' text-center text-muted pt-5' : '')} style={{height: '100px'}}>{content == null ? '아직 포트폴리오에 대한 설명이 없어요' : content}</p>

@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import Error from '../../common/Error'
 
 import { MdOutlineDoNotDisturb as ErrorIcon } from 'react-icons/md'
+import fetchUrl from '../../common/fetchvar'
 
 const TechCard = ({ tech }) => {
     const { name, img, summary } = tech
@@ -95,7 +96,7 @@ const TechCard = ({ tech }) => {
                 <div className="col-12 col-md-2 align-self-center">
                     <div className="row justify-content-center">
                         <div className="col-6 col-md-12">
-                            <img src={'/images/' + img} alt="" style={{ width: '75px' }} className='w-100 mb-3' />
+                            <img src={fetchUrl + '/images/' + img} alt="" style={{ width: '75px' }} className='w-100 mb-3' />
                         </div>
                     </div>
                     <div className="h3 text-center">{name}</div>

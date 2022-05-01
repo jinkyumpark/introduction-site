@@ -14,6 +14,8 @@ import Loading from '../../common/Loading'
 import { Modal } from 'react-bootstrap'
 import toast from 'react-hot-toast'
 
+import fetchUrl from '../../common/fetchvar'
+
 const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
     const [techPage, setTechPage] = useState(0)
     const [isPhoneRequestOpen, setIsPhoneRequestOpen] = useState(false)
@@ -34,7 +36,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
         setIsLoading(true)
         Promise.all([
             // Profile
-            fetch('/api/resume/profile')
+            fetch(fetchUrl + '/api/resume/profile')
                 .then((res) => {
                     return res.json()
                 })
@@ -46,7 +48,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                 }),
     
             // Language
-            fetch('/api/resume/language')
+            fetch(fetchUrl + '/api/resume/language')
                 .then((res) => {
                     return res.json()
                 })
@@ -58,7 +60,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                 }),
     
             // Activity
-            fetch('/api/resume/activity')
+            fetch(fetchUrl + '/api/resume/activity')
                 .then((res) => {
                     return res.json()
                 })
@@ -70,7 +72,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                 }),
     
             // Tech
-            fetch('/api/resume/tech/header')
+            fetch(fetchUrl + '/api/resume/tech/header')
                 .then((res) => {
                     return res.json()
                 })
@@ -91,7 +93,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                 .catch((err) => {
                     return err
                 }),
-            fetch('/api/resume/tech/list')
+            fetch(fetchUrl + '/api/resume/tech/list')
                 .then((res) => {
                     return res.json()
                 })
@@ -103,7 +105,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                 }),
     
             // Introduction
-            fetch('/api/resume/introduction/normal')
+            fetch(fetchUrl + '/api/resume/introduction/normal')
                 .then((res) => {
                     return res.json()
                 })
@@ -113,7 +115,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                 .catch((err) => {
                     return err
                 }),
-            fetch('/api/resume/introduction/interview')
+            fetch(fetchUrl + '/api/resume/introduction/interview')
                 .then((res) => {
                     return res.json()
                 })
@@ -125,7 +127,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
                 }),
     
             // Portfolio
-            fetch('/api/portfolio/list?fetchNum=4')
+            fetch(fetchUrl + '/api/portfolio/list?fetchNum=4')
                 .then((res) => {
                     return res.json()
                 })
@@ -145,7 +147,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
     useEffect(() => {
         // fetch()
         if(techData != null) {
-            fetch('/api/resume/tech/list/' + techPage)
+            fetch(fetchUrl + '/api/resume/tech/list/' + techPage)
                 .then((res) => {
                     return res.json()
                 })

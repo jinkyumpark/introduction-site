@@ -1,4 +1,5 @@
 import React from 'react'
+import fetchUrl from '../../common/fetchvar'
 
 const PostCard = ({ post }) => {
     const { num, category, title, content, createdDate } = post
@@ -8,7 +9,7 @@ const PostCard = ({ post }) => {
             <div className="row justify-content-center justify-content-sm-start no-gutters">
 
                 <div className="col-6 col-sm-3 col-md-2 text-center ms-2 me-2 mt-3">
-                    <img className="card-img rounded-circle p-2" src={'/images/' + category.img} alt="LOGO" />
+                    <img className="card-img rounded-circle p-2" src={fetchUrl + '/images/' + category.img} alt="LOGO" />
                     <div className="h5 text-center">{category.name}</div>
                 </div>
 

@@ -4,6 +4,7 @@ import Error from '../../common/Error'
 import { MdSchool as SchoolIcon, MdEmail as EmailIcon } from 'react-icons/md'
 import { BsHouseDoorFill as HouseIcon, BsFillTelephoneFill as PhoneIcon } from 'react-icons/bs'
 import { FaSchool as SchoolIcon2 } from 'react-icons/fa'
+import fetchUrl from '../../common/fetchvar'
 
 const ProfileTable = ({profileData}) => {
 
@@ -16,7 +17,7 @@ const ProfileTable = ({profileData}) => {
             <div className="row card-body">
                 
                 <div className="col-12 col-md-2 text-center align-self-center">
-                    <img className="card-img rounded-circle p-2" src={'/images/' + profileData.profileImg} alt="jinkyumpark's profile image" />
+                    <img className="card-img rounded-circle p-2" src={fetchUrl + '/images/' + profileData.profileImg} alt="jinkyumpark's profile image" />
                 </div>
 
                 <div className="col-12 col-md-10">
