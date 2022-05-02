@@ -15,95 +15,14 @@ import fetchUrl from '../../common/fetchvar'
 const BlogDev = () => {
     const { num } = useParams();
     const [selectedMainCategory, setSelectedMainCategory] = useState(0)
-    const [selectedSubCategory, setSelectedSubCategory] = useState(null)
+    const [selectedSubCategory, setSelectedSubCategory] = useState(0)
     const [subCategoryList, setSubCategoryList] = useState(null)
     const [posts, setPosts] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [blogPage, setBlogPage] = useState(0)
     const [totalPost, setTotalPost] = useState(0)
 
-
-    // DUMMY DATA
-    const mainCategory = [
-        {
-            key: 13471923,
-            name: 'Front',
-            icon: 'front-icon.png'
-        },
-        {
-            key: 2134523455,
-            name: 'Back',
-            icon: 'linux-icon.png'
-        },
-        {
-            key: 1451345,
-            name: 'DevOps',
-            icon: 'devops-icon.png'
-        },
-        {
-            key: 12335443,
-            name: '기타',
-            icon: 'dot-icon.png'
-        }
-    ]
-    const dummyFrontSubCategory = [
-        {
-            key: 184129,
-            name: "HTML/CSS",
-            icon: 'html-icon.png',
-        },
-        {
-            key: 31412341,
-            name: "JS",
-            icon: 'js-icon.jpg',
-        },
-        {
-            key: 5532513,
-            name: "React",
-            icon: 'reactjs-icon.png',
-        },
-        {
-            key: 31451435,
-            name: "Bootstrap",
-            icon: 'bootstrap-icon.png',
-        },
-        {
-            key: 31451231435,
-            name: "SwiftUI",
-            icon: 'swiftui-icon.png',
-        }
-    ]
-    const dummyBackSubCategory = [
-        {
-            key: 184129,
-            name: "Spring",
-            icon: 'spring-icon.png',
-        },
-        {
-            key: 31412341,
-            name: "Database(SQL)",
-            icon: 'plsql-icon.png',
-        },
-        {
-            key: 5532513,
-            name: "Node.js(Express)",
-            icon: 'node-icon.jpeg',
-        }
-    ]
-    const dummyDevopsSubCategory = [
-        {
-            key: 184129,
-            name: "Git",
-            icon: 'git-icon.png',
-        },
-        {
-            key: 31412341,
-            name: "Docker",
-            icon: 'docker-icon.png',
-        }
-    ]
-    const dummyEtcSubCategory = null
-    // DUMMY DATA
+    const [mainCategory, setMainCategory] = useState(null)
 
     // Initial fetch
     useEffect(() => {
@@ -115,34 +34,78 @@ const BlogDev = () => {
                 .then((data) => {
                     setPosts(data)
                 })
+                .catch((err) => {
+                    return err
+                }),
+            fetch(fetchUrl + '/api/blog/category/2')
+                .then((res) => {
+                    return res.json()
+                })
+                .then((data) => {
+                    setMainCategory(data)
+                })
+                .catch((err) => {
+                    return err
+                })
         ])
             .finally(() => {
                 setIsLoading(false)
             })
     }, [])
     
-    // Fetch blogData when page changes
+    // Fetch blogData when category changes
     useEffect(() => {
-        
+        setIsLoading(true)
+        if(selectedSubCategory == null || selectedSubCategory == 0) {
+            fetch(fetchUrl + '/api/blog/filter/2/' + selectedMainCategory)
+                .then((res) => {
+                    return res.json()
+                })
+                .then((data) => {
+                    setPosts(data)
+                })
+                .catch((err) => {
+                    return err
+                })
+                .finally(() => {
+                    setIsLoading(false)
+                })
+        } else {
+            fetch(fetchUrl + '/api/blog/filter/3/' + selectedSubCategory)
+                .then((res) => {
+                    return res.json()
+                })
+                .then((data) => {
+                    setPosts(data)
+                })
+                .catch((err) => {
+                    return err
+                })
+                .finally(() => {
+                    setIsLoading(false)
+                })
+        }
     }, [selectedMainCategory, selectedSubCategory])
 
     // Fetch sub category when selectedMainCategory changes
     useEffect(() => {
         // Fetch subCategory by selectedMainCategory
-        if(selectedMainCategory == null) {
+        console.log('selected main category : ' + selectedMainCategory)
+
+        if(selectedMainCategory == null || selectedMainCategory == 0) {
             setSubCategoryList(null)
-        } else if(selectedMainCategory == 'Front') {
-            // fetch front
-            setSubCategoryList(dummyFrontSubCategory)
-        } else if(selectedMainCategory == 'Back') {
-            // fetch back
-            setSubCategoryList(dummyBackSubCategory)
-        } else if(selectedMainCategory == 'DevOps') {
-            // fetch devops
-            setSubCategoryList(dummyDevopsSubCategory)
         } else {
-            setSubCategoryList(dummyEtcSubCategory)
-        }
+            fetch(fetchUrl + '/api/blog/category/3/' + selectedMainCategory)
+                .then((res) => {
+                    return res.json()
+                })
+                .then((data) => {
+                    setSubCategoryList(data)
+                })
+                .catch((err) => {
+                    return err
+                })
+        } 
     }, [selectedMainCategory])
 
     return (
@@ -151,20 +114,23 @@ const BlogDev = () => {
 
             <div className="row">
                 {
+                    (mainCategory == null || mainCategory.length == 0) ?
+                    <NoContent message='카테고리가 없어요'/>
+                    :
                     mainCategory.map((category) => {
                         return (
                             <div className="col-12 col-md-6" onClick={() => {
-                                if(selectedMainCategory != category.name) {
-                                    setSelectedMainCategory(category.name)
+                                if(selectedMainCategory != category.num) {
+                                    setSelectedMainCategory(category.num)
                                 } else {
-                                    setSelectedMainCategory(null)
+                                    setSelectedMainCategory(0)
+                                    setSelectedSubCategory(0)
                                 }
                             }}
                             >                                    
                                 <ClassificationIcon
                                     data={category}
-                                    isDev={true}
-                                    isActive={(selectedMainCategory == category.name)}
+                                    isActive={(selectedMainCategory == category.num)}
                                 />
                             </div>
                         )
@@ -176,12 +142,20 @@ const BlogDev = () => {
                 {
                     selectedMainCategory != null ?
                     subCategoryList != null ?
-
-                    subCategoryList.map((data) => {
+                    subCategoryList.map((category) => {
                         return (
-                            <div className="col-6 col-md-3">
+                            <div className="col-6 col-md-3"
+                                onClick={() => {
+                                    if(selectedSubCategory == category.num) {
+                                        setSelectedSubCategory(0)
+                                    } else {
+                                        setSelectedSubCategory(category.num)
+                                    }
+                                }}
+                            >
                                 <ClassificationIcon
-                                    data={data}
+                                    data={category}
+                                    isActive={(selectedSubCategory == category.num)}
                                 />
                             </div>
                         )
