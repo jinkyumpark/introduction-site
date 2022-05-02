@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import fetchUrl from '../../common/fetchvar'
 
 const PostCard = ({ post }) => {
@@ -27,6 +27,17 @@ const PostCard = ({ post }) => {
                     </div>
                 </div>
             </div>
+            
+            {
+                (new Date().getMonth() + 1) == createdDate.substring(5, createdDate.indexOf('-', 5)) ?
+                <div className="h3">
+                    <span class="position-absolute top-0 start-100 translate-middle badge bg-danger">
+                        New!
+                    </span>
+                </div>
+                :
+                <></>
+            }
 
         </div>
     )
