@@ -184,6 +184,46 @@ public class ResumeController {
         return techList;
     }
 
+    @RequestMapping(value="/api/resume/tech/post/{num}", produces = "application/json;charset=UTF-8")
+    public ArrayList<HashMap<String, Object>> getTechPost(@PathVariable(value="num") int techNum) {
+        // Create paramMap
+        HashMap<String, Object> paramMap = new HashMap<>();
+        paramMap.put("num", techNum);
+        paramMap.put("ref_cursor", null);
+
+        // Fetch from db
+        rs.getTechPost(paramMap);
+        ArrayList<HashMap<String, Object>> result = new ArrayList<>();
+        result = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+
+        if(result == null || result.size() == 0) {
+            return new ArrayList<>();
+        }
+
+        ArrayList<HashMap<String, Object>> posts = new ArrayList<>();
+
+        for(HashMap<String, Object> post : result) {
+            HashMap<String, Object> tmp = new HashMap<String, Object>();
+            tmp.put("key", UUID.randomUUID());
+            tmp.put("title", post.get("TITLE"));
+            tmp.put("date", post.get("CREATED_DATE"));
+            tmp.put("num", post.get("NUM"));
+            HashMap<String, Object> category = new HashMap<>();
+            category.put("title", post.get("CATEGORY_TITLE"));
+            category.put("img", post.get("CATEGORY_IMG"));
+            tmp.put("category", category);
+
+            posts.add(tmp);
+        }
+
+        return posts;
+    }
+
+    @RequestMapping(value="/api/resume/tech/portfolio/{num}", produces="application/json;charset=UTF-8")
+    public ArrayList<HashMap<String, Object>> getTechPortfolio(@PathVariable(value="num") int techNum) {
+        return null;
+    }
+
     @RequestMapping(value="api/resume/introduction/normal", produces="application/json;charset=UTF-8")
     public HashMap<String, Object> getIntroduction() {
         // Creat return map

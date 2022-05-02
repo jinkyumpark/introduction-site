@@ -163,4 +163,20 @@
         }
     </select>
 
+    <select id="getTechPost"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap">
+        {
+            CALL getTechPost(
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=resumeMap
+                }
+            )
+        }
+    </select>
 </mapper>

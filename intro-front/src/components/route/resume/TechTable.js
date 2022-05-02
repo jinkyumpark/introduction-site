@@ -23,18 +23,18 @@ const TechTable = ({techData, techHeaderData, techLength, techPage, setTechPage}
   return (
       <>
         <div className="row">
-            <div className="col-md-8 col-lg-9 col-6">
+            <div className="col-md-8 col-lg-9 col-4 col-sm-6">
                 <div className="h2">보유기술 (총 {techLength}개)</div>
             </div>
-            <div className="col-md-4 col-lg-3 col-6">
 
+
+            <div className="col-md-4 col-lg-3 col-8 col-sm-6">
                 <Button
                     onClick={() => setIsDesOpen(!isDesOpen)}
                     aria-controls='techDes'
                     aria-expanded={isDesOpen}
                     className='btn-primary w-100'
                 >{techSummary.buttonTitle}</Button>
-
             </div>
         </div>
         <Collapse in={isDesOpen} className='mt-3 h6 text-muted'>

@@ -69,7 +69,7 @@ const Post = ({num}) => {
                 </div>
 
                 <div className="row mt-3 justify-content-center">
-                    <div className="col-12 p-3 text-muted h4 mt-3">
+                    <div className="col-12 p-3 text-muted h5 mt-3 lh-base">
                         {post.subtitle}
                     </div>
                 </div>
@@ -147,7 +147,9 @@ const Post = ({num}) => {
                             (post.content == null || post.content == '') ?
                             <NoContent message='본문이 없어요'/>
                             :
-                            parse(post.content)
+                            <div className="lh-base">
+                                {parse(post.content)}
+                            </div>
                         }
                         </div>
                     </div>

@@ -64,7 +64,7 @@ const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum,
             }</div>
             <div className="card-footer">
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-6 col-md-3 p-2">
                         <OverlayTrigger
                             key='top'
                             placement='top'
@@ -79,7 +79,7 @@ const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum,
                             <button className={"btn btn-outline-danger w-100 h-100" + (status === 0 ? " active" : "")}>시작전</button>
                         </OverlayTrigger>
                     </div>
-                    <div className="col-3">
+                    <div className="col-6 col-md-3 p-2">
                         <OverlayTrigger
                             key='top'
                             placement='top'
@@ -96,7 +96,7 @@ const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum,
                         </OverlayTrigger>
 
                     </div>
-                    <div className="col-3">
+                    <div className="col-6 col-md-3 p-2">
                         <OverlayTrigger
                             key='top'
                             placement='top'
@@ -113,7 +113,7 @@ const PortfolioCard = ({ portfolio, setIsPortfolioOpen, setSelectedPortfolioNum,
                         </OverlayTrigger>
                     </div>
 
-                    <div className="col-3">
+                    <div className="col-6 col-md-3 p-2">
                         <OverlayTrigger
                             key='top'
                             placement='top'

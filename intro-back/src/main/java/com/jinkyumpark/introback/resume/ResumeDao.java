@@ -18,4 +18,5 @@ public interface ResumeDao {
     void getTechListSummary(HashMap<String, Object> paramMap);
     void getIntroduction(HashMap<String, Object> paramMap);
     void getInterview(HashMap<String, Object> paramMap);
+    void getTechPost(HashMap<String, Object> paramMap);
 }

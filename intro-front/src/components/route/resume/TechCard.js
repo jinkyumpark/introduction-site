@@ -1,13 +1,16 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import {Link } from 'react-router-dom'
 
 import Error from '../../common/Error'
 
 import { MdOutlineDoNotDisturb as ErrorIcon } from 'react-icons/md'
 import fetchUrl from '../../common/fetchvar'
+import NoContent from '../blog/NoPost'
 
 const TechCard = ({ tech }) => {
-    const { name, img, summary } = tech
-    const [section, setSection] = useState(0);
+    const { name, img, summary, num } = tech
+    const [section, setSection] = useState(0)
+    const [posts, setPosts] = useState(null)
 
     const portfolios = [
         {
@@ -44,36 +47,21 @@ const TechCard = ({ tech }) => {
         }
     ]
 
-    const posts = [
-        {
-            title: '리엑트 시작!',
-            date: '22년 4월 19일'
-        },
-        {
-            title: '리엑트 시작!',
-            date: '22년 4월 19일'
-        },
-        {
-            title: '리엑트 시작!',
-            date: '22년 4월 19일'
-        },
-        {
-            title: '리엑트 시작!',
-            date: '22년 4월 19일'
-        },
-        {
-            title: '리엑트 시작!',
-            date: '22년 4월 19일'
-        },
-        {
-            title: '리엑트 시작!',
-            date: '22년 4월 19일'
-        },
-        {
-            title: '리엑트 시작!',
-            date: '22년 4월 19일'
+    useEffect(() => {
+        if(section == 1) {
+        } else {
+            fetch(fetchUrl + '/api/resume/tech/post/' + num)
+                .then((res) => {
+                    return res.json()
+                })
+                .then((data) => {
+                    setPosts(data)
+                }) 
+                .catch((err) => {
+                    return err
+                })
         }
-    ]
+    }, [section])
 
     return (
         <div className="card mt-3">
@@ -112,6 +100,7 @@ const TechCard = ({ tech }) => {
                         /> :
                         <PostSection
                             posts={posts}
+                            name={name}
                         />
                     }
                 </div>
@@ -157,16 +146,9 @@ const PortfolioSection = ({portfolios, name}) => {
         <div className='col align-self-center'>
             {
                 portfolios == null || portfolios.length == 0 ?
-                <>
-                    <div className="row">
-                        <ErrorIcon className='text-danger mb-3' size='100'/>
-                    </div>
-                    <div className="row">
-                        <div className="h5 text-center">
-                            {name}가 사용된 포트폴리오가 없어요
-                        </div>
-                    </div>
-                </>
+                <div className='mt-4'>
+                    <NoContent message={name + '사용된 포트폴리오가 없어요'} size='100'/>
+                </div >
                 :
                 <>
                     {
@@ -175,9 +157,8 @@ const PortfolioSection = ({portfolios, name}) => {
                                 <div className="card mt-3 portfolioListCard">
                                     <div className="row me-2">
 
-
-                                        <div className="col-12 col-md-4">
-                                            <img src={portfolio.img} alt='PORTFOLIO IMAGE' className="" style={{ width: '160px', height: '90px' }} />
+                                        <div className="col-12 col-md-3">
+                                            <img src={portfolio.img} alt='PORTFOLIO IMAGE' className="img-fluid" />
                                         </div>
 
                                         <div className="col-6 mt-2">
@@ -185,7 +166,6 @@ const PortfolioSection = ({portfolios, name}) => {
 
                                             <div className="h5 text-muted">{portfolio.description}</div>
                                         </div>
-
 
                                     </div>
                                 </div>
@@ -198,43 +178,49 @@ const PortfolioSection = ({portfolios, name}) => {
     )
 }
 
-const PostSection = ({posts}) => {
+const PostSection = ({posts, name}) => {
 
     return(
         <div className='col align-self-center'>
             {
                 (posts == null || posts.length == 0) ?
-                    <>
-                        <div className="row">
-                            <ErrorIcon className='text-danger mb-3' size='100'/>
-                        </div>
-                        <div className="row">
-                            <div className="h5 text-center">
-                                React와 관련된 포스트가 없어요
-                            </div>
-                        </div>                    
-                    </>
+                    <div className='mt-4'>
+                        <NoContent message={name + ' 관련된 포스트가 없어요'} size='100'/>
+                    </div>
                 :
                     <>
                         <div className='align-baseline'>
                             {
                                 posts.map((post) => {
                                     return(
-                                        <div className="row border rounded p-2 mt-2">
+                                        <Link to={'/blog/dev/' + post.num} className='text-dark text-decoration-none hoverEffect'>
+                                            <div className="row border rounded p-2 mt-2">
+                                                <div className="col-4 col-md-2 align-self-center">
+                                                    <div className="row justify-content-center">
+                                                        <div className="col-4 align-self-center">
+                                                            <img src={fetchUrl + '/images/' + post.category.img} alt="" className='img-fluid'/>    
+                                                        </div>
+                                                        <div className="col-8">
+                                                            {post.category.title}
+                                                        </div>    
+                                                    </div>                            
+                                                </div>
 
-                                            <div className="col-2 col-md-2 align-self-center">
-                                                이론
+                                                <div className="col-4 col-md-8 align-self-center">
+                                                    {post.title}
+                                                </div>
+
+                                                <div className="col-3 col-md-2 text-muted align-self-center">
+                                                    {
+                                                        post.date
+                                                            .substring(2, post.date.indexOf('T'))
+                                                            .replace('-', '년 ')
+                                                            .replace('-', '월 ')
+                                                            .concat('일')
+                                                    }
+                                                </div>
                                             </div>
-
-                                            <div className="col-6 col-md-8 align-self-center">
-                                                {post.title}
-                                            </div>
-
-                                            <div className="col-4 col-md-2 text-muted align-self-center">
-                                                {post.date}
-                                            </div>
-
-                                        </div>
+                                        </Link>
                                     )
                                 })
                             }

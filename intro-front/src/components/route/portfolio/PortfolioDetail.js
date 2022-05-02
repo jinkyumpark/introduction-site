@@ -64,11 +64,11 @@ const PortfolioDetail = ({portfolioNum}) => {
 					<img src={fetchUrl + '/images/' + portfolio.image} alt="" className='img-fluid w-100'/>
 
 					<div className="row">
-						<div className="col-9 col-md-10">
-							<div className="h5 mt-3 text-muted ps-5">{portfolio.summary}</div>
+						<div className="col-12 col-sm-9 col-md-10">
+							<div className="h5 mt-3 text-muted ps-5 lh-base">{portfolio.summary}</div>
 						</div>
 
-						<div className="col-3 col-md-2 align-self-center text-center mt-3">
+						<div className="col-12 col-sm-3 col-md-2 align-self-center text-end text-md-center mt-3">
 							<OverlayTrigger
 								key='portfolioGithubLink'
 								placement='top'

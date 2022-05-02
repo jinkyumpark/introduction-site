@@ -50,4 +50,8 @@ public class ResumeService {
     public void getInterview(HashMap<String, Object> paramMap) {
         rdao.getInterview(paramMap);
     }
+
+    public void getTechPost(HashMap<String, Object> paramMap) {
+        rdao.getTechPost(paramMap);
+    }
 }

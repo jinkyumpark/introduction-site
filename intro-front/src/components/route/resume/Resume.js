@@ -90,7 +90,7 @@ const Resume = ({setIsPortfolioOpen, setSelectedPortfolioNum}) => {
 
                     if(data.techList != null) {
                         const { innerWidth: width } = window;
-                        if(width < 576) {
+                        if(width < 750) {
                             setTechHeaderData(splitArray(data.techList, 3))
                         } else {
                             setTechHeaderData(splitArray(data.techList, 4))
