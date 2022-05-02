@@ -103,7 +103,7 @@
             parameterType="java.util.HashMap"
             >
         {
-            CALL getBLogPostDetailSummary(
+            CALL getBlogPostDetailSummary(
                 #{num},
                 #{
                     ref_cursor,
@@ -112,6 +112,58 @@
                     javaType=ResultSet,
                     resultMap=blogMap
                 }
+            )
+        }
+    </select>
+
+    <select id="getPostsByCategory"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap">
+        {
+            CALL getPostsByCategory(
+                #{num},
+                #{type},
+                #{page},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=blogMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getPostCategory"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            >
+        {
+            CALL getPostCategory(
+                #{type},
+                #{num},
+                #{
+                    ref_cursor,
+                    mode=OUT,
+                    jdbcType=CURSOR,
+                    javaType=ResultSet,
+                    resultMap=blogMap
+                }
+            )
+        }
+    </select>
+
+    <select id="getPostCount"
+            statementType="CALLABLE"
+            parameterType="java.util.HashMap"
+            resultType="_int"
+            >
+        {
+            CALL getPostCount(
+                #{type},
+                #{num},
+                #{count, mode=OUT, jdbcType=INTEGER}
             )
         }
     </select>

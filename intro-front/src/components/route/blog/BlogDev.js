@@ -200,7 +200,7 @@ const BlogDev = () => {
                         posts == null ?
                             <Error /> :
                                 posts.length == 0 ?
-                                    <NoContent message='죄송해요, 포스트가 아직 없어요'/> :
+                                    <NoContent message='죄송해요, 아직 포스트가 없어요'/> :
                                 num == null ?
                                     <>
                                     {

@@ -34,4 +34,16 @@ public class BlogService {
     public void getBlogPostDetailSummary(HashMap<String, Object> paramMap) {
         bdao.getBlogPostDetailSummary(paramMap);
     }
+
+    public void getPostsByCategory(HashMap<String, Object> paramMap) {
+        bdao.getPostsByCategory(paramMap);
+    }
+
+    public void getPostCategory(HashMap<String, Object> paramMap) {
+        bdao.getPostCategory(paramMap);
+    }
+
+    public void getPostCount(HashMap<String, Object> paramMap) {
+        bdao.getPostCount(paramMap);
+    }
 }

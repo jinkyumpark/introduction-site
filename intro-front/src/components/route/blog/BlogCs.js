@@ -1,94 +1,80 @@
 import React, { useState, useEffect } from 'react'
-import ClassificationIcon from './ClassificationIcon'
 import { Link, useParams } from 'react-router-dom';
-
-import { toast } from 'react-hot-toast';
 
 // Components
 import NoContent from './NoPost'
 import Loading from "../../common/Loading"
 import PostCard from './PostCard'
 import Post from './Post'
+import ClassificationIcon from './ClassificationIcon'
+import Error from '../../common/Error';
 
+// Library
+import { toast } from 'react-hot-toast';
+
+// Resources
 import fetchUrl from '../../common/fetchvar';
 
 const BlogCs = () => {
+    const { num } = useParams();
+
     const [isLoading, setIsLoading] = useState(false)
     const [blogPage, setBlogPage] = useState(0)
     const [selectedCategory, setSelectedCategory] = useState(0)
-    
-    const { num } = useParams();
+
+    const [posts, setPosts] = useState(null)
+    const [classificationData, setClassificationData] = useState(null)
     const [totalPost, setTotalPost] = useState(10)
     
-    // DUMMY DATA
-    const dummyClassificationData = [
-        {
-            key: 12,
-            name: "알고리즘",
-            icon: 'algo-icon.png'
-        },
-        {
-            key: 12,
-            name: "데이터구조",
-            icon: 'datastructure-icon.png'
-        },
-        {
-            key: 12,
-            name: "네트워크",
-            icon: 'network-icon.png'
-        },
-        {
-            key: 12,
-            name: "데이터베이스",
-            icon: 'db-icon.png'
-        },
-        {
-            key: 12,
-            name: "컴퓨테이션 이론",
-            icon: 'computation-icon.png'
-        },
-        {
-            key: 12,
-            name: "운영체제",
-            icon: 'os-icon.png'
-        }
-    ]
-    // DUMMY DATA
-
-    const [classificationData, setClassificationData] = useState(dummyClassificationData)
-    const [posts, setPosts] = useState(null)
-
     // Initial Fetch
+    useEffect(() => {
+        // Fetch category data
+        fetch(fetchUrl + '/api/blog/category/0')
+            .then((res) => {
+                return res.json()
+            })
+            .then((data) => {
+                setClassificationData(data)
+            })
+            .catch((err) => {
+                return err
+            })
+    }, [])
+
     useEffect(() => {
         setIsLoading(true)
         Promise.all([
-            // Blog post (page 0)
-            fetch(fetchUrl + '/api/blog/0')
+            // fetch filtered blog post
+            fetch(fetchUrl + '/api/blog/filter/0/' + selectedCategory)
+            .then((res) => {
+                return res.json()
+            })
+            .then((data) => {
+                setPosts(data)
+            })
+            .catch((err) => {
+                return err
+            }),
+            fetch(fetchUrl + '/api/blog/post/count/0/' + selectedCategory)
                 .then((res) => {
                     return res.json()
                 })
                 .then((data) => {
-                    setPosts(data)
+                    setTotalPost(data.postCount == null ? posts.length : data.postCount)
                 })
                 .catch((err) => {
                     return err
-                }),
-            // Classification
+                })
         ])
-            .finally(() => {
-                setIsLoading(false)
-            })    
-    }, [])
-
-    useEffect(() => {
-        // fetch filtered blog post here
+        .finally(() => {
+            setIsLoading(false)
+        })
     }, [selectedCategory])
 
     useEffect(() => {
         // fetch paging blog post here
         setIsLoading(true)
-
-        fetch(fetchUrl + '/api/blog/' + blogPage)
+        fetch(fetchUrl + '/api/blog/filter/0/' + selectedCategory + '/' + blogPage)
             .then((res) => {
                 return res.json()
             })
@@ -109,22 +95,27 @@ const BlogCs = () => {
 
             <div className="row">
                 {
+                    (classificationData == null || classificationData.length == 0) ?
+                    <Error/>
+                    :
                     classificationData.map((data) => {
                         return (
-                            <div className="col-6 col-md-4 col-lg-2"
-                                    onClick={() => {
-                                        if(data.name == selectedCategory) {
-                                            setSelectedCategory(null)
-                                        } else {
-                                            setSelectedCategory(data.name)
-                                        }
-                                    }}
-                            >
-                                <ClassificationIcon
-                                    data={data}
-                                    isActive={data.name == selectedCategory}
-                                />
-                            </div>
+                            <Link to='/blog/cs' className="col-6 col-md-4 col-lg-2">
+                                <div
+                                        onClick={() => {
+                                            if(data.num == selectedCategory) {
+                                                setSelectedCategory(0)
+                                            } else {
+                                                setSelectedCategory(data.num)
+                                            }
+                                        }}
+                                >
+                                    <ClassificationIcon
+                                        data={data}
+                                        isActive={data.num == selectedCategory}
+                                    />
+                                </div>
+                            </Link>
                         )
                     })
                 }
@@ -134,7 +125,7 @@ const BlogCs = () => {
                 {
                     isLoading ?
                         <Loading /> :
-                        posts == null ?
+                        (posts == null || posts.length == 0) ?
                             <NoContent message='죄송해요, 아직 포스트가 없어요' /> :
                                 num == null ?
                                 <>
@@ -155,10 +146,13 @@ const BlogCs = () => {
                                                 if(0 < blogPage) {
                                                     setBlogPage(blogPage - 1)
                                                 } else {
-                                                    toast.error('더 이상 줄일 수 없어요. 처음으로 돌아왔어요')
+                                                    toast.error('더 이상 포스트가 없어요')
                                                 }
                                             }}><div class="page-link" href="#">{'<'}</div></li>
                                             {
+                                                totalPost < 10 ?
+                                                <li className="page-item active"><div className="page-link">1</div></li>
+                                                :
                                                 [ ...Array(Math.floor(totalPost / 10)) ].map((item, index) => {
                                                     return(
                                                         <li class={"page-item" + (blogPage == index ? ' active' : '')}

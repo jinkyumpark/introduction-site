@@ -14,4 +14,7 @@ public interface BlogDao {
     void getBlogPostDetailLearn(HashMap<String, Object> paramMap);
     void getBlogPostDetailStudyMaterial(HashMap<String, Object> paramMap);
     void getBlogPostDetailSummary(HashMap<String, Object> paramMap);
+    void getPostsByCategory(HashMap<String, Object> paramMap);
+    void getPostCategory(HashMap<String, Object> paramMap);
+    void getPostCount(HashMap<String, Object> paramMap);
 }

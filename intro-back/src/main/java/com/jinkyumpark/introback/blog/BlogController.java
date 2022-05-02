@@ -17,6 +17,7 @@ public class BlogController {
     @Autowired
     BlogService bs;
 
+    // Fetch 3 recent blog post by type (for main page)
     @RequestMapping(value={"/api/blog/{type}", "/api/blog/{type}/{page}"}, produces="application/json;UTF-8")
     public ArrayList<HashMap<String, Object>> getBlogPosts(@PathVariable(value="type") String type, @PathVariable(value="page", required = false) Integer page) {
         // Create return array
@@ -58,54 +59,38 @@ public class BlogController {
         return posts;
     }
 
-    /*
-    // Return cs categoryData + cs postNum
-    @RequestMapping(value="/api/blog/cs/category", produces="application/json;UTF-8")
-    public HashMap<String, Object> getCsBlogCategory() {
-        // Create return map
-        HashMap<String, Object> blogCategory = new HashMap<>();
+    // Fetch categories by type
+    @RequestMapping(value= {"/api/blog/category/{type}", "/api/blog/category/{type}/{num}"}, produces="application/json;charset=UTF-8")
+    public ArrayList<HashMap<String, Object>> getDevMainCategory(@PathVariable(value="type", required = true) int type, @PathVariable(value="num", required = false) Integer belongNum) {
+        // return array
+        ArrayList<HashMap<String, Object>> categories = new ArrayList<>();
 
-    // Get total Posts
-        // Create paramMap
+        // paramMap
         HashMap<String, Object> paramMap = new HashMap<>();
-        paramMap.put("paramMap", null);
-        paramMap.put("type", 0);
-
-        // Fetch from DB
-        bs.getBlogCountByType(paramMap);
-        HashMap<String, Object> result = (HashMap<String, Object>) paramMap.get("ref_cursor");
-        Integer count = Integer.parseInt(String.valueOf(result.get("COUNT")));
-
-        // put to return map
-        blogCategory.put("totalBlogPosts", count);
-
-    // Get categoreies
-        // Create paramMap
-        paramMap = new HashMap<>();
+        paramMap.put("type", type);
+        paramMap.put("num", belongNum == null ? 0 : belongNum);
         paramMap.put("ref_cursor", null);
-        paramMap.put("type", 0);
-        bs.getMainCategoryByType()
 
-        // Fetch from DB
+        bs.getPostCategory(paramMap);
+        ArrayList<HashMap<String, Object>> result = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 
-        // Convert to JSON and put to return map
+        if(result == null || result.size() == 0) {
+            return new ArrayList<>();
+        }
 
+        for(HashMap<String, Object> category : result) {
+            HashMap<String, Object> tmp = new HashMap<>();
+            tmp.put("key", UUID.randomUUID());
+            tmp.put("name", category.get("TITLE"));
+            tmp.put("icon", category.get("IMG"));
+            tmp.put("num", category.get("NUM"));
+            categories.add(tmp);
+        }
 
-        return blogCategory;
+        return categories;
     }
 
-    */
-
-    @RequestMapping(value="/api/blog/dev/category/main", produces="application/json;charset=UTF-8")
-    public ArrayList<HashMap<String, Object>> getDevMainCategory() {
-        return null;
-    }
-
-    @RequestMapping(value="/api/blog/dev/category/sub", produces="application/json;charset=UTF-8")
-    public ArrayList<HashMap<String, Object>> getDevSubCategory() {
-        return null;
-    }
-
+    // Fetch blog post detail
     @RequestMapping(value="/api/blog/post/detail/{num}", produces="application/json;charset=UTF-8")
     public HashMap<String, Object> getPostDetail(@PathVariable(value="num") Integer postNum) {
         // Create return map
@@ -209,5 +194,61 @@ public class BlogController {
         }
 
         return postDetail;
+    }
+
+    // Fetch filtered blog post list by category
+    @RequestMapping(value= {"/api/blog/filter/{type}/{num}/{page}", "/api/blog/filter/{type}/{num}"}, produces="application/json;charset=UTF-8")
+    public ArrayList<HashMap<String, Object>> getPostsByCategory(@PathVariable(value="num") int categoryNum, @PathVariable(value="type") int type, @PathVariable(value="page", required = false) Integer page) {
+        ArrayList<HashMap<String, Object>> posts = new ArrayList<>();
+
+        HashMap<String, Object> paramMap = new HashMap<>();
+        paramMap.put("num", categoryNum);
+        paramMap.put("type", type);
+        paramMap.put("page", page ==  null ? 0 : page);
+        paramMap.put("ref_cursor", null);
+
+        bs.getPostsByCategory(paramMap);
+        ArrayList<HashMap<String, Object>> result = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+        if(result == null || result.size() == 0) {
+            return new ArrayList<>();
+        }
+
+        for(HashMap<String, Object> p : result) {
+            HashMap<String, Object> post = new HashMap<>();
+            post.put("key", UUID.randomUUID());
+            post.put("num", p.get("NUM"));
+            post.put("title", p.get("TITLE"));
+            post.put("content", p.get("CONTENT"));
+            post.put("createdDate", p.get("CREATED_DATE"));
+            HashMap<String, Object> category = new HashMap<>();
+            category.put("img", p.get("CATEGORY_IMG"));
+            category.put("name", p.get("CATEGORY_NAME"));
+            post.put("category", category);
+            posts.add(post);
+        }
+
+        return posts;
+    }
+
+    // Fetch total post count
+    @RequestMapping(value={"/api/blog/post/count/{type}/{num}", "/api/blog/post/count/{type}"}, produces = "application/json;charset=UTF-8")
+    public HashMap<String, Object> getPostCount(@PathVariable(value="type") int type, @PathVariable(value="num", required = false) Integer categoryNum) {
+        // Create paramMap
+        HashMap<String, Object> paramMap = new HashMap<>();
+        paramMap.put("num", categoryNum == null ? 0 : categoryNum);
+        paramMap.put("type", type);
+
+        bs.getPostCount(paramMap);
+        Integer count = (Integer) paramMap.get("count");
+
+        HashMap<String, Object> returnMap = new HashMap<>();
+
+        if(count == null) {
+            returnMap.put("postCount", 1000);
+        } else {
+            returnMap.put("postCount", count);
+        }
+
+        return returnMap;
     }
 }

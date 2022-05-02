@@ -52,7 +52,7 @@ const TechTable = ({techData, techHeaderData, techLength, techPage, setTechPage}
                     techHeaderData.map((arr) => {
                         return(
                             <Carousel.Item>
-                                <div className="row ps-5 pe-5" style={{height: '120px'}}>
+                                <div className="row ps-3" style={{height: '120px'}}>
                                 {
                                     arr.map((tech) => {
                                         return(
@@ -62,9 +62,9 @@ const TechTable = ({techData, techHeaderData, techLength, techPage, setTechPage}
                                                         <img src={fetchUrl + '/images/' + tech.img} alt="" style={{width: '50px', height: '50px'}} className='img-fluid mx-auto d-block rounded-circle'/>
                                                     </div>
                                                     <div className="col-12 align-self-center">
-                                                        <div className="h3 text-center">
-                                                            {tech.title}      
-                                                        </div>                                                    
+                                                        <div className="h5 text-center">
+                                                            {tech.title}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

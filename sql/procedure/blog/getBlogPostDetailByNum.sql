@@ -5,7 +5,7 @@ create or replace procedure getBlogPostDetail(
 is
 begin
 	open p_cur for
-	select p.title, p.summary, pc.title, pc.img, p.content, p.created_date
+	select p.title, p.summary, p.content, pc.title as category_title, pc.img as category_img, p.content, p.created_date
 	from post p
 	inner join post_category pc
 	on p.main_category=pc.num
