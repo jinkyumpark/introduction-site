@@ -154,9 +154,6 @@ const Post = ({num}) => {
                         </div>
                     </div>
 
-
-
-
                     <div className='mt-5'>
                         <div className="h3 mt-3 mb-2 mb-3">공부한 자료, 강의</div>
                         {
