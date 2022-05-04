@@ -82,7 +82,15 @@ const Post = ({ num }) => {
                 <div className="mb-5">
                     <div className="h3 mt-3">배운 내용</div>
 
-                    <Carousel variant="dark" indicators={false}>
+                    <Carousel
+                        variant="dark"
+                        indicators={false}
+                        controls={
+                            concept == null || concept.length <= 4
+                                ? false
+                                : true
+                        }
+                    >
                         {post.concepts == null ? (
                             <div className="text-center h3 text-muted">
                                 배운 개념이 없어요
