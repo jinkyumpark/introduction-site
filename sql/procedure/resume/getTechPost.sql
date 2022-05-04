@@ -5,12 +5,12 @@ create or replace procedure getTechPost(
 is
 begin
 	open p_cur for
-	select p.title, p.created_date, pc.title as category_title, pc.img as category_img
+	select p.title, p.created_date, p.num, pc.title as category_title, pc.img as category_img
 	from tech_category tc
 	inner join post p
-	on post.sub_category=tc.category_num
+	on p.sub_category=tc.category_num
 	inner join post_category pc
-	on post.sub_category=pc.num
+	on p.sub_category=pc.num
 	where tc.tech_num=p_num;
 end;
 

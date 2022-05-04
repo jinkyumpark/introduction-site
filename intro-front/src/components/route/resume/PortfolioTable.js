@@ -1,45 +1,48 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
-import PortfolioCard from '../home/PortfolioCard'
-import Error from '../../common/Error'
-import MoreButton from '../../common/MoreButton'
+import PortfolioCard from "../portfolio/PortfolioCard";
+import Error from "../../common/Error";
+import MoreButton from "../../common/MoreButton";
 
-const PortfolioTable = ({portfolioData, setIsPortfolioOpen, setSelectedPortfolioNum}) => {
+const PortfolioTable = ({
+    portfolioData,
+    setIsPortfolioOpen,
+    setSelectedPortfolioNum,
+}) => {
+    return (
+        <div className="row">
+            <div className="h2 mb-3">포트폴리오</div>
 
-  return (
-    <div className="row">
-        <div className="h2 mb-3">포트폴리오</div>
-    
-        {
-            portfolioData == null || portfolioData.length == 0 ?
-            <Error/>
-            :
-            portfolioData.map((portfolio) => {
-                return(
-                    <div className="col-12 col-md-6">
-                        <PortfolioCard
-                            portfolio={portfolio}
-                            setIsPortfolioOpen={setIsPortfolioOpen}
-                            setSelectedPortfolioNum={setSelectedPortfolioNum}
-                        />
-                    </div>
-                )
-            })
-        }      
+            {portfolioData == null || portfolioData.length == 0 ? (
+                <Error />
+            ) : (
+                portfolioData.map((portfolio) => {
+                    return (
+                        <div className="col-12 col-md-6">
+                            <PortfolioCard
+                                portfolio={portfolio}
+                                setIsPortfolioOpen={setIsPortfolioOpen}
+                                setSelectedPortfolioNum={
+                                    setSelectedPortfolioNum
+                                }
+                            />
+                        </div>
+                    );
+                })
+            )}
 
-        <div className="col-12">
-            {
-                (portfolioData == null || portfolioData.length < 4) ?
-                <></>
-                :
-                <Link to='/portfolio'>
-                    <MoreButton/>
-                </Link>
-            }
+            <div className="col-12">
+                {portfolioData == null || portfolioData.length < 4 ? (
+                    <></>
+                ) : (
+                    <Link to="/portfolio">
+                        <MoreButton />
+                    </Link>
+                )}
+            </div>
         </div>
-    </div>
-    )
-}
+    );
+};
 
-export default PortfolioTable
+export default PortfolioTable;
