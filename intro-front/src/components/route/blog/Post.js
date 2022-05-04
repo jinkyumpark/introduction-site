@@ -143,7 +143,12 @@ const Post = ({ num }) => {
                         {post.content == null || post.content == "" ? (
                             <NoContent message="본문이 없어요" />
                         ) : (
-                            <div className="lh-base">{parse(post.content)}</div>
+                            <div
+                                className="lh-base"
+                                style={{ fontSize: "1.2rem" }}
+                            >
+                                {parse(post.content)}
+                            </div>
                         )}
                     </div>
                 </div>
